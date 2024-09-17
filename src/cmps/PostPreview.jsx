@@ -22,13 +22,14 @@ import imgUrl from '../assets/imgs/camili.jpeg'
 export default function PostPreview({
     user,
     date, 
-    content, 
+    content,
+    id,
     likes,
     commentsList,
     isFollowed
 }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card  sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">

@@ -7,7 +7,7 @@ export function HomePage() {
         <section>
             <h1>Home sweet Home</h1>
             <PostsList />
-            {/* <LogedUser/> */}
+            <LogedUser/>
         </section >
     )
 }
