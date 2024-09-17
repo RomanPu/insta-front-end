@@ -1,6 +1,6 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
-import {LoadPosts} from '../store/posts/posts.actions'
+import {LoadPosts, setPosts} from '../store/posts/posts.actions'
 
 export const postService = {
     query,
@@ -109,4 +109,5 @@ function _createPosts() {
         ])
         LoadPosts(posts)
     }
+    setPosts(posts)
 }
