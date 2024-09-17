@@ -96,11 +96,16 @@ function _createPosts() {
     let posts = utilService.loadFromStorage(STORAGE_KEY)
     if (!posts || !posts.length) {
          posts = ([
-            { _id: '', author: 'John Doe', likes: 100, category: 'Technology' },
-            { _id: '', author: 'Jane Smith', likes: 80, category: 'Cooking' },
-            { _id: '', author: 'Alice Johnson', likes: 100, category: 'Travel' },
-            { _id: '', author: 'Bob Brown', likes: 40, category: 'Office' },
-            { _id: '', author: 'Charlie Black', likes: 40, category: 'Cooking' }
+            { _id: '', author: 'John Doe', likes: 100, category: 'Technology',
+                 createdAt: utilService.randomPastTime(), body: 'This is a post about technology' },
+            { _id: '', author: 'Jane Smith', likes: 80, category: 'Cooking' ,
+                 createdAt: utilService.randomPastTime(), body: 'This is a post about cooking' },
+            { _id: '', author: 'Alice Johnson', likes: 100, category: 'Travel',
+                 createdAt: utilService.randomPastTime() , body:  'This is a post about travel'},
+            { _id: '', author: 'Bob Brown', likes: 40, category: 'Office',
+                 createdAt: utilService.randomPastTime() , body: 'This is a post about office'},
+            { _id: '', author: 'Charlie Black', likes: 40, category: 'Cooking',
+                 createdAt: utilService.randomPastTime(), body: 'This is a post about cooking' },
         ])
         LoadPosts(posts)
     }
