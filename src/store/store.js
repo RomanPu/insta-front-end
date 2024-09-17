@@ -1,11 +1,13 @@
 import { createStore, combineReducers } from 'redux'
 
-import { userReducer } from './user.reducer'
-import { logedUserReducer } from './logeduser.reducer'
+import { usersReducer } from './users/users.reducer'
+import { postsReducer } from './posts/posts.reducer'
+import { logedUserReducer } from './logedUser/logeduser.reducer'
 
 
 const rootReducer = combineReducers({
-    userModule: userReducer,
+    postsModule: postsReducer,
+    usersModule: usersReducer,
     logedUserModule: logedUserReducer,
 })
 
