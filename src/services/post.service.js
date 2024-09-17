@@ -1,5 +1,6 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
+import {LoadPosts} from '../store/posts/posts.actions'
 
 export const postService = {
     query,
@@ -8,7 +9,8 @@ export const postService = {
     getById,
     createPost,
     getDefaultFilter,
-    getFilterFromSearchParams
+    getFilterFromSearchParams,
+    saveAll
 }
 
 const STORAGE_KEY = 'posts'
@@ -38,6 +40,21 @@ function getById(id) {
 
 function remove(id) {
     return storageService.remove(STORAGE_KEY, id)
+}
+
+async function saveAll(postsToSave) {
+    let savedPosts = []
+    //console.log('postsToSave:', postsToSave)
+    for (const postToSave of postsToSave) {
+        //console.log('postToSave:', postToSave)
+        if (postToSave.id) {
+            savedPosts.push( await storageService.put(STORAGE_KEY, postToSave))
+        } else {
+            postToSave.isPublished = false
+            savedPosts.push(await storageService.post(STORAGE_KEY, postToSave))
+        }
+    }
+    return savedPosts
 }
 
 function save(postToSave) {
@@ -78,13 +95,13 @@ function getFilterFromSearchParams(searchParams) {
 function _createPosts() {
     let posts = utilService.loadFromStorage(STORAGE_KEY)
     if (!posts || !posts.length) {
-        posts = [
-            { id: 'p1', author: 'John Doe', likes: 100, category: 'Technology' },
-            { id: 'p2', author: 'Jane Smith', likes: 80, category: 'Cooking' },
-            { id: 'p3', author: 'Alice Johnson', likes: 100, category: 'Travel' },
-            { id: 'p4', author: 'Bob Brown', likes: 40, category: 'Office' },
-            { id: 'p5', author: 'Charlie Black', likes: 40, category: 'Cooking' }
-        ]
-        utilService.saveToStorage(STORAGE_KEY, posts)
+         posts = ([
+            { _id: '', author: 'John Doe', likes: 100, category: 'Technology' },
+            { _id: '', author: 'Jane Smith', likes: 80, category: 'Cooking' },
+            { _id: '', author: 'Alice Johnson', likes: 100, category: 'Travel' },
+            { _id: '', author: 'Bob Brown', likes: 40, category: 'Office' },
+            { _id: '', author: 'Charlie Black', likes: 40, category: 'Cooking' }
+        ])
+        LoadPosts(posts)
     }
 }

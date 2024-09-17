@@ -8,13 +8,13 @@ import { useEffect } from "react";
 export function LogedUser(){
     const name = useSelector(storeState => storeState.logedUserModule.name)
     const users = useSelector(storeState => storeState.usersModule.names)
-    const posts = useSelector(storeState => storeState.postsModule.posts)
+    //const posts = useSelector(storeState => storeState.postsModule.posts)
 
     useEffect (()=>{
         console.log(users)
         changeName("romansky")
         addUser("shlomi")
-        addPost("hYYYYYYYYYYYYYYY")
+        // addPost("hYYYYYYYYYYYYYYY")
     },[])
     
     // if( name != "romansky") changeName("romansky")
@@ -24,7 +24,7 @@ export function LogedUser(){
     return <div>
         <div>user name {name} </div>
         <div>users conected {users} </div> 
-        <div>users conected {posts} </div>     
+        {/* <div>post{posts[0].author} </div>      */}
         </div>
 
 }
