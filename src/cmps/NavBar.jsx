@@ -10,10 +10,13 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
+
 export function NavBar() {
   return (
     <List
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+      className="nav-bar" 
+      sx={{position:'fixed', width: '300px',height: '100%', bgcolor: 'background.paper'}}
+     
       component="nav"
       aria-labelledby="nested-list-subheader"
     >

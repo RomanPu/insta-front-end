@@ -29,10 +29,10 @@ export default function PostPreview({
     isFollowed
 }) {
   return (
-    <Card  sx={{ maxWidth: 345 }}>
+    <Card  sx={{ width: '100%', marginBottom: 1}}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="post">
             {user}
           </Avatar>
         }

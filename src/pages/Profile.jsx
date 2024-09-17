@@ -1,3 +1,7 @@
+
+
 export function Profile (){
-    return <div>profile</div>
+    return <section>
+                <div>profile</div>
+           </section>
 }
