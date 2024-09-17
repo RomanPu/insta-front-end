@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage'
 import { Profile } from './pages/Profile'
 import {Messenger} from './pages/Messenger'
 import { NavBar } from './cmps/NavBar'
+import { postService } from './services/post.service'
 
 export function RootCmp() {
     return (
