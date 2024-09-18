@@ -48,10 +48,9 @@ async function saveAll(postsToSave) {
     //console.log('postsToSave:', postsToSave)
     for (const postToSave of postsToSave) {
         //console.log('postToSave:', postToSave)
-        if (postToSave.id) {
+        if (postToSave._id) {
             savedPosts.push( await storageService.put(STORAGE_KEY, postToSave))
         } else {
-            postToSave.isPublished = false
             savedPosts.push(await storageService.post(STORAGE_KEY, postToSave))
         }
     }
@@ -59,7 +58,7 @@ async function saveAll(postsToSave) {
 }
 
 function save(postToSave) {
-    if (postToSave.id) {
+    if (postToSave._id) {
         return storageService.put(STORAGE_KEY, postToSave)
     } else {
         return storageService.post(STORAGE_KEY, postToSave)
