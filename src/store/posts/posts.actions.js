@@ -26,6 +26,12 @@ export async function setPosts(newPosts) {
     }
 }
 
-export function editPost(post) {
-    store.dispatch({type: EDIT_POST, post: post})
+export async function editPost(post) {
+    try {
+            // postService.save(post)
+            store.dispatch({type: EDIT_POST, post: post})
+    } catch (error) {     
+        console.log('failed to load posts:', error)
+        throw error
+    }
 }

@@ -10,7 +10,8 @@ export const postService = {
     createPost,
     getDefaultFilter,
     getFilterFromSearchParams,
-    saveAll
+    saveAll,
+    createComment
 }
 
 const STORAGE_KEY = 'posts'
@@ -61,7 +62,6 @@ function save(postToSave) {
     if (postToSave.id) {
         return storageService.put(STORAGE_KEY, postToSave)
     } else {
-        postToSave.isPublished = false
         return storageService.post(STORAGE_KEY, postToSave)
     }
 }
@@ -96,7 +96,8 @@ function _createPosts() {
     let posts = utilService.loadFromStorage(STORAGE_KEY)
     if (!posts || !posts.length) {
          posts = ([
-            { _id: '', author: 'John Doe', likes: 100, category: 'Technology', comments: ["Great post!", "I agree!"],
+            { _id: '', author: 'John Doe', likes: 100, category: 'Technology', 
+                comments:"",
                  createdAt: utilService.randomPastTime(), body: 'This is a post about technologyyyyyyyyyyyyyyyyy' },
             { _id: '', author: 'Jane Smith', likes: 80, category: 'Cooking' , comments: [],
                  createdAt: utilService.randomPastTime(), body: 'This is a post about cooking' },
@@ -110,4 +111,18 @@ function _createPosts() {
         LoadPosts(posts)
     }
     setPosts(posts)
+}
+
+// [{author: "tony", userId: "", _Id: "1sfsdgd", body: "very good!!", likedList: [], createdAt: 1632872400000},
+// {author: "sharony", userId: "", _Id: "cdfg", body: "not bad", likedList: [], createdAt: 1632872400000}]
+
+function createComment(author, body, authorId) {
+    return {
+        author,
+        body,
+        authorId,
+        createdAt: Date.now(),
+        likedList: [],
+        _id: utilService.makeId()
+    }
 }

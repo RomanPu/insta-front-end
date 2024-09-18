@@ -21,6 +21,8 @@ import { useEffectUpdate } from '../customHooks/useEffectUpdate';
 import { utilService } from '../services/util.service';
 import { editPost } from '../store/posts/posts.actions';
 import { useState} from 'react';
+import { Comments } from './Comments';
+import { postService } from '../services/post.service'; 
 
 
 
@@ -30,6 +32,7 @@ export default function PostPreview({post}) {
 
   const { author, createdAt, body, _id, likes, comments, isFollowed } = post;
   const [isLiked, setIsLiked] = useState(false);
+  const [comment, setComment] = useState('');
 
   function handleLike(){
     setIsLiked(prev => !prev)
@@ -37,13 +40,13 @@ export default function PostPreview({post}) {
   }
 
   function handleCommentSubmit() {
-    // if (comment.trim()) {
-    //   const newComments = [...comments, comment];
-    //   setComments(newComments);
-    //   setComment('');
-    //   editPost({ ...post, commentsList: newComments });
-    // }
-    console.log('comment')
+    const com = postService.createComment("rom", comment, "123")
+    editPost({...post, comments: [...comments, com]})
+    setComment('')
+  }
+
+  function handleCommentChange(event) {
+    setComment(event.target.value);
   }
 
   useEffectUpdate(() => {editPost({...post, likes: isLiked ? likes + 1 : likes - 1})},[isLiked])
@@ -92,17 +95,12 @@ export default function PostPreview({post}) {
         <Typography variant="body2" color="text.secondary">
           Comments:
         </Typography>
-        {comments.map((comment, index) => (
-          <Typography key={index} variant="body2" color="text.secondary">
-            {comment}
-          </Typography>
-        ))}
+        {comments && <Comments comments={comments}/>}
         <TextField
-          // label="Add a comment"
           variant="standard"
           fullWidth
-          value={"ssss"}
-          // onChange={handleCommentChange}
+          value={comment}
+          onChange={handleCommentChange}
           sx={{ marginTop: 2 }}
         />
         <Button
