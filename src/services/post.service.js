@@ -96,16 +96,16 @@ function _createPosts() {
     let posts = utilService.loadFromStorage(STORAGE_KEY)
     if (!posts || !posts.length) {
          posts = ([
-            { _id: '', author: 'John Doe', likes: 100, category: 'Technology',
+            { _id: '', author: 'John Doe', likes: 100, category: 'Technology', comments: ["Great post!", "I agree!"],
                  createdAt: utilService.randomPastTime(), body: 'This is a post about technologyyyyyyyyyyyyyyyyy' },
-            { _id: '', author: 'Jane Smith', likes: 80, category: 'Cooking' ,
+            { _id: '', author: 'Jane Smith', likes: 80, category: 'Cooking' , comments: [],
                  createdAt: utilService.randomPastTime(), body: 'This is a post about cooking' },
-            { _id: '', author: 'Alice Johnson', likes: 100, category: 'Travel',
+            { _id: '', author: 'Alice Johnson', likes: 100, category: 'Travel', comments: [],
                  createdAt: utilService.randomPastTime() , body:  'This is a post about travel'},
-            { _id: '', author: 'Bob Brown', likes: 40, category: 'Office',
+            { _id: '', author: 'Bob Brown', likes: 40, category: 'Office', comments: [],
                  createdAt: utilService.randomPastTime() , body: 'This is a post about office'},
-            { _id: '', author: 'Charlie Black', likes: 40, category: 'Cooking',
-                 createdAt: utilService.randomPastTime(), body: 'This is a post about cooking' },
+            { _id: '', author: 'Charlie Black', likes: 40, category: 'Cooking', comments: [],
+                 createdAt: utilService.randomPastTime(), body: 'This is a post about cooking'},
         ])
         LoadPosts(posts)
     }

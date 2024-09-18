@@ -1,15 +1,13 @@
 export const ADD_POST = 'ADD_POST'
 export const SET_POSTS = 'SET_POSTS'
+export const EDIT_POST = 'EDIT_POST '
 
 const initialState = {
     posts: []
 }
 
-
-
-
-export function postsReducer(state = initialState, action = {}) {
-    // var newState = state
+export function postsReducer(state = initialState, action = {}){
+    var newState = state
     switch (action.type) {
         case ADD_POST:
             const updatedPosts = [...state.posts, action.post];
@@ -19,10 +17,14 @@ export function postsReducer(state = initialState, action = {}) {
                 ...state,
                 posts: action.posts
             }
+        case EDIT_POST:
+        //console.log('action:', action)
+        return {
+                ...state,
+                posts: state.posts.map(post => { return post._id === action.post._id ? action.post : post})
+            };
 
         default:
             return state 
     }
-
-
 }

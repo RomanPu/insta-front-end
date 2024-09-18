@@ -5,7 +5,8 @@ export const utilService = {
     debounce,
     randomPastTime,
     saveToStorage,
-    loadFromStorage
+    loadFromStorage,
+    getTimeString
 }
 
 function makeId(length = 6) {
@@ -62,3 +63,8 @@ function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined
 }
 
+
+function getTimeString(date) {
+    const time = new Date(date)
+    return time.toLocaleTimeString('en-IL', { hour: 'numeric', minute: 'numeric', hour12: true })
+}

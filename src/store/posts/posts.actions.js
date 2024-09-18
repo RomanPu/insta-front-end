@@ -1,4 +1,4 @@
-import { SET_POSTS } from "./posts.reducer"
+import { SET_POSTS, EDIT_POST , ADD_POST} from "./posts.reducer"
 import { store } from '../store'
 import { postService } from '../../services/post.service'
 
@@ -24,4 +24,8 @@ export async function setPosts(newPosts) {
         console.log('failed to set posts:', error)
         throw error
     }
+}
+
+export function editPost(post) {
+    store.dispatch({type: EDIT_POST, post: post})
 }
