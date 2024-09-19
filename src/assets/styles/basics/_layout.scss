@@ -1,33 +1,43 @@
-.main-container {
+// .main-container {
+//     display: grid;
+//     grid-template-columns: 20px 1fr 20px;
+
+//     > * {
+//         grid-column: 2;
+
+//         &.full {
+//             grid-column: 1 /-1;
+//         }
+//     }
+
+//     @include for-narrow-layout {
+//         grid-template-columns: 
+//             minmax(20px, 1fr)
+//             minmax(auto, $mobile-breakpoint)
+//             minmax(20px, 1fr);
+//     }
+//     @include for-normal-layout {
+//         grid-template-columns: 
+//             minmax(20px, 1fr)
+//             minmax(auto, $narrow-breakpoint)
+//             minmax(20px, 1fr);
+//     }
+//     @include for-wide-layout {
+//         grid-template-columns: 
+//             minmax(20px, 1fr)
+//             minmax(auto, $normal-breakpoint)
+//             minmax(20px, 1fr);
+//     }
+// }
+
+.home-page-layout{
     display: grid;
-    grid-template-columns: 20px 1fr 20px;
-
-    > * {
-        grid-column: 2;
-
-        &.full {
-            grid-column: 1 /-1;
-        }
-    }
-
-    @include for-narrow-layout {
-        grid-template-columns: 
-            minmax(20px, 1fr)
-            minmax(auto, $mobile-breakpoint)
-            minmax(20px, 1fr);
-    }
-    @include for-normal-layout {
-        grid-template-columns: 
-            minmax(20px, 1fr)
-            minmax(auto, $narrow-breakpoint)
-            minmax(20px, 1fr);
-    }
-    @include for-wide-layout {
-        grid-template-columns: 
-            minmax(20px, 1fr)
-            minmax(auto, $normal-breakpoint)
-            minmax(20px, 1fr);
-    }
+    flex-direction: row;
+    justify-items: flex-end;
+    
+    grid-template-areas:
+    ". main side";
+    grid-template-columns: 300px 2fr 2fr;
 }
 
 .card-grid {

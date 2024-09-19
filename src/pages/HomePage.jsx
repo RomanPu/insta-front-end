@@ -6,7 +6,7 @@ import { SuggestedFriends } from "../cmps/SuggestedFriends";
 
 export function HomePage() {
     return (
-        <section className="home-page">
+        <section className="home-page home-page-layout">
             <section className="posts-section">
                 <SuggestedFriends type = {"top"}/>
                 <PostsList />
