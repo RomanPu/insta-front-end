@@ -11,6 +11,8 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MapsUgcRoundedIcon from '@mui/icons-material/MapsUgcRounded';
+import { Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
@@ -83,16 +85,20 @@ export default function PostPreview({post}) {
           <IconButton onClick={handleLike} aria-label="add to favorites">
             <FavoriteIcon  sx={{ color: isLiked ? red[500] : 'inherit' }}/>
           </IconButton>
-
           <IconButton aria-label="share">
             <ShareIcon />
           </IconButton>
+          <Link to={`post/${post._id}`}>
+          <IconButton aria-label="comment">
+            <MapsUgcRoundedIcon />
+          </IconButton>
+          </Link>
         </CardActions>
         <CardContent>
         <Typography variant="body2" color="text.secondary">
             {`${likes} likes`}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        {/* <Typography variant="body2" color="text.secondary">
           Comments:
         </Typography>
         {comments && <Comments comments={comments}/>}
@@ -110,7 +116,7 @@ export default function PostPreview({post}) {
           sx={{ marginTop: 1 }}
         >
           Submit
-        </Button>
+        </Button> */}
         </CardContent>
     </Card>
   );

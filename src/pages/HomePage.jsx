@@ -1,9 +1,8 @@
 
+import { Outlet } from "react-router";
 import { LogedUser } from "../cmps/LogedUser";
-import { NavBar } from "../cmps/NavBar";
 import { PostsList } from "../cmps/PostsList";
 import { SuggestedFriends } from "../cmps/SuggestedFriends";
-
 
 export function HomePage() {
     return (
@@ -15,7 +14,8 @@ export function HomePage() {
             <section className="side-bar">
                 <LogedUser/>
                 <SuggestedFriends />
-            </section>
+            </section> 
+            <Outlet/>           
         </section >
     )
 }
