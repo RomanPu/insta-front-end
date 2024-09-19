@@ -1,36 +1,21 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MapsUgcRoundedIcon from '@mui/icons-material/MapsUgcRounded';
 import { Link } from 'react-router-dom';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-
 
 import imgUrl from '../assets/imgs/camili.jpeg'
 
 import { useEffectUpdate } from '../customHooks/useEffectUpdate';
-import { utilService } from '../services/util.service';
 import { editPost } from '../store/posts/posts.actions';
 import { useState} from 'react';
-import { Comments } from './Comments';
 import { postService } from '../services/post.service'; 
+import { MinUserCard } from './MinUserCard';
+import { Comments } from './Comments';
 
-
-
-
-
-export default function PostPreview({post}) {
+export default function PostPreview({post, type = 'post-preview'}) {
 
   const { author, createdAt, body, _id, likes, comments, isFollowed } = post;
   const [isLiked, setIsLiked] = useState(false);
@@ -55,69 +40,56 @@ export default function PostPreview({post}) {
 
   console.log('comments:', comments)
 
-  return (
-    <Card  sx={{ width: '100%', marginBottom: 1}}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="post">
-            {author}
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        subheader={utilService.getTimeString(createdAt)}
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image = {imgUrl}
-        alt="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-             {body}
-        </Typography>
-      </CardContent>
-        <CardActions >
-          <IconButton onClick={handleLike} aria-label="add to favorites">
-            <FavoriteIcon  sx={{ color: isLiked ? red[500] : 'inherit' }}/>
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-          <Link to={`post/${post._id}`}>
-          <IconButton aria-label="comment">
+  return <div className= {`post-view`} >
+    <div className={type}>
+      {type==="deteiled" && <img src={imgUrl} alt="post-img"/>}
+       <div class = "preview-and-comments">
+      <MinUserCard/>
+      {type==="post-preview" && <img src={imgUrl} alt="post-img"/>}
+      <div className='actions'>
+          <FavoriteIcon onClick={handleLike} sx={{ color: isLiked ? red[500] : 'inherit' }}/>
+          <ShareIcon />
+          {type === "post-preview" && <Link to={`post/${post._id}`}>
             <MapsUgcRoundedIcon />
-          </IconButton>
-          </Link>
-        </CardActions>
-        <CardContent>
-        <Typography variant="body2" color="text.secondary">
-            {`${likes} likes`}
-        </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-          Comments:
-        </Typography>
-        {comments && <Comments comments={comments}/>}
-        <TextField
-          variant="standard"
-          fullWidth
-          value={comment}
-          onChange={handleCommentChange}
-          sx={{ marginTop: 2 }}
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleCommentSubmit}
-          sx={{ marginTop: 1 }}
-        >
-          Submit
-        </Button> */}
-        </CardContent>
-    </Card>
-  );
+          </Link>}
+      </div>
+      <div className="likes">{`${likes} likes`}</div>
+      <div className="body">{body}</div>
+      <div className="comment-section">
+          <input
+            type="text"
+            placeholder="Add a comment"
+            value={comment}
+            onChange={handleCommentChange}
+            // style={{ width: '100%', padding: '8px', marginTop: '10px' }}
+          />
+          <button
+            onClick={handleCommentSubmit}
+            // style={{ padding: '8px 16px', marginTop: '10px', cursor: 'pointer' }}
+          >
+            Submit
+          </button>
+        </div>
+        {type === "deteiled" && <Comments comments={comments}/>}
+    </div>
+    </div>
+  </div>
 }
+
+// (
+   
+//   <CardActions >
+//     <IconButton onClick={handleLike} aria-label="add to favorites">
+//       <FavoriteIcon  sx={{ color: isLiked ? red[500] : 'inherit' }}/>
+//     </IconButton>
+//     <IconButton aria-label="share">
+//       <ShareIcon />
+//     </IconButton>
+//     <Link to={`post/${post._id}`}>
+//     <IconButton aria-label="comment">
+//       <MapsUgcRoundedIcon />
+//     </IconButton>
+//     </Link>
+//   </CardActions>
+
+// );

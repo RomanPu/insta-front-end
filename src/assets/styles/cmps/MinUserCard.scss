@@ -1,0 +1,32 @@
+.min-user-card {
+    .posts-preview{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+
+        h1{
+            font-size: $fontS;
+            font-weight: bold;
+        }
+
+        h2{
+            font-size: $fontS;
+            display: list-item;
+            list-style-type: disc;
+            font-weight: lighter;
+            margin-left: 5px;
+        }
+
+        h3{
+            font-size: $fontS;
+            display: list-item;
+            list-style-type: disc;
+            font-weight: lighter;
+            margin-left: 5px;
+        }
+    }
+    
+}

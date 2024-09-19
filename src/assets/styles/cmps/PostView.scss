@@ -1,0 +1,38 @@
+.post-view{
+    .post-preview{
+        display: grid;
+        align-items: flex-start;
+        justify-items: flex-start;
+        .actions{
+            display: flex;
+            align-items: flex-start;
+            justify-items: flex-start;
+            gap: 1rem;
+        }
+
+        img {
+            margin-block: 10px;
+        }
+
+    }
+    .deteiled{
+        display: flex;
+        align-items: flex-end;
+        justify-items: flex-start;
+        width: 80%;
+        height: 80%;
+
+        transform: translateY(20px);
+        
+        margin: auto;
+
+        box-shadow:
+        0 0 0 100vmax rgba(0, 0, 0, 0.5),
+        -3px 1px 28px #00000043;
+ 
+        
+        img {
+            height: 100%;
+        }
+    }
+}
