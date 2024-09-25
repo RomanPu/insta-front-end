@@ -1,55 +1,22 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import HomeIcon from '@mui/icons-material/Home';
-import SearchIcon from '@mui/icons-material/Search';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { NavBarAction} from './NavBarAction';
+import { HomeIcon, SearchIcon, ExploreIcon, ReelsIcon, MessengerIcon, 
+NotificationsIcon, NewPostIcon, SettingsIcon } from '../assets/imgs/NavBarSvgs';
 
+
+import { InstagramLogo } from '../assets/imgs/LogoSvgs';
 
 export function NavBar() {
-  return (
-    <List
-      className="nav-bar" 
-      sx={{position:'fixed', width: '300px',height: '100%', bgcolor: 'background.paper'}}
-     
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-    >
-      <ListItemButton component={Link} to="instush">
-        <ListItemIcon>
-          <HomeIcon />
-        </ListItemIcon>
-        <ListItemText primary="Home" />
-      </ListItemButton>
-      <ListItemButton>
-        <ListItemIcon>
-          <SearchIcon />
-        </ListItemIcon>
-        <ListItemText primary="Search" />
-      </ListItemButton>
-      <ListItemButton>
-        <ListItemIcon>
-          <AddBoxIcon />
-        </ListItemIcon>
-        <ListItemText primary="Add Post" />
-      </ListItemButton>
-      <ListItemButton>
-        <ListItemIcon>
-          <FavoriteBorderIcon />
-        </ListItemIcon>
-        <ListItemText primary="Activity" />
-      </ListItemButton>
-      <ListItemButton component={Link} to="instush/profile">
-        <ListItemIcon>
-          <AccountCircleIcon />
-        </ListItemIcon>
-        <ListItemText primary="Profile" />
-      </ListItemButton>
-    </List>
-  );
+  return <ul className="nav-bar" > 
+            <div key={"ins-logo"} className='insta-logo'><InstagramLogo/></div>
+            <li key={"home"}><NavBarAction name={"Home"} link={"instush"} icon={<HomeIcon />} /></li>
+            <li key={"search"}><NavBarAction name={"Search"} icon={<SearchIcon />} /></li>
+            <li key={"explore"}><NavBarAction name={"Explore"}  icon={<ExploreIcon />} /></li>
+            <li key={"reels"}><NavBarAction name={"Reels"}  icon={<ReelsIcon />} /></li>
+            <li key={"messeges"}><NavBarAction name={"Messeges"}  icon={<MessengerIcon />} /></li>
+            <li key={"notifications"}><NavBarAction name={"Notifications"}  icon={<NotificationsIcon />} /></li>
+            <li key={"create"}><NavBarAction name={"Create"}  icon={<NewPostIcon />} /></li>
+            <li key={"profile"}><NavBarAction name={"Profile"} link={"instush/profile"} icon={<SettingsIcon />} /></li>
+            <li key={"more"}><NavBarAction name={"More"}  icon={<SettingsIcon />} /></li>
+  </ul>  
 }

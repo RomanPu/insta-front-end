@@ -9,7 +9,7 @@ import { PostDeteiled } from './cmps/PostDeteiled'
 
 export function RootCmp() {
     return (
-        <div>
+        <div className='main-layout'>
             <NavBar/>
             {
                 <Routes>

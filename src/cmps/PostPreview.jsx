@@ -43,7 +43,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
   return <div className= {`post-view`} >
     <div className={type}>
       {type==="deteiled" && <img src={imgUrl} alt="post-img"/>}
-       <div class = "preview-and-comments">
+       <div className = "preview-and-comments">
       <MinUserCard/>
       {type==="post-preview" && <img src={imgUrl} alt="post-img"/>}
       <div className='actions'>
