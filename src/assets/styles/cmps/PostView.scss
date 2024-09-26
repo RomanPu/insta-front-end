@@ -2,16 +2,36 @@
     .post-preview{
         display: grid;
         align-items: flex-start;
+        padding-bottom: 16px;
+        margin-bottom: 20px;
+        border-bottom: 0.6px solid $gray2;
+
         // justify-items: flex-start;
         .actions{
+
+            *:hover{
+                cursor: pointer;
+            }
+            margin: 4px 0;
             display: flex;
             align-items: flex-start;
             justify-items: flex-start;
             gap: 1rem;
+
+            .save-icon{
+                margin-inline-start: auto;
+            }
+        }
+
+        .likes{
+            font-size: 14px;
+            color: black;
+            font-weight: 600;
         }
 
         img {
-            margin-block: 10px;
+            width: 468px;
+            height: 585px;
         }
 
     }
@@ -34,5 +54,60 @@
         img {
             height: 100%;
         }
+    }
+
+    .comment-section{
+        margin-block-start: 8px;
+        display: flex;
+
+        position: relative;
+        // display: inline-block;
+        *{
+            width: 100%;
+        }
+
+        button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0px 8px;
+            padding: 0;
+            font-weight: 600;
+            color: rgb(0, 149, 246);
+            width: auto;
+            background-color: transparent;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .textarea-wrapper {
+        position: relative;
+        display: inline-block;
+        }
+
+        .emoji-picker {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            transform: translateY(-10%) translateX(110%);
+            z-index: 10;
+        }
+
+        .text-area {
+            border: 1px solid rgb(203 213 225);
+            border-radius: 0.25rem;
+            height: 18px;
+            // line-height: 18px;
+            // width: 16rem;
+            // display: flex;
+            border: none; /* Remove border */
+            width: 100%;
+            resize: none; /* Prevent resizing */
+            outline: none; /* Remove outline on focus */
+            font-size: 14px; /* Match font size */
+            line-height: 18px;
+            padding: 0;
+            overflow: hidden; /* Hide scrollbar */           
+        }      
     }
 }

@@ -6,7 +6,8 @@ export const utilService = {
     randomPastTime,
     saveToStorage,
     loadFromStorage,
-    getTimeString
+    getTimeString,
+    createPostTimeFormat
 }
 
 function makeId(length = 6) {
@@ -67,4 +68,37 @@ function loadFromStorage(key) {
 function getTimeString(date) {
     const time = new Date(date)
     return time.toLocaleTimeString('en-IL', { hour: 'numeric', minute: 'numeric', hour12: true })
+}
+
+function createPostTimeFormat(date) {
+    const now = new Date();
+    const past = new Date(date);
+    const diffInMs = now - past;
+
+    const msInMinute = 60 * 1000;
+    const msInHour = 60 * msInMinute;
+    const msInDay = 24 * msInHour;
+    const msInWeek = 7 * msInDay;
+    const msInMonth = 30 * msInDay; // Approximation
+    const msInYear = 365 * msInDay; // Approximation
+
+    if (diffInMs < msInHour) {
+        const minutes = Math.round(diffInMs / msInMinute);
+        return `${minutes}m`;
+    } else if (diffInMs < msInDay) {
+        const hours = Math.round(diffInMs / msInHour);
+        return `${hours}h`;
+    } else if (diffInMs < msInWeek) {
+        const days = Math.round(diffInMs / msInDay);
+        return `${days}d`;
+    } else if (diffInMs < msInMonth) {
+        const weeks = Math.round(diffInMs / msInWeek);
+        return `${weeks}w`;
+    } else if (diffInMs < msInYear) {
+        const months = Math.round(diffInMs / msInMonth);
+        return `${months}mo`;
+    } else {
+        const years = Math.round(diffInMs / msInYear);
+        return `${years}y`;
+    }
 }
