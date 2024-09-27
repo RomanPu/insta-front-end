@@ -12,16 +12,25 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     border-right: 0.6px solid $gray2;
 
+    // .nav-bar-buttom-link{
+    //     height: 44px;
+    //     margin: 2px 0;
+    //     padding: 12px;
+
+    // }
+
         .nav-bar-buttom-content{
+
+            height: 48px;
+            margin: 2px 0;
+            padding: 12px;
             
             display: flex;
             justify-content: flex-start;
             align-items: flex-end ;
             // padding: 0 1rem;
-            height: 44px;
             width: 100%;
-            margin: 4px 0;
-            padding: 12px;
+
 
             //44
 
@@ -29,6 +38,7 @@
             color: rgb(0, 0, 0);
             color-scheme: light;
             font-size: 16px;
+            line-height: 24px;
             font-weight: 400;
             padding-inline-start: 16px;
             width: max-content;
@@ -40,13 +50,16 @@
         
 
             .nav-bar-icon{
+                width: 24px;
+                height: 24px;
                 align-self: center;
                 color:rgb(2 2 2);
         }
 
     }
     .insta-logo{
-        height: 73px;
+        line-height: 37px;
+        height: 54px;
         margin: 0px 0px 19px;
         padding: 30px 12px 16px;
     }

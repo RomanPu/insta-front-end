@@ -9,7 +9,7 @@ export function InstagramLogo (){
             aria-label="Instagram"
             className="x1lliihq x1n2onr6 x5n08af"
             fill="currentColor"
-            height="29"
+            height="37"
             role="img"
             viewBox="32 4 113 32"
             width="103"
