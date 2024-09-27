@@ -30,14 +30,14 @@
 //     }
 // }
 
-.home-page-layout{
-    display: grid;
-    flex-direction: row;
-    justify-items: flex-end;
-    grid-template-areas:
-    " . main side";
-    grid-template-columns: 244px 470px auto;
-}
+// .home-page-layout{
+//     display: grid;
+//     flex-direction: row;
+//     justify-items: flex-end;
+//     grid-template-areas:
+//     " . main side";
+//     grid-template-columns: 244px 470px auto;
+// }
 
 .card-grid {
     display: grid;

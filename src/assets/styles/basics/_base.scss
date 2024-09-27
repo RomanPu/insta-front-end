@@ -13,6 +13,7 @@ html {
 }
 
 body {
+    display: block;
     font-size: rem(16px);
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -32,11 +33,6 @@ body {
 //     line-height: 1;
 // }
 
-
-section, main, footer {
-    padding: 5px;
-}
-
 img {
     width: 100%;
 }
@@ -52,5 +48,9 @@ a {
 
 svg{
     color: black;
+}
+
+.main-layout{
+    width: 100%;
 }
 

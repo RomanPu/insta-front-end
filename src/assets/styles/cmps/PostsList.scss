@@ -1,16 +1,16 @@
 .posts-list{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     padding: 0;
     margin: 0;
     // margin-right: 10px;
     list-style: none;
+    max-width: 702px;
     width: 100%;
 
-    li{
-        width: 100%;
-    }
+     li{
+        width: 468px;
+     }
 }
 
