@@ -4,38 +4,37 @@ import {  userService } from '../../services/user.service'
 
 
 
-export function addUser(newPost) {
-    store.dispatch({type: ADD_USER,post: newPost})  
+export function addUser(newUser) {
+    store.dispatch({type: ADD_USER,user: newUser})  
 }
 
-export async function LoadUsers(newPosts) {
+export async function LoadUsers(newusers) {
     try {
-        console.log('newPosts:', newPosts)
-        const savedPosts = await userService.saveAll(newPosts)
-        store.dispatch({type: SET_USERS,posts: savedPosts})  
+        const savedusers = await userService.saveAll(newusers)
+        store.dispatch({type: SET_USERS,users: savedusers})  
     } catch (error) {     
-        console.log('failed to load posts:', error)
+        console.log('failed to load users:', error)
         throw error
     }
 }
 
 export async function setUsers(newUsers) {
     try {
-        store.dispatch({type: SET_USERS, posts: newUsers})  
+        store.dispatch({type: SET_USERS, users: newUsers})  
     } catch (error) {      
-        console.log('failed to set posts:', error)
+        console.log('failed to set users:', error)
         throw error
     }
 }
 
-export async function editUser(post) {
+export async function editUser(user) {
     try {
-            const savedUser = await userService.save(post)   
+            const savedUser = await userService.save(user)   
             console.log('edit', savedUser)
-            store.dispatch({type: EDIT_USER, post: {...savedUser}})
+            store.dispatch({type: EDIT_USER, user: {...savedUser}})
                   
     } catch (error) {     
-        console.log('failed to load posts:', error)
+        console.log('failed to load users:', error)
         throw error
     }
 }
