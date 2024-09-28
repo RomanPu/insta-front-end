@@ -2,7 +2,7 @@
 import { Outlet } from "react-router";
 import { LogedUser } from "../cmps/LogedUser";
 import { PostsList } from "../cmps/PostsList";
-import { SuggestedFriends } from "../cmps/SuggestedFriends";
+import { SuggedestedFriends } from "../cmps/SuggedestedFriends";
 
 export function HomePage() {
     return (
@@ -14,7 +14,7 @@ export function HomePage() {
                 </section>
                 <section className="side-bar">
                     <LogedUser/>
-                    <SuggestedFriends />
+                    <SuggedestedFriends />
                 </section> 
                 <Outlet/>           
             </section >

@@ -33,5 +33,36 @@
             margin-left: 5px;
         }
     }
-    
+
+    .suggedested-freinds-preview {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+        width: 283px;
+        height: 44px;
+        padding: 8px 16px;
+        list-style: none;
+
+        *{
+            font-size: 14px;
+        }
+        h1{
+            
+            font-weight: bold;
+        }
+        h2{
+            display: none;       
+        }
+
+        h3{
+            display: none;  
+        }
+
+        .avatar {
+            width: 56px;
+            height: 44px;           
+        }
+    }
 }

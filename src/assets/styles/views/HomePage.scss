@@ -1,39 +1,20 @@
 
 .home-page-conteiner{
-    // display: flex;
-    // align-items: stretch;
     margin-inline-start: 244px;
-    // justify-items:center;
-    // flex-shrink: 1;
-
     .home-page{
          display: flex;
          align-items: stretch;
-        // // align-content: inline-start;
-        // flex-shrink: 1;
-        // align-items: inline-start;
-        // justify-content: flex-start;
-        // justify-items:flex-start;
-        // // width: 100vw;
 
         .side-bar {
-            flex-shrink: 1;
-            flex-grow: 1;
-            // display: flex;
-            // justify-content: flex-start;
-            // align-items: flex-start;
-            border-color: black;
-            min-width: 385px;
-            // width: 100%;
+            width: 319px;
             padding-inline-start: 64px;
         }
 
         .posts-section {
             margin-block-start: 24px;
-            flex-shrink: 1;
-            flex-grow: 2;
+            max-width: 630px;
+            width: 100%;
             padding: 0px;
-            // width: 100%;
         }  
     }
 }
