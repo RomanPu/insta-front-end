@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import imgUrl from '../assets/imgs/camili.jpeg'
+import imgUrl from '../assets/imgs/deep.jpg'
 
 import { useEffectUpdate } from '../customHooks/useEffectUpdate';
 import { editPost } from '../store/posts/posts.actions';
@@ -71,46 +71,50 @@ export default function PostPreview({post, type = 'post-preview'}) {
 };
 
   return <div className= {`post-view`} >
-    <div className={type}>
-      {type==="deteiled" && <img src={imgUrl} alt="post-img"/>}
-       <div className = "preview-and-comments">
-      <MinUserCard user= {{name: author, followed: "followed", date: createdAt}}/>
-      {type==="post-preview" && <img src={imgUrl} alt="post-img"/>}
-      <div className='actions'>
-          <div onClick={handleLike} > 
-            { !isLiked ? <LikeIcon /> : <UnlikeIcon />}
-          </div>
-          {type === "post-preview" && <Link to={`post/${post._id}`}>
-            <Component />
-          </Link>}
-          <ShareIcon />
-          <div className='save-icon'><Save /></div>
-      </div>
-      <div className="likes">{`${likes} likes`}</div>
-      <div className={`body-${isExpanded ? 'expanded' : 'collapsed'}`}>
-          {isExpanded ? body : `${body.substring(0, 100)}... `}
-          {!isExpanded && (
-              <span className="more-link" onClick={toggleExpand}>
-                  more
-              </span>
-          )}
-      </div>
-      <div className="comment-section">
-          <textarea
-            ref={textareaRef}
-            className='text-area'
-            type="text"
-            placeholder="Add a comment"
-            value={comment}
-            onChange={handleCommentChange}
-          />
-          {comment && <button onClick={handleCommentSubmit}>Post</button>}
-          <button onClick={() => setShowEmojiPicker(prev => !prev)}>{<EmojiIcon/>}</button>
-          {showEmojiPicker && <div className='emoji-picker'>
-              <EmojiPicker onSelect={ handleEmojiSelect} />
-            </div>}
+    <div className= "preview-and-comments">
+      <div className='post-container'>
+        <div className = {type}>
+        <MinUserCard user= {{name: author, followed: "followed", date: createdAt}}/>
+        <div className='p-img'><img src={imgUrl} alt="post-img"/></div>
+        <div className='actions'>
+            <div onClick={handleLike} > 
+              { !isLiked ? <LikeIcon /> : <UnlikeIcon />}
+            </div>
+            {type === "post-preview" && <Link to={`post/${post._id}`}>
+              <Component />
+            </Link>}
+            <ShareIcon />
+            <div className='save-icon'><Save /></div>
         </div>
-        {type === "deteiled" && <Comments comments={comments}/>}
+        <div className="likes">{`${likes} likes`}</div>
+        <div className='body-and-comments'>
+          <div className={`body-${isExpanded ? 'expanded' : 'collapsed'} body`}>
+            {isExpanded ? body : `${body.substring(0, 100)}... `}
+            {!isExpanded && (
+                <span className="more-link" onClick={toggleExpand}>
+                    more
+                </span>
+            )}
+          </div>
+          {type === "deteiled" && <div><Comments comments={comments}/></div>}
+        </div>
+        <div/>
+        <div className="comment-section">
+            <textarea
+              ref={textareaRef}
+              className='text-area'
+              type="text"
+              placeholder="Add a comment"
+              value={comment}
+              onChange={handleCommentChange}
+            />
+            {comment && <button onClick={handleCommentSubmit}>Post</button>}
+            <button onClick={() => setShowEmojiPicker(prev => !prev)}>{<EmojiIcon/>}</button>
+            {showEmojiPicker && <div className='emoji-picker'>
+                <EmojiPicker onSelect={ handleEmojiSelect} />
+              </div>}
+          </div>
+      </div>
     </div>
     </div>
   </div>

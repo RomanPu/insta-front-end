@@ -96,7 +96,7 @@ function _createPosts() {
     if (!posts || !posts.length) {
          posts = ([
             { _id: '', author: 'John Doe', likes: 100, category: 'Technology', 
-                comments:"",
+                comments:[],
                  createdAt: utilService.randomPastTime(), body: 'This is a post about technologyyyyyyyyyyyyyyyyy' },
             { _id: '', author: 'Jane Smith', likes: 80, category: 'Cooking' , comments: [],
                  createdAt: utilService.randomPastTime(), body: 'This is a post about cooking' },

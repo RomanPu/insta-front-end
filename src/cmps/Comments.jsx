@@ -1,23 +1,21 @@
 import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
+import { Avatar } from './Avatar';
 
 
 export function Comments({comments}) {
 
-  return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      {comments.map((comment) => (
-        <ListItem key={comment._id}  alignItems="flex-start">
-          <ListItemAvatar>
-            <Avatar alt={comment.author} src="/static/images/avatar/1.jpg" />
-          </ListItemAvatar>
-          <ListItemText primary={comment.body} />
-        </ListItem>
-      ))}
-    </List>
-  );
+  return <ul className='comments-list'>
+    {comments.map(comment => <Comment comment={comment} />)}
+  </ul>
+
+}
+
+function Comment({comment}) {
+  return <li key={comment._id}>
+    <div>
+      <Avatar/>
+      <p>{comment.author}</p>
+    </div>
+    <p>{comment.body}</p>
+  </li>    
 }
