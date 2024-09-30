@@ -2,35 +2,40 @@
     .preview-and-comments{
         display: grid;
         align-items: flex-start;
-        padding-bottom: 16px;
-        margin-bottom: 20px;
-        border-bottom: 0.6px solid $gray2;
         width: 100%;
         height: 100%;
+        // background-color:  white;
+        
+        .post-container:has(.deteiled) {
+            background-color:  rgba(0, 0, 0, 0.5);
+            width: 100vw;
+            height: 100vh;
+         }
+
+
 
         .post-container{
             justify-self: center;
             width: 100%;
             height: 100%;
 
-
             .deteiled{
-                // position: fixed;
+                position: fixed;
                 // position: absolute;
-                // top: 50%;
-                // left: 50%;
-                // transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: transparent;
                 max-height: calc(100vh - 40px);
                 max-width: calc(100% - 64px - 64px);
+                margin: 40px 64px;
                 width: 100%;
                 margin: auto;
-    
-                //637 w
-                //h 1113
-                    
-                box-shadow:
-                0 0 0 100vmax rgba(0, 0, 0, 0.5),
-                -3px 1px 28px #00000043;
+
+                  
+                // box-shadow:
+                // 0 0 0 100vmax rgba(0, 0, 0, 0.5),
+                // -3px 1px 28px #00000043;
                 display: grid;
                 justify-content: center;
                 grid-template-areas: 
@@ -41,26 +46,52 @@
                 "pic add-comment";
     
                 grid-template-columns: auto 500px;
-                grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+                grid-template-rows: 69px 1fr 55px 18px 52px;
     
                 .actions{
+                    background-color: white;
                     grid-area: actions;
+                    border-top: 0.6px solid rgb(239, 239, 239);
+                    padding: 16px 8px 16px 6px;
+                    margin: 0px;
+                    
                 }
     
                 .likes{
+                    background-color: white;
                     grid-area: likes;
+                    padding: 0px 20px 4px 16px;
                 }
     
                 .comment-section{
+                    background-color: white;
+                    border-top: 0.6px solid $gray2;
                     grid-area: add-comment;
+                    margin: 0px;
+                    padding: 6px 16px 8px 16px;
                 }
     
                 .body-and-comments{
+                    background-color: white;
                     grid-area: comments;
-                }
-    
-                .min-user-card{
-                    grid-area: author;
+                    .comments-list{
+                        padding: 0;
+                        margin: 0;                      
+                        list-style: none;
+                            .comment {
+                                display: flex;
+                                padding: 4px 14px 16px 14px;
+
+                                .avatar{
+                                    margin-inline-end: 18px;
+                                }
+
+                                span{
+                                    font-weight: 600;
+                                    margin-inline-end: 4px;
+                                }
+                            }
+                    }
                 }
     
                 .p-img{
@@ -73,16 +104,22 @@
                     height: 100%;
                     max-width: 504px;
                     max-height: 897px;
-          
-                    // min-height: 450px;
-                    // flex-basis: 326.812px;
-                    // max-width: 326.812px;
                     grid-area: pic;
                 }
+
+                .header{
+                    background-color: white;
+                    grid-area: author;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .min-user-card{
+                        padding: 4px 14px 16px 14px;
+                    }
+                    
+                }
     
-                // .body{
-                //     grid-area: body;
-                // }
+
             }
     
         }

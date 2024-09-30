@@ -74,7 +74,11 @@ export default function PostPreview({post, type = 'post-preview'}) {
     <div className= "preview-and-comments">
       <div className='post-container'>
         <div className = {type}>
-        <MinUserCard user= {{name: author, followed: "followed", date: createdAt}}/>
+          <div className='header'>
+            <MinUserCard user= {{name: author, followed: "followed", 
+               date: createdAt}}/>
+            {type === "deteiled" && <div className='dots'><Dots /></div>}
+          </div>
         <div className='p-img'><img src={imgUrl} alt="post-img"/></div>
         <div className='actions'>
             <div onClick={handleLike} > 
@@ -234,4 +238,12 @@ function Save(){
 );
 }
 
+function Dots(){
+  return <svg aria-label="More options" className="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+    <title>More options</title>
+    <circle cx="12" cy="12" r="1.5"></circle>
+    <circle cx="6" cy="12" r="1.5"></circle>
+    <circle cx="18" cy="12" r="1.5"></circle>
+</svg>
+}
 

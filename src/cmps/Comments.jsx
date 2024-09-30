@@ -11,11 +11,13 @@ export function Comments({comments}) {
 }
 
 function Comment({comment}) {
-  return <li key={comment._id}>
-    <div>
-      <Avatar/>
-      <p>{comment.author}</p>
+  return <li  key={comment._id}>
+    <div className='comment'>
+      <div className='avatar'>
+        <Avatar/>
+      </div>
+        <span>{comment.author}</span>
+      <p>{comment.body}</p>
     </div>
-    <p>{comment.body}</p>
   </li>    
 }
