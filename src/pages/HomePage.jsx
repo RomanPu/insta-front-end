@@ -3,8 +3,11 @@ import { Outlet } from "react-router";
 import { LogedUser } from "../cmps/LogedUser";
 import { PostsList } from "../cmps/PostsList";
 import { SuggedestedFriends } from "../cmps/SuggedestedFriends";
+import { userService } from "../services/user.service";
+// import { userService } from "../services/user.service";
 
 export function HomePage() {
+    userService.createUsers()
     return (
         <div className="home-page-conteiner">
             <section className="home-page">

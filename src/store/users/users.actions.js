@@ -38,3 +38,7 @@ export async function editUser(user) {
         throw error
     }
 }
+
+export function getUserById(id) {
+    return store.getState().usersModule.users.find(user => user._id === id)
+}

@@ -11,12 +11,11 @@ export const userService = {
     getDefaultFilter,
     getFilterFromSearchParams,
     saveAll,
-    createComment
+    createComment,
+    createUsers
 };
 
 const STORAGE_KEY = 'users';
-
-_createUsers();
 
 async function query(filterBy) {
     try {
@@ -90,7 +89,7 @@ function getFilterFromSearchParams(searchParams) {
     return filterBy;
 }
 
-function _createUsers() {
+function createUsers() {
     let users = utilService.loadFromStorage(STORAGE_KEY);
     if (!users || !users.length) {
         users = [
