@@ -30,7 +30,7 @@ export function LogedUser(){
     }
   
     return <div className='logged-user'>
-        <Avatar />
+        <Avatar picUrl = {logedUser.avatarPic}/>
         <div className='user-info'>
             <h1>{logedUser.userName}</h1>
             <p>{logedUser.name}</p>

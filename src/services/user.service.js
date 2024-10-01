@@ -2,6 +2,12 @@ import { storageService } from './async-storage.service.js';
 import { utilService } from './util.service.js';
 import { LoadUsers, setUsers } from '../store/users/users.actions.js';
 
+import pic1 from '../assets/imgs/pic1.jpeg';
+import pic2 from '../assets/imgs/pic2.jpeg';
+import pic3 from '../assets/imgs/pic3.jpeg';
+import pic4 from '../assets/imgs/pic4.jpeg';
+import pic5 from '../assets/imgs/pic5.jpeg';
+
 export const userService = {
     query,
     save,
@@ -93,11 +99,11 @@ function createUsers() {
     let users = utilService.loadFromStorage(STORAGE_KEY);
     if (!users || !users.length) {
         users = [
-            { _id: '', name: 'John Doe', userName: 'Admin', posts: [], createdAt: utilService.randomPastTime() },
-            { _id: '', name: 'Jane Smith', userName: 'Editor', posts: [], createdAt: utilService.randomPastTime() },
-            { _id: '', name: 'Alice Johnson', userName: 'Viewer', posts: [], createdAt: utilService.randomPastTime() },
-            { _id: '', name: 'Bob Brown', userName: 'Editor', posts: [], createdAt: utilService.randomPastTime() },
-            { _id: '', name: 'Charlie Black', userName: 'Viewer', posts: [], createdAt: utilService.randomPastTime() }
+            { _id: '', avatarPic: pic1 ,name: 'John Doe', userName: 'Admin', posts: [], createdAt: utilService.randomPastTime() },
+            { _id: '', avatarPic: pic2 , name: 'Jane Smith', userName: 'Editor', posts: [], createdAt: utilService.randomPastTime() },
+            { _id: '', avatarPic: pic3 ,name: 'Alice Johnson', userName: 'Viewer', posts: [], createdAt: utilService.randomPastTime() },
+            { _id: '', avatarPic: pic4 ,name: 'Bob Brown', userName: 'Editor', posts: [], createdAt: utilService.randomPastTime() },
+            { _id: '', avatarPic: pic5 ,name: 'Charlie Black', userName: 'Viewer', posts: [], createdAt: utilService.randomPastTime() }
         ];
         LoadUsers(users);
     }

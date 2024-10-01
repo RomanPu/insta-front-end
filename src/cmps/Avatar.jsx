@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
 import { red } from '@mui/material/colors';
-import imgUrl from '../assets/imgs/camili.jpeg';
+import noUserImg from '../assets/imgs/no-user.png';
 
-export function Avatar({ picUrl = imgUrl }) {
+export function Avatar({ picUrl = noUserImg}) {
+  console.log('picUrl',picUrl)
   const canvasRef = useRef(null);
 
   useEffect(() => {
