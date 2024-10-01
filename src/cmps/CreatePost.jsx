@@ -1,5 +1,6 @@
 import { postService} from '../services/post.service'
 import { useSelector } from 'react-redux'
+
 export function CreatePost(){
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     postService.createPost(logedUser)
