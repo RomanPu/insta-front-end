@@ -121,6 +121,11 @@
     
 
             }
+            .post-preview{
+                padding-block-end: 16px;
+                margin-block-end: 20px;
+                border-bottom: 0.6px solid rgb(219, 219, 219);
+            }
     
         }
 
@@ -196,6 +201,7 @@
             border: 1px solid rgb(203 213 225);
             border-radius: 0.25rem;
             height: 18px;
+            // word-spacing: -3px;
             // line-height: 18px;
             // width: 16rem;
             // display: flex;
@@ -203,7 +209,7 @@
             width: 100%;
             resize: none; /* Prevent resizing */
             outline: none; /* Remove outline on focus */
-            font-size: 14px; /* Match font size */
+            font-size: 16px; /* Match font size */
             line-height: 18px;
             padding: 0;
             overflow: hidden; /* Hide scrollbar */           
