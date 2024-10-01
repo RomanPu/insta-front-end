@@ -3,7 +3,7 @@ import { LogedUser} from "../../cmps/LogedUser"
 export const SET_USER = 'SET_USER'
 
 const initialState = {
-  logedUser: {_id: '', name: 'Romi'}
+  logedUser: {_id: '', name: 'Sasi', userName:'Kalabasy'}
 }
 
 export function logedUserReducer (state = initialState, action = {}) {

@@ -15,7 +15,7 @@ export function NavBar() {
             <li key={"reels"}><NavBarAction name={"Reels"}  icon={<ReelsIcon />} /></li>
             <li key={"messeges"}><NavBarAction name={"Messeges"}  icon={<MessengerIcon />} /></li>
             <li key={"notifications"}><NavBarAction name={"Notifications"}  icon={<NotificationsIcon />} /></li>
-            <li key={"create"}><NavBarAction name={"Create"}  icon={<NewPostIcon />} /></li>
+            <li key={"create"}><NavBarAction name={"Create"}  icon={<NewPostIcon />} link={"instush/createpost"} /></li>
             <li key={"profile"}><NavBarAction name={"Profile"} link={"instush/profile"} icon={<SettingsIcon />} /></li>
             <li key={"more"}><NavBarAction name={"More"}  icon={<SettingsIcon />} /></li>
   </ul>  

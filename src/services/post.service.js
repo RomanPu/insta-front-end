@@ -1,6 +1,6 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
-import {LoadPosts, setPosts} from '../store/posts/posts.actions'
+import {LoadPosts, setPosts, addPost} from '../store/posts/posts.actions'
 
 export const postService = {
     query,
@@ -11,12 +11,14 @@ export const postService = {
     getDefaultFilter,
     getFilterFromSearchParams,
     saveAll,
-    createComment
+    createComment,
+    createPost
 }
 
 const STORAGE_KEY = 'posts'
 
-_createPosts()
+// _createPosts()
+
 async function query(filterBy) {
     try {
         let posts = await storageService.query(STORAGE_KEY)
@@ -65,13 +67,13 @@ function save(postToSave) {
     }
 }
 
-function createPost(author = '', category = '', likes = 0) {
-    return {
-        author,
-        likes,
-        category
-    }
-}
+// function createPost(author = '', category = '', likes = 0) {
+//     return {
+//         author,
+//         likes,
+//         category
+//     }
+// }
 
 function getDefaultFilter() {
     return {
@@ -110,6 +112,14 @@ function _createPosts() {
         LoadPosts(posts)
     }
     setPosts(posts)
+}
+
+function createPost(user){
+    let post = { _id: '', author: user.userName, userId: user._id, likes: [], category: 'Technology', 
+        comments:[],
+         createdAt: utilService.randomPastTime(), body: 'This is a post about technologyyyyyyyyyyyyyyyyy' }
+         addPost(post)
+         return post._id
 }
 
 // [{author: "tony", userId: "", _Id: "1sfsdgd", body: "very good!!", likedList: [], createdAt: 1632872400000},

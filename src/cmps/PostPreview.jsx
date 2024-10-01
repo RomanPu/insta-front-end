@@ -11,10 +11,10 @@ import { MinUserCard } from './MinUserCard';
 import { Comments } from './Comments';
 import { EmojiIcon, EmojiPicker } from './ImojiPicker';
 
-export default function PostPreview({post, type = 'post-preview'}) {
+export default function PostPreview({post, type = 'post-preview', user}) {
 
-  const { author, createdAt, body, _id, likes, comments, isFollowed } = post;
-  const [isLiked, setIsLiked] = useState(false);
+  const { author, createdAt, body, _id, likes, comments, isFollowed, } = post;
+  const [isLiked, setIsLiked] = useState(likes.map(like => like === user._id).includes(true));
   const [comment, setComment] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
   const textareaRef = useRef(null);
@@ -23,6 +23,15 @@ export default function PostPreview({post, type = 'post-preview'}) {
   const toggleExpand = () => {
       setIsExpanded(!isExpanded);
   };
+
+  useEffectUpdate(() => { 
+      if (isLiked) {
+        editPost({...post, likes: [...likes, user._id]})
+      }
+      else {
+        editPost({...post, likes: likes.filter(like => like !== user._id)})
+      }
+  },[isLiked])
 
 
   function handleLike(){
@@ -58,7 +67,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
     };
   }, []);
 
-  useEffectUpdate(() => {editPost({...post, likes: isLiked ? likes + 1 : likes - 1})},[isLiked])
+  // useEffectUpdate(() => {editPost({...post, likes: isLiked ? likes + 1 : likes - 1})},[isLiked])
 
   const handleEmojiSelect = (e) => {
     console.log("emoji", e);
@@ -76,7 +85,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
         <div className = {type}>
           <div className='header'>
             <MinUserCard user= {{name: author, followed: "followed", 
-               date: createdAt}}/>
+               createdAt: createdAt}}/>
             {type === "deteiled" && <div className='dots'><Dots /></div>}
           </div>
         <div className='p-img'><img src={imgUrl} alt="post-img"/></div>
@@ -90,7 +99,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
             <ShareIcon />
             <div className='save-icon'><Save /></div>
         </div>
-        <div className="likes">{`${likes} likes`}</div>
+        <div className="likes">{`${likes.length} likes`}</div>
         <div className='body-and-comments'>
           <div className={`body-${isExpanded ? 'expanded' : 'collapsed'} body`}>
             {isExpanded ? body : `${body.substring(0, 100)}... `}

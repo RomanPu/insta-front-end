@@ -6,6 +6,7 @@ import { Profile } from './pages/Profile'
 import {Messenger} from './pages/Messenger'
 import { NavBar } from './cmps/NavBar'
 import { PostDeteiled } from './cmps/PostDeteiled'
+import { CreatePost } from './cmps/CreatePost'
 
 export function RootCmp() {
     return (
@@ -17,6 +18,7 @@ export function RootCmp() {
                      <Route path="/instush/profile" element={<Profile />} />
                      <Route path="/instush/messenger" element={<Messenger />} />
                      <Route path="/instush/post/:_id" element={<PostDeteiled/>} />
+                     <Route path="/instush/createpost" element={<CreatePost/>} />
                </Routes>
             }
         </div>

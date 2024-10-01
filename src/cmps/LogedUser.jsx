@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import {useState } from 'react'
+import {useState, useEffect } from 'react'
 
 import { Avatar } from './Avatar'
 import { switchUser } from '../store/logedUser/loged.user.actions'
@@ -11,6 +11,11 @@ export function LogedUser(){
     const users = useSelector(storeState => storeState.usersModule.users)
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     const [switchOn, setSwitchOn] = useState(false)
+
+    useEffect(() => {
+        if(users.length === 0) return
+        switchUser(users[0])
+    },[])
 
     //drop box with all users when click button switch
     function switchUserOn(){
@@ -27,7 +32,7 @@ export function LogedUser(){
     return <div className='logged-user'>
         <Avatar />
         <div className='user-info'>
-            <h1>user</h1>
+            <h1>{logedUser.userName}</h1>
             <p>{logedUser.name}</p>
         </div>
         {!switchOn && <button onClick={switchUserOn}>switch</button>}
