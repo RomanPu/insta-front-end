@@ -10,15 +10,19 @@ import { postService } from '../services/post.service';
 import { MinUserCard } from './MinUserCard';
 import { Comments } from './Comments';
 import { EmojiIcon, EmojiPicker } from './ImojiPicker';
+import { getUserById } from '../store/users/users.actions'
 
-export default function PostPreview({post, type = 'post-preview', user}) {
 
+export default function PostPreview({post, type = 'post-preview'}) {
+  const user = getUserById(post.userId)
   const { author, createdAt, body, _id, likes, comments, isFollowed, } = post;
   const [isLiked, setIsLiked] = useState(likes.map(like => like === user._id).includes(true));
   const [comment, setComment] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
   const textareaRef = useRef(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+
+  console.log('post', post.userId)
 
   const toggleExpand = () => {
       setIsExpanded(!isExpanded);

@@ -13,8 +13,8 @@ export function LogedUser(){
     const [switchOn, setSwitchOn] = useState(false)
 
     useEffect(() => {
-        if(users.length === 0) return
-        switchUser(users[0])
+        switchUser({_id: users[0]._id, name: users[0].name, userName: users[0].name,
+             avatarPic: users[0].avatarPic}) 
     },[])
 
     //drop box with all users when click button switch
@@ -25,12 +25,15 @@ export function LogedUser(){
     function oNselctedUser(ev){
         //console.log('ev.target.value',ev.target)
         const user = getUserById(ev.target.value)
-        switchUser(user)
+        switchUser({_id: user._id, name: user.name, userName: user.name,
+            avatarPic: user.avatarPic})
         setSwitchOn(prev => !prev)
     }
+
+    console.log('logedUser', logedUser.avatarPic)
   
     return <div className='logged-user'>
-        <Avatar picUrl = {logedUser.avatarPic}/>
+        <Avatar picUrl = {users[0].avatarPic}/>
         <div className='user-info'>
             <h1>{logedUser.userName}</h1>
             <p>{logedUser.name}</p>

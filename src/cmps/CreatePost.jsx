@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 
 export function CreatePost(){
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
+    console.log('CreatePost',logedUser)
     postService.createPost(logedUser)
-    //console.log('CreatePost')
     return (
         <div className="create-post">
             created post!!!!!
