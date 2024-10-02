@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import imgUrl from '../assets/imgs/deep.jpg'
+import imgUrl from '../assets/imgs/pic3.jpeg'
 
 import { useEffectUpdate } from '../customHooks/useEffectUpdate';
 import { editPost } from '../store/posts/posts.actions';
@@ -89,7 +89,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
         <div className = {type}>
           <div className='header'>
             <MinUserCard user= {{name: author, followed: "followed", 
-               createdAt: createdAt, avatarPic: user.avatarPic}}/>
+               avatarPic: user.avatarPic}} time = {createdAt}/>
             {type === "deteiled" && <div className='dots'><Dots /></div>}
           </div>
         <div className='p-img'><img src={imgUrl} alt="post-img"/></div>

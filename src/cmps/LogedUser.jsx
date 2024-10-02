@@ -38,7 +38,7 @@ export function LogedUser(){
             <h1>{logedUser.userName}</h1>
             <p>{logedUser.name}</p>
         </div>
-        {!switchOn && <button onClick={switchUserOn}>switch</button>}
+        {!switchOn && <button onClick={switchUserOn}>Switch</button>}
         {switchOn && <select onChange={oNselctedUser} name="users" id="users">
             {users.map(user => <option key={user._id} value={user._id}>{user.name}</option>)}
         </select>}
