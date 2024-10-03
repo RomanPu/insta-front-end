@@ -14,10 +14,11 @@ function Comment({comment}) {
   return <li  key={comment._id}>
     <div className='comment'>
       <div className='avatar'>
-        <Avatar/>
+        <Avatar picUrl={comment.authorAvatar}/>
+      </div >
+      <div className='content'>
+        <p><span style={{fontWeight: 600}}>{comment.author} </span><span>{comment.body}</span></p>
       </div>
-        <span>{comment.author}</span>
-      <p>{comment.body}</p>
     </div>
   </li>    
 }

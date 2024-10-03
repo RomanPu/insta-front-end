@@ -117,7 +117,7 @@ function _createPosts() {
 function createPost(user){
     let post = { _id: '', author: user.userName, userId: user._id, likes: [], category: 'Technology', 
         comments:[],
-         createdAt: utilService.randomPastTime(), body: 'This is a post about technologyyyyyyyyyyyyyyyyy' }
+         createdAt: utilService.randomPastTime(), body: "utilService.makeLorem()" }
          addPost(post)
          return post._id
 }
@@ -125,11 +125,12 @@ function createPost(user){
 // [{author: "tony", userId: "", _Id: "1sfsdgd", body: "very good!!", likedList: [], createdAt: 1632872400000},
 // {author: "sharony", userId: "", _Id: "cdfg", body: "not bad", likedList: [], createdAt: 1632872400000}]
 
-function createComment(author, body, authorId) {
+function createComment(author, body, authorId, authorAvatar) {
     return {
         author,
         body,
         authorId,
+        authorAvatar,
         createdAt: Date.now(),
         likedList: [],
         _id: utilService.makeId()

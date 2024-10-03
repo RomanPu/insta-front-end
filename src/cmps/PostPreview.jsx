@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 
-import imgUrl from '../assets/imgs/pic3.jpeg'
+import imgUrl from '../assets/imgs/deep.jpg'
 
 import { useEffectUpdate } from '../customHooks/useEffectUpdate';
 import { editPost } from '../store/posts/posts.actions';
@@ -13,12 +14,15 @@ import { EmojiIcon, EmojiPicker } from './ImojiPicker';
 import { getUserById } from '../store/users/users.actions'
 
 
+
 export default function PostPreview({post, type = 'post-preview'}) {
   const user = getUserById(post.userId)
+  const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
+
   const { author, createdAt, body, _id, likes, comments, isFollowed, } = post;
   const [isLiked, setIsLiked] = useState(likes.map(like => like === user._id).includes(true));
   const [comment, setComment] = useState('');
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(type === "deteiled" ? true : false);
   const textareaRef = useRef(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
@@ -47,7 +51,8 @@ export default function PostPreview({post, type = 'post-preview'}) {
     const textarea = textareaRef.current;
     textarea.style.height = '18px'; // Reset height
 
-    const com = postService.createComment("rom", comment, "123")
+    const com = postService.createComment(logedUser.name, comment,
+       logedUser._id, logedUser.avatarPic)
     editPost({...post, comments: [...comments, com]})
     setComment('')
   }
@@ -81,7 +86,13 @@ export default function PostPreview({post, type = 'post-preview'}) {
     let emoji = String.fromCodePoint(...codesArray);
     setComment(prev => prev + emoji);
     // setShowEmojiPicker(false);
-};
+  };
+
+  function onClose(ev) {
+    console.log('close')
+  }
+
+
 
   return <div className= {`post-view`} >
     <div className= "preview-and-comments">
@@ -132,10 +143,46 @@ export default function PostPreview({post, type = 'post-preview'}) {
               </div>}
           </div>
       </div>
+      {type === "deteiled" && <Link to = {'/instush/'}>
+        <div className = "close-dteiled-post" onClick={(ev) => onClose(ev)}>{<WhiteX/>}</div></Link>}
     </div>
     </div>
   </div>
 }
+
+function WhiteX(){
+  return (  <svg
+    aria-label="Close"
+    className="x1lliihq x1n2onr6 x9bdzbf"
+    fill="currentColor"
+    height="18"
+    role="img"
+    viewBox="0 0 24 24"
+    width="18"
+  >
+    <title>Close</title>
+    <polyline
+      fill="none"
+      points="20.643 3.357 12 12 3.353 20.647"
+      stroke="white"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="3"
+    ></polyline>
+    <line
+      fill="none"
+      stroke="white"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="3"
+      x1="20.649"
+      x2="3.354"
+      y1="20.649"
+      y2="3.354"
+    ></line>
+  </svg>)
+}
+
 
 function ShareIcon(){
   return (
