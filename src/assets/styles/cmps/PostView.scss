@@ -78,6 +78,11 @@
                     grid-area: add-comment;
                     margin: 0px;
                     padding: 6px 16px 8px 16px;
+                    svg{
+                       width: 24px;
+                       height: 24px;
+                    }
+                    
                 }
     
                 .body-and-comments{
@@ -96,10 +101,6 @@
                                 .avatar{
                                     margin-inline-end: 18px;
                                 }
-
-
-
-
                             }
                     }
                 }
@@ -179,11 +180,16 @@
     .comment-section{
         margin-block-start: 8px;
         display: flex;
+        align-items: center;
 
         position: relative;
         // display: inline-block;
         *{
             width: 100%;
+        }
+
+        svg{
+            color: rgb(115 115 115);
         }
 
         button{
@@ -212,7 +218,7 @@
             transform: translateY(-10%) translateX(110%);
             z-index: 10;
         }
-
+        
         .text-area {
             border: 1px solid rgb(203 213 225);
             border-radius: 0.25rem;
