@@ -128,6 +128,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
         </div>
         <div/>
         <div className="comment-section">
+            {type === "deteiled" && <button onClick={() => setShowEmojiPicker(prev => !prev)}>{<EmojiIcon/>}</button>}
             <textarea
               ref={textareaRef}
               className='text-area'
@@ -136,11 +137,11 @@ export default function PostPreview({post, type = 'post-preview'}) {
               value={comment}
               onChange={handleCommentChange}
             />
-            {comment && <button onClick={handleCommentSubmit}>Post</button>}
-            <button onClick={() => setShowEmojiPicker(prev => !prev)}>{<EmojiIcon/>}</button>
+            {comment && <button className='.send' onClick={handleCommentSubmit}>Post</button>}
+            {type === "post-preview" && <button onClick={() => setShowEmojiPicker(prev => !prev)}>{<EmojiIcon/>}</button>}
             {showEmojiPicker && <div className='emoji-picker'>
                 <EmojiPicker onSelect={ handleEmojiSelect} />
-              </div>}
+            </div>}
           </div>
       </div>
       {type === "deteiled" && <Link to = {'/instush/'}>
