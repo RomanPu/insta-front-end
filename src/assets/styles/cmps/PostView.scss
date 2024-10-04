@@ -31,7 +31,6 @@
 
             .deteiled{
                 position: fixed;
-                // position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
@@ -41,11 +40,6 @@
                 margin: 40px 64px;
                 width: 100%;
                 margin: auto;
-
-                  
-                // box-shadow:
-                // 0 0 0 100vmax rgba(0, 0, 0, 0.5),
-                // -3px 1px 28px #00000043;
                 display: grid;
                 justify-content: center;
                 grid-template-areas: 

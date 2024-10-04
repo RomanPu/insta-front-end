@@ -118,11 +118,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
         <div className='body-and-comments'>
           <div className={`body-${isExpanded ? 'expanded' : 'collapsed'} body`}>
             {isExpanded ? body : `${body.substring(0, 100)}... `}
-            {!isExpanded && (
-                <span className="more-link" onClick={toggleExpand}>
-                    more
-                </span>
-            )}
+            {!isExpanded && (<span className="more-link" onClick={toggleExpand}> more</span>)}
           </div>
           {type === "deteiled" && <div><Comments comments={comments}/></div>}
         </div>
