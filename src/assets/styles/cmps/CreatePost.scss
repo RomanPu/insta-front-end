@@ -10,32 +10,71 @@
      height: 100vh;
     .create-post-conteiner{
         border-radius: 12px;
-        display: inline-flex;
+        // display: flex;
+        // align-self: center;
+        // justify-content: center;
         overflow: hidden;      
 
         .left{
             width: 344px;
             height: 391px;
             background-color: white;
+            // display: flex;
+            // justify-content: center;
+            // align-items: center;
+
+            .pic-select{
+                width: auto;
+                height: auto;
+                overflow: hidden;
+                .pic-select-conteiner{
+                    height: 348px;
+                    width: 348px;
+                    padding: 24px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    margin: auto;
+                }
+                h1{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 16px;
+                    text-align: center;
+                    font-weight: 600;
+                    line-height: 24px;
+                    height: 42px;
+                    border-bottom:1px  rgb(115, 115, 115) solid;
+                }
+
+                h2{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 20px;
+                    text-align: center;
+                    line-height: 25px;
+                    margin-block-start: 16px;
+                    height: 31px;
+                    color: black;
+                }
+    
+                button{
+                    background-color: rgb(0 149 246);
+                    border-radius: 8px;
+                    height: 30px;
+                    font-size: 14px;
+                    padding: 4px;
+                    margin:  24px 0px 0px 0px;
+                }
+            }
         }
         .right{
             width: 344px;
             height: 391px;
             background-color: rgb(81, 255, 0);
-        }
-
-        .pic-select{
-            h1{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 16px;
-                text-align: center;
-                font-weight: 600;
-                line-height: 24px;
-                height: 42px;
-                border-bottom:1px  rgb(115, 115, 115) solid;
-            }
         }
     }
 }
