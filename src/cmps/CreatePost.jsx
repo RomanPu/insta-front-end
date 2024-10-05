@@ -1,38 +1,78 @@
 import { postService} from '../services/post.service'
 import { useSelector } from 'react-redux'
-import { useState ,useEffect} from 'react';
+import { useState ,useRef} from 'react';
+import { uploadService } from '../services/img.upload.service'
+
+
+
 
 export function CreatePost(){
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     const [state , setState] = useState("pic-select")
+    const [gImgUrl , setGImgUrl] = useState(null)
 
-    // useEffect(() => {
-    //     console.log('logedUser', logedUser)
-    // }, [])
+    function getImgUrl(imgUrl){
+        setGImgUrl(imgUrl)
+        // setState(prev => prev ="pic-crop")
+    }
 
-
-    // postService.createPost(logedUser)
     return (
         <div className="create-post">
             <div className="create-post-conteiner">
-                {state === "pic-select" && <div className='left'> <PicSelect/></div>}
-                {null && <div className='right'> </div>}
+                {state === "pic-select" && <div className='left'> 
+                    <PicSelect getImgUrl={getImgUrl} setState={setState}/></div>}
+                {state === "pic-crop" && <div className='left'> 
+                    <PicCrop imgUrl = {gImgUrl} setState={setState}/></div>}
+                {state === "pic-filter" && <div className='left'> 
+                    <img src={gImgUrl.secure_url} alt="no"></img></div>}
+                {state === "pic-filter" && <div className='right'> </div>}
             </div>
         </div>
     )
 }
 
-function PicSelect(){
-    return (
-        <div className="pic-select">
+function PicCrop({imgUrl, setState}){
+    return <div className="pic-crop">
+                <div className="header">
+                    <span onClick={()=>setState("pic-select")}><BackIcon/></span>
+                    <h1>Crop</h1>
+                    <button onClick={()=>setState("pic-filter")}><BackIcon/>Next</button>
+                </div>
+            <img src={imgUrl.secure_url} alt={"fdf"}></img>
+        </div>
+}
+
+function PicSelect( {getImgUrl, setState}){
+    const fileInputRef = useRef(null);
+
+    function onSelectImg() {
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    }
+
+    async function onFileChange(event) {
+        const file = event.target.files[0];
+        if (file) {
+            let imgUrl = await uploadService.uploadImg(file)
+            getImgUrl(imgUrl)
+            setState("pic-crop")
+        }
+    }
+
+    return <div className="pic-select">
             <h1>Create new post</h1>
             <div className="pic-select-conteiner">
                 <MediaIcon/>
                 <h2>Drag photos and videos here</h2>
-                <button type="button">Select from computer</button>
+                <button onClick={onSelectImg} type="button">Select from computer</button>
+               <input type="file" ref={fileInputRef} 
+               style={{ display: 'none' }}
+                onChange={onFileChange} accept="img/*" id="imgUpload" />
             </div>
+            {/* {selectOn && <ImgUploader/>} */}
         </div>
-    )
+        
 }
 
 
@@ -65,3 +105,38 @@ function MediaIcon(){
         </svg>
     );
 };
+
+import React from 'react';
+
+function BackIcon() {
+    return <svg
+        aria-label="Back"
+        className="x1lliihq x1n2onr6 x5n08af"
+        fill="currentColor"
+        height="24"
+        role="img"
+        viewBox="0 0 24 24"
+        width="24"
+    >
+        <title>Back</title>
+        <line
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            x1="2.909"
+            x2="22.001"
+            y1="12.004"
+            y2="12.004"
+        ></line>
+        <polyline
+            fill="none"
+            points="9.276 4.726 2.001 12.004 9.276 19.274"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+        ></polyline>
+    </svg>
+}
