@@ -69,7 +69,7 @@ function WritePost({setPost, post, logedUser}){
         let codesArray = [];
         sym.forEach((el) => codesArray.push("0x" + el));
         let emoji = String.fromCodePoint(...codesArray);
-        setPost(prev => prev + emoji);
+        setPost( prev => prev + emoji);
         // setShowEmojiPicker(false);
       };
     
@@ -84,6 +84,9 @@ function WritePost({setPost, post, logedUser}){
             <Avatar  picUrl={logedUser.avatarPic}/>
             <h1>{logedUser.userName}</h1>
         </div>
+        {showEmojiPicker && <div className='emoji-picker'>
+            <EmojiPicker onSelect={ handleEmojiSelect} />
+        </div>}
         <div className="comment-section">
             <textarea
               ref={textareaRef}
@@ -95,9 +98,6 @@ function WritePost({setPost, post, logedUser}){
             />
             <div className="emoji-and-count">
             <button onClick={() => setShowEmojiPicker(prev => !prev)}>{<EmojiIcon/>}</button>
-            {showEmojiPicker && <div className='emoji-picker'>
-                <EmojiPicker onSelect={ handleEmojiSelect} />
-            </div>}
             <span>{count}/2,200</span>
             </div>
         </div>

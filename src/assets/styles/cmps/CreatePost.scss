@@ -1,12 +1,12 @@
 .create-post{
+    position: relative;
      // background-color: black;
-     width: auto;
-     height: auto;
      display: flex;
      justify-content: center;
      align-items: center;
     //  flex-direction: column;
-     background-color:  rgba(0, 0, 0, 0.5);
+    background-color:  rgba(0, 0, 0, 0.5);
+     z-index: 500;
      width: 100vw;
      height: 100vh;
      .close{
@@ -25,6 +25,7 @@
         // height: 100vh;
         align-self: center;
         justify-content: center;
+        // z-index: 500;
      }
 
     .create-post-conteiner{
@@ -89,6 +90,12 @@
             background-color: white;
             grid-area: r;
             .write-post{
+
+                .emoji-picker {
+                    position: fixed;         
+                    transform: translateY(-10%) translateX(80%);
+                    z-index: 600;
+                }
                 .header{
                     display: flex;
                     align-items: center;
@@ -155,14 +162,6 @@
                             color: rgb(199, 199, 199);
                             padding-inline-end: 18px;
                         }
-                    }
-            
-                    .emoji-picker {
-                        position: absolute;
-                        bottom: 100%;
-                        left: 0;
-                        transform: translateY(-10%) translateX(110%);
-                        z-index: 10;
                     }
                     
                     .text-area {

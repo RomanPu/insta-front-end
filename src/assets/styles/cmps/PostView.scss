@@ -78,6 +78,16 @@
                        height: 24px;
                     }               
                 }
+
+                .emoji-picker {
+                    position: fixed;
+                    bottom: 100%;
+                    top: 0;
+                    left: 0;
+                    transform: translateY(-10%) translateX(10%);
+                    z-index: 600;
+                }
+                
     
                 .body-and-comments{
                     // width: inherit;
@@ -211,7 +221,7 @@
             bottom: 100%;
             left: 0;
             transform: translateY(-10%) translateX(110%);
-            z-index: 10;
+            z-index: 600;
         }
         
         .text-area {
