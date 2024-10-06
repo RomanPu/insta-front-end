@@ -4,6 +4,7 @@
     .home-page{
          display: flex;
          justify-content: center;
+         border-left: 0.6px solid $gray2;
 
         .side-bar {
             width: 383px;

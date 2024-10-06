@@ -4,7 +4,6 @@ import { red } from '@mui/material/colors';
 import noUserImg from '../assets/imgs/no-user.png';
 
 export function Avatar({ picUrl = noUserImg}) {
-  console.log('picUrl',picUrl)
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -15,7 +14,8 @@ export function Avatar({ picUrl = noUserImg}) {
     canvas.height = 200;
 
     // Draw background circle
-    context.fillStyle = red[500];
+    // context.fillStyle = red[500];
+    context.fillStyle = '#fff'; 
     context.beginPath();
     context.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, 0, Math.PI * 2);
     context.closePath();

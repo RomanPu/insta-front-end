@@ -39,8 +39,8 @@ export async function editPost(post) {
 export async function addPost(post) {
     try {
         const savedPost = await postService.save(post)   
-        console.log('edit', savedPost)
-        store.dispatch({type: ADD_POST, post: savedPost})             
+        store.dispatch({type: ADD_POST, post: savedPost})
+        console.log('addddddddddddd', savedPost)             
     } catch (error) {     
         console.log('failed to load posts:', error)
         throw error

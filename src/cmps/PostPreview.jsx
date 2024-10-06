@@ -19,7 +19,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
   const user = getUserById(post.userId)
   const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
 
-  const { author, createdAt, body, _id, likes, comments, isFollowed, } = post;
+  const { author, createdAt, body, picUrl, likes, comments, isFollowed, } = post;
   const [isLiked, setIsLiked] = useState(likes.map(like => like === user._id).includes(true));
   const [comment, setComment] = useState('');
   const [isExpanded, setIsExpanded] = useState(type === "deteiled" ? true : false);
@@ -103,7 +103,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
                avatarPic: user.avatarPic}} time = {createdAt}/>
             {type === "deteiled" && <div className='dots'><Dots /></div>}
           </div>
-        <div className='p-img'><img src={imgUrl} alt="post-img"/></div>
+        <div className='p-img'><img src={picUrl} alt="post-img"/></div>
         <div className='actions'>
             <div onClick={handleLike} > 
               { !isLiked ? <LikeIcon /> : <UnlikeIcon />}

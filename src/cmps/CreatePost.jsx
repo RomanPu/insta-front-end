@@ -2,7 +2,8 @@ import { postService} from '../services/post.service'
 import { useSelector } from 'react-redux'
 import { useState ,useRef} from 'react';
 import { uploadService } from '../services/img.upload.service'
-
+import { EmojiIcon, EmojiPicker } from './ImojiPicker';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -10,22 +11,37 @@ export function CreatePost(){
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     const [state , setState] = useState("pic-select")
     const [gImgUrl , setGImgUrl] = useState(null)
+    const [post , setPost] = useState("")
+    const navigate = useNavigate();
 
     function getImgUrl(imgUrl){
-        setGImgUrl(imgUrl)
+        setGImgUrl(imgUrl.secure_url)
         // setState(prev => prev ="pic-crop")
     }
+
+   async  function onCreatePost(){
+        console.log("create post", post)
+        await postService.createPost(logedUser, post, gImgUrl)
+        navigate("/instush/")
+    }   
 
     return (
         <div className="create-post">
             <div className="create-post-conteiner">
+            <Link to = {'/instush/'}><div className = "close">{<WhiteX/>}</div></Link>
+                {state === "pic-post" &&<div className="header">
+                    <span onClick={()=>setState("pic-select")}><BackIcon/></span>
+                    <h1>Create new post</h1>
+                    <button onClick={()=>onCreatePost()}>Share</button>
+                </div>}
                 {state === "pic-select" && <div className='left'> 
                     <PicSelect getImgUrl={getImgUrl} setState={setState}/></div>}
-                {state === "pic-crop" && <div className='left'> 
-                    <PicCrop imgUrl = {gImgUrl} setState={setState}/></div>}
-                {state === "pic-filter" && <div className='left'> 
-                    <img src={gImgUrl.secure_url} alt="no"></img></div>}
-                {state === "pic-filter" && <div className='right'> </div>}
+                {/* {state === "pic-crop" && <div className='left'> 
+                    <PicCrop imgUrl = {gImgUrl} setState={setState}/></div>} */}
+                {state === "pic-post" && <div className='left'> 
+                    <img src={gImgUrl} alt="no"></img></div>}
+                {state === "pic-post" && <div className='right'>
+                    <WritePost logedUser={logedUser} post ={post} setPost={setPost}  /> </div>}
             </div>
         </div>
     )
@@ -42,6 +58,52 @@ function PicCrop({imgUrl, setState}){
         </div>
 }
 
+function WritePost({setPost, post, logedUser}){
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+    const [count, setCount] = useState(0);
+    const textareaRef = useRef(null);
+
+    function handleEmojiSelect  (e){
+        console.log("emoji", e);
+        let sym = e.unified.split("-");
+        let codesArray = [];
+        sym.forEach((el) => codesArray.push("0x" + el));
+        let emoji = String.fromCodePoint(...codesArray);
+        setPost(prev => prev + emoji);
+        // setShowEmojiPicker(false);
+      };
+    
+
+    function handleCommentChange(event) {
+        setPost(event.target.value);
+        setCount(event.target.value.length)
+      }
+    // const [comment, setComment] = useState('');
+   return <div className="write-post">
+        <div className="header">
+            <Avatar  picUrl={logedUser.avatarPic}/>
+            <h1>{logedUser.userName}</h1>
+        </div>
+        <div className="comment-section">
+            <textarea
+              ref={textareaRef}
+              className='text-area'
+              type="text"
+              placeholder=""
+              value={post}
+              onChange={handleCommentChange}
+            />
+            <div className="emoji-and-count">
+            <button onClick={() => setShowEmojiPicker(prev => !prev)}>{<EmojiIcon/>}</button>
+            {showEmojiPicker && <div className='emoji-picker'>
+                <EmojiPicker onSelect={ handleEmojiSelect} />
+            </div>}
+            <span>{count}/2,200</span>
+            </div>
+        </div>
+    </div>
+}
+
 function PicSelect( {getImgUrl, setState}){
     const fileInputRef = useRef(null);
 
@@ -56,7 +118,7 @@ function PicSelect( {getImgUrl, setState}){
         if (file) {
             let imgUrl = await uploadService.uploadImg(file)
             getImgUrl(imgUrl)
-            setState("pic-crop")
+            setState("pic-post")
         }
     }
 
@@ -107,6 +169,7 @@ function MediaIcon(){
 };
 
 import React from 'react';
+import { Avatar } from './Avatar';
 
 function BackIcon() {
     return <svg
@@ -140,3 +203,36 @@ function BackIcon() {
         ></polyline>
     </svg>
 }
+
+function WhiteX(){
+    return (  <svg
+      aria-label="Close"
+      className="x1lliihq x1n2onr6 x9bdzbf"
+      fill="currentColor"
+      height="18"
+      role="img"
+      viewBox="0 0 24 24"
+      width="18"
+    >
+      <title>Close</title>
+      <polyline
+        fill="none"
+        points="20.643 3.357 12 12 3.353 20.647"
+        stroke="white"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3"
+      ></polyline>
+      <line
+        fill="none"
+        stroke="white"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3"
+        x1="20.649"
+        x2="3.354"
+        y1="20.649"
+        y2="3.354"
+      ></line>
+    </svg>)
+  }

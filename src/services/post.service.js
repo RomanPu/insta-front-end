@@ -114,12 +114,11 @@ function _createPosts() {
     setPosts(posts)
 }
 
-function createPost(user){
+async function  createPost(user, body, urlPic) {
     let post = { _id: '', author: user.userName, userId: user._id, likes: [], category: 'Technology', 
         comments:[],
-         createdAt: utilService.randomPastTime(), body: "utilService.makeLorem()" }
-         addPost(post)
-         return post._id
+         createdAt: utilService.randomPastTime(), body: body, picUrl: urlPic }
+         await addPost(post)
 }
 
 // [{author: "tony", userId: "", _Id: "1sfsdgd", body: "very good!!", likedList: [], createdAt: 1632872400000},
