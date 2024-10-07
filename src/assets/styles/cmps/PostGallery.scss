@@ -11,23 +11,60 @@
     width: 100%;
     height: 100vh;
 
+
+
     &>span:nth-child(3n + 0) {
         // grid-area: span 1 / span 2;
          grid-row: span 2;
     }
  
     span{
+        position: relative;
         display: inline-block;
         width: 100%;
-        margin: 2px 2px 2px 2px;
-        grid-column: auto; /* Span across all columns */
-        grid-row: auto; /* Start on a new row */
-        
+        grid-column: auto;
+        grid-row: auto; 
         img{
 
             width: 100%;
             height: 100%;
             // object-fit: fill;
+        }
+
+        .actions{
+            display: none;
+            position: absolute;
+            top: 0%;
+            z-index: 10; /* Ensure it's above the image */
+            background-color: rgba(0, 0, 0, 0.5); /* Optional: Add background for visibility */
+            color: white; /* Optional: Text color */
+            padding: 5px; /* Optional: Padding for the button */
+            border-radius: 5px; 
+            span{
+                display: flex;
+                justify-content: center;
+                color: white;
+                svg{
+                    width: 20px;
+                    height: 20px;
+                    color: white;
+                }
+
+                p{
+                  margin-left: 2px;
+                }
+            }
+
+        }
+
+        &:hover {
+            .actions {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 
