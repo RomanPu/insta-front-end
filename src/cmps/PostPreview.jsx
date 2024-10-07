@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
-
-import imgUrl from '../assets/imgs/deep.jpg'
-
+import { Link , useNavigate} from 'react-router-dom';
 import { useEffectUpdate } from '../customHooks/useEffectUpdate';
 import { editPost } from '../store/posts/posts.actions';
 import { postService } from '../services/post.service'; 
@@ -12,6 +9,7 @@ import { MinUserCard } from './MinUserCard';
 import { Comments } from './Comments';
 import { EmojiIcon, EmojiPicker } from './ImojiPicker';
 import { getUserById } from '../store/users/users.actions'
+
 
 
 
@@ -25,6 +23,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
   const [isExpanded, setIsExpanded] = useState(type === "deteiled" ? true : false);
   const textareaRef = useRef(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const  navigate = useNavigate();
 
   console.log('post', post.userId)
 
@@ -140,8 +139,8 @@ export default function PostPreview({post, type = 'post-preview'}) {
             </div>}
           </div>
       </div>
-      {type === "deteiled" && <Link to = {'/instush/'}>
-        <div className = "close-dteiled-post" onClick={(ev) => onClose(ev)}>{<WhiteX/>}</div></Link>}
+      {type === "deteiled" && 
+        <div className = "close-dteiled-post" onClick={() => navigate(-1)}>{<WhiteX/>}</div>}
     </div>
     </div>
   </div>
