@@ -97,17 +97,17 @@ function _createPosts() {
     let posts = utilService.loadFromStorage(STORAGE_KEY)
     if (!posts || !posts.length) {
          posts = ([
-            { _id: '', author: 'John Doe', likes: 100, category: 'Technology', 
+            { _id: '', author: 'John Doe', likes: [], category: 'Technology', 
                 comments:[],
-                 createdAt: utilService.randomPastTime(), body: 'This is a post about technologyyyyyyyyyyyyyyyyy' },
-            { _id: '', author: 'Jane Smith', likes: 80, category: 'Cooking' , comments: [],
-                 createdAt: utilService.randomPastTime(), body: 'This is a post about cooking' },
-            { _id: '', author: 'Alice Johnson', likes: 100, category: 'Travel', comments: [],
-                 createdAt: utilService.randomPastTime() , body:  'This is a post about travel'},
-            { _id: '', author: 'Bob Brown', likes: 40, category: 'Office', comments: [],
-                 createdAt: utilService.randomPastTime() , body: 'This is a post about office'},
-            { _id: '', author: 'Charlie Black', likes: 40, category: 'Cooking', comments: [],
-                 createdAt: utilService.randomPastTime(), body: 'This is a post about cooking'},
+                 createdAt: utilService.randomPastTime(), body: 'This is a post about technologyyyyyyyyyyyyyyyyy' , picUrl: urlPic },
+            { _id: '', author: 'Jane Smith', likes: [], category: 'Cooking' , comments: [],
+                 createdAt: utilService.randomPastTime(), body: 'This is a post about cooking', picUrl: urlPic  },
+            { _id: '', author: 'Alice Johnson', likes: [], category: 'Travel', comments: [],
+                 createdAt: utilService.randomPastTime() , body:  'This is a post about travel', picUrl: urlPic },
+            { _id: '', author: 'Bob Brown', likes: [], category: 'Office', comments: [],
+                 createdAt: utilService.randomPastTime() , body: 'This is a post about office', picUrl: urlPic },
+            { _id: '', author: 'Charlie Black', likes: [], category: 'Cooking', comments: [],
+                 createdAt: utilService.randomPastTime(), body: 'This is a post about cooking', picUrl: urlPic },
         ])
         LoadPosts(posts)
     }

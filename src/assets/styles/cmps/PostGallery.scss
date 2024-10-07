@@ -1,0 +1,34 @@
+.post-gallery{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(40px, 1fr));
+    grid-template-rows: repeat(1fr);
+    grid-auto-flow: dense;
+    gap: 6px;
+    align-content: start;
+    gap: 2px;
+    align-content: start;
+    padding:24px 20px 0px 20px;
+    width: 100%;
+    height: 100vh;
+
+    &>span:nth-child(3n + 0) {
+        // grid-area: span 1 / span 2;
+         grid-row: span 2;
+    }
+ 
+    span{
+        display: inline-block;
+        width: 100%;
+        margin: 2px 2px 2px 2px;
+        grid-column: auto; /* Span across all columns */
+        grid-row: auto; /* Start on a new row */
+        
+        img{
+
+            width: 100%;
+            height: 100%;
+            // object-fit: fill;
+        }
+    }
+
+}
