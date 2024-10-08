@@ -99,11 +99,21 @@ function createUsers() {
     let users = utilService.loadFromStorage(STORAGE_KEY);
     if (!users || !users.length) {
         users = [
-            { _id: '', avatarPic: pic1 ,name: 'John Doe', userName: 'Admin', posts: [], createdAt: utilService.randomPastTime() },
-            { _id: '', avatarPic: pic2 , name: 'Jane Smith', userName: 'Editor', posts: [], createdAt: utilService.randomPastTime() },
-            { _id: '', avatarPic: pic3 ,name: 'Alice Johnson', userName: 'Viewer', posts: [], createdAt: utilService.randomPastTime() },
-            { _id: '', avatarPic: pic4 ,name: 'Bob Brown', userName: 'Editor', posts: [], createdAt: utilService.randomPastTime() },
-            { _id: '', avatarPic: pic5 ,name: 'Charlie Black', userName: 'Viewer', posts: [], createdAt: utilService.randomPastTime() }
+            { _id: '', avatarPic: pic1 ,name: 'John Doe', userName: 'Admin', posts: [], createdAt: utilService.randomPastTime() 
+             ,followers: [], following: [], body: utilService.makeLorem(50)
+            },
+            { _id: '', avatarPic: pic2 , name: 'Jane Smith', userName: 'Editor', posts: [], createdAt: utilService.randomPastTime()
+                ,followers: [], following: [], body: utilService.makeLorem(50)
+             },
+            { _id: '', avatarPic: pic3 ,name: 'Alice Johnson', userName: 'Viewer', posts: [], createdAt: utilService.randomPastTime() 
+                ,followers: [], following: [], body: utilService.makeLorem(50)
+            },
+            { _id: '', avatarPic: pic4 ,name: 'Bob Brown', userName: 'Editor', posts: [], createdAt: utilService.randomPastTime() 
+                ,followers: [], following: [], body: utilService.makeLorem(50)
+            },
+            { _id: '', avatarPic: pic5 ,name: 'Charlie Black', userName: 'Viewer', posts: [], createdAt: utilService.randomPastTime() 
+                ,followers: [], following: [], body: utilService.makeLorem(50)
+            }
         ];
         LoadUsers(users);
     }

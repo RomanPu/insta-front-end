@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export function PostGallery({ posts }) {
+export function PostGallery({ posts, type = 'explore-view' }) {
 
     return (
-        <div className="post-gallery"> 
-                {posts.map(post => { return <span><Link to={`post/${post._id}`}>
+            <div className= {`post-gallery explore-view`}> 
+                {posts.map(post => { return <span className= {`${type}`} ><Link to={`post/${post._id}`}>
                     <img key={post.id} src={post.picUrl} alt="Post" /> 
-                </Link> <div className='actions'>
-                         <span><LikeIcon/>  <p>{` ${post.likes.length}`}</p></span>
-                         <span><Component/> <p>{` ${post.comments.length}`}</p></span>
+                        </Link> <div className='actions'>
+                        <span><LikeIcon/>  <p>{` ${post.likes.length}`}</p></span>
+                        <span><Component/> <p>{` ${post.comments.length}`}</p></span>
                 </div> </span>})}
-        </div>
+            </div>
     );
 }
 

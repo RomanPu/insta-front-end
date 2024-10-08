@@ -7,7 +7,6 @@ import { LoadPosts } from '../store/posts/posts.actions'
 
 export function Explore(){
     const posts = useSelector(storeState => storeState.postsModule.posts)
-    console.log("gallery", posts)
 
     useEffect(() => {
         LoadPosts()
