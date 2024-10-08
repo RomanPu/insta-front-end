@@ -30,9 +30,9 @@ export function LogedUser(){
         switchUser({_id: user._id, name: user.name, userName: user.name,
             avatarPic: user.avatarPic})
         setSwitchOn(prev => !prev)
-        for (let i = 0; i < 15; i++){
-            await postService.createPost(users[1], utilService.makeLorem(10), users[2].avatarPic)
-        }
+        // for (let i = 0; i < 15; i++){
+        //     await postService.createPost(users[1], utilService.makeLorem(10), users[2].avatarPic)
+        // }
     }
 
     console.log('logedUser', logedUser.avatarPic)

@@ -3,11 +3,14 @@ import { NavBarAction} from './NavBarAction';
 import { HomeIcon, SearchIcon, ExploreIcon, ReelsIcon, MessengerIcon, 
 NotificationsIcon, NewPostIcon, SettingsIcon } from '../assets/imgs/NavBarSvgs';
 import { Avatar } from './Avatar';
+import { useSelector } from 'react-redux';
 
 
 import { InstagramLogo } from '../assets/imgs/LogoSvgs';
 
 export function NavBar() {
+  const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
+
   return <ul className="nav-bar" > 
             <div key={"ins-logo"} className='insta-logo'><InstagramLogo/></div>
             <li key={"home"}><NavBarAction name={"Home"} link={"instush"} icon={<HomeIcon />} /></li>
@@ -17,7 +20,7 @@ export function NavBar() {
             <li key={"messeges"}><NavBarAction name={"Messeges"}  icon={<MessengerIcon />} /></li>
             <li key={"notifications"}><NavBarAction name={"Notifications"}  icon={<NotificationsIcon />} /></li>
             <li key={"create"}><NavBarAction name={"Create"}  icon={<NewPostIcon />} link={"instush/createpost"} /></li>
-            <li key={"profile"}><NavBarAction name={"Profile"} link={"instush/profile"} icon={<Avatar/>} /></li>
+            <li key={"profile"}><NavBarAction name={"Profile"} link={`instush/profile/${logedUser._id}`} icon={<Avatar/>} /></li>
             <li key={"more"}><NavBarAction name={"More"}  icon={<SettingsIcon />} /></li>
   </ul>  
 }

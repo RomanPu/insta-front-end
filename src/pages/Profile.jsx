@@ -2,14 +2,15 @@ import React from 'react';
 import { PostGallery } from '../cmps/PostGallery';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { Avatar } from '../cmps/Avatar';
 import { getUserById } from '../store/users/users.actions'
 
 export function Profile (){
     const posts = useSelector(storeState => storeState.postsModule.posts)
-    const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
-    const user = getUserById(logedUser._id)
+    const { _id} = useParams()    
+    const user = getUserById(_id)
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleExpand = () => {
