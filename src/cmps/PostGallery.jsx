@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export function PostGallery({ posts, type = 'explore-view' }) {
+    const navigate = useNavigate();
 
     return (
             <div className= {`post-gallery explore-view`}> 
-                {posts.map(post => { return <span key={ post._id}className= {`${type}`} ><Link to={`post/${post._id}`}>
-                    <img key={post.id} src={post.picUrl} alt="Post" /> 
-                        </Link> <div className='actions'>
+                {posts.map(post => { return <span onClick={() => navigate(`post/${post._id}`)} key={ post._id}className= {`${type}`} >
+                    <img  key={post.id} src={post.picUrl} alt="Post" /> 
+                        <div className='actions'>
                         <span><LikeIcon/>  <p>{` ${post.likes.length}`}</p></span>
                         <span><Component/> <p>{` ${post.comments.length}`}</p></span>
                 </div> </span>})}

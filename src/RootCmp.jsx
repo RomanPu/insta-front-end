@@ -18,6 +18,8 @@ export function RootCmp() {
                 <Routes>
                      <Route path="instush" element={<HomePage />} />
                      <Route path="instush/profile/:_id" element={<Profile />} />
+                        <Route path="instush/profile/:_id/post/:_id" element={<PostDeteiled/>} />
+                     <Route/>
                      <Route path="instush/messenger" element={<Messenger />} />
                      <Route path="instush/post/:_id" element={<PostDeteiled/>} />
                      <Route path="instush/createpost" element={<CreatePost/>} />
