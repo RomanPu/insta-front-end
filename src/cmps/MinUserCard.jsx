@@ -8,7 +8,7 @@ import { getUserById ,editUser} from '../store/users/users.actions'
 import { useEffectUpdate } from "../customHooks/useEffectUpdate";
 
 
-export function MinUserCard({user, time = ""}) {
+export function MinUserCard({user, time = "", followButton = true}) {
     const navigate = useNavigate();
     const {_id} = useSelector(storeState => storeState.logedUserModule.logedUser)
     const loggedUser= getUserById(_id)
@@ -36,7 +36,7 @@ export function MinUserCard({user, time = ""}) {
                     <h1>{user.name}</h1>
                 </a>
                 {time && <h2>{utilService.createPostTimeFormat(time)}</h2>}
-                {isFollowed && <button onClick = {onChangeFollow} className = "followed">Followed</button>}
-                {!isFollowed && <button onClick = {onChangeFollow} className = "follow">Follow</button>}
+                {isFollowed && followButton && <button onClick = {onChangeFollow} className = "followed">Followed</button>}
+                {!isFollowed && followButton && <button onClick = {onChangeFollow} className = "follow">Follow</button>}
             </div>
 }

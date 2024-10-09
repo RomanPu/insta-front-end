@@ -89,7 +89,8 @@ export default function PostPreview({post, type = 'post-preview'}) {
         <div className = {type}>
           <div className='header'>
             <MinUserCard user= {{name: author, followed: "followed", 
-               avatarPic: user.avatarPic, _id: user._id}} time = {createdAt}/>
+               avatarPic: user.avatarPic, _id: user._id}} time = {createdAt} 
+               followButton = {false}/>
             {type === "deteiled" && <div className='dots'><Dots /></div>}
           </div>
         <div className='p-img'><img src={picUrl} alt="post-img"/></div>
