@@ -10,8 +10,9 @@ import { CreatePost } from './cmps/CreatePost'
 import { Explore } from './pages/Explore'
 
 export function RootCmp() {
+
     return (
-        <div className='main-layout'>
+      <div className='main-layout'>
             <NavBar/>
             {
                 <Routes>

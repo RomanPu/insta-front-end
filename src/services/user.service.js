@@ -1,6 +1,7 @@
 import { storageService } from './async-storage.service.js';
 import { utilService } from './util.service.js';
 import { LoadUsers, setUsers } from '../store/users/users.actions.js';
+import { switchUser } from '../store/logedUser/loged.user.actions'
 
 import pic1 from '../assets/imgs/pic1.jpeg';
 import pic2 from '../assets/imgs/pic2.jpeg';
@@ -95,7 +96,7 @@ function getFilterFromSearchParams(searchParams) {
     return filterBy;
 }
 
-function createUsers() {
+async function createUsers() {
     let users = utilService.loadFromStorage(STORAGE_KEY);
     if (!users || !users.length) {
         users = [

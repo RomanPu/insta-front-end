@@ -2,8 +2,10 @@ import { LogedUser} from "../../cmps/LogedUser"
 
 export const SET_USER = 'SET_USER'
 
+const entities = JSON.parse(localStorage.getItem('users')) || []
+
 const initialState = {
-  logedUser: {_id: '', name: 'Sasi', userName:'Kalabasy', avatarPic:""}
+  logedUser: entities[0]
 }
 
 

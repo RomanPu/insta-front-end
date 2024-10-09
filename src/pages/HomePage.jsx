@@ -7,12 +7,13 @@ import { userService } from "../services/user.service";
 // import { userService } from "../services/user.service";
 
 export function HomePage() {
+
     userService.createUsers()
+
     return (
         <div className="home-page-conteiner">
             <section className="home-page">
                 <section className="posts-section">
-                    {/* <SuggestedFriends type = {"top"}/> */}
                     <PostsList />
                 </section>
                 <section className="side-bar">
