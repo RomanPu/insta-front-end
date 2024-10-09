@@ -2,8 +2,11 @@ import * as React from 'react';
 import { useEffect, useRef } from 'react';
 import { red } from '@mui/material/colors';
 import noUserImg from '../assets/imgs/no-user.png';
+import { useState } from 'react';
 
 export function Avatar({ picUrl = noUserImg}) {
+  console.log('picUrl', picUrl)
+  // const [pic, setPic] = useState(picUrl);
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -33,7 +36,7 @@ export function Avatar({ picUrl = noUserImg}) {
       context.drawImage(image, 0, 0, canvas.width, canvas.height);
       context.restore();
     };
-  }, []);
+  }, [picUrl]);
 
   return <canvas ref={canvasRef} className="avatar" alt="Avatar" />;
 }
