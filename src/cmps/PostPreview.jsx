@@ -25,8 +25,6 @@ export default function PostPreview({post, type = 'post-preview'}) {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const  navigate = useNavigate();
 
-  console.log('post', post.userId)
-
   const toggleExpand = () => {
       setIsExpanded(!isExpanded);
   };
@@ -43,7 +41,6 @@ export default function PostPreview({post, type = 'post-preview'}) {
 
   function handleLike(){
     setIsLiked(prev => !prev)
-    console.log('like', likes)
   }
 
   function handleCommentSubmit() {
@@ -78,7 +75,6 @@ export default function PostPreview({post, type = 'post-preview'}) {
   // useEffectUpdate(() => {editPost({...post, likes: isLiked ? likes + 1 : likes - 1})},[isLiked])
 
   const handleEmojiSelect = (e) => {
-    console.log("emoji", e);
     let sym = e.unified.split("-");
     let codesArray = [];
     sym.forEach((el) => codesArray.push("0x" + el));
@@ -86,12 +82,6 @@ export default function PostPreview({post, type = 'post-preview'}) {
     setComment(prev => prev + emoji);
     // setShowEmojiPicker(false);
   };
-
-  function onClose(ev) {
-    console.log('close')
-  }
-
-
 
   return <div className= {`post-view`} >
     <div className= "preview-and-comments">

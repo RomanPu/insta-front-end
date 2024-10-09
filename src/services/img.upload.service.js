@@ -19,7 +19,6 @@ async function uploadImg(img) {
       const imgUrl = await res.json()
       return imgUrl
   } catch (err) {
-      console.error('Failed to upload', err)
       throw err
   }
 }

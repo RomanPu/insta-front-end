@@ -5,8 +5,6 @@ import noUserImg from '../assets/imgs/no-user.png';
 import { useState } from 'react';
 
 export function Avatar({ picUrl = noUserImg}) {
-  console.log('picUrl', picUrl)
-  // const [pic, setPic] = useState(picUrl);
   const canvasRef = useRef(null);
 
   useEffect(() => {

@@ -7,11 +7,9 @@ const initialState = {
 }
 
 export function usersReducer(state = initialState, action) {
-    // var newState = state
     switch (action.type) {
         case ADD_USER:
             const updatedNames = [...state.users, action.name];
-            console.log(updatedNames);
             return { ...state, users: updatedNames };
         default:
         return state 
@@ -21,7 +19,6 @@ export function usersReducer(state = initialState, action) {
                 users: action.users
             }
         case EDIT_USER:
-        //console.log('action:', action)
         return {
                 ...state,
                 users: state.users.map(user => { return user._id === action._id ? action.user : user})

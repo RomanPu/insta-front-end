@@ -32,7 +32,6 @@ async function query(filterBy) {
         }
         return posts
     } catch (error) {
-        console.log('error:', error)
         throw error
     }
 }
@@ -47,9 +46,7 @@ function remove(id) {
 
 async function saveAll(postsToSave) {
     let savedPosts = []
-    //console.log('postsToSave:', postsToSave)
     for (const postToSave of postsToSave) {
-        //console.log('postToSave:', postToSave)
         if (postToSave._id) {
             savedPosts.push( await storageService.put(STORAGE_KEY, postToSave))
         } else {

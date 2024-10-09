@@ -18,7 +18,6 @@ export function postsReducer(state = initialState, action = {}){
                 posts: action.posts
             }
         case EDIT_POST:
-        //console.log('action:', action)
         return {
                 ...state,
                 posts: state.posts.map(post => { return post._id === action.post._id ? action.post : post})

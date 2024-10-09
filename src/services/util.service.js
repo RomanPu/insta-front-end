@@ -99,7 +99,6 @@ function createPostTimeFormat(date) {
         return `${months}mo`;
     } else {
         const years = Math.round(diffInMs / msInYear);
-        //console.log('years:', diffInMs);
         return `${years}y`;
     }
 }

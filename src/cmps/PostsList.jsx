@@ -13,9 +13,6 @@ export function PostsList() {
         LoadPosts()
     }, [])
 
-    // console.log("logedUser", logedUser)
-
-
     const posts = useSelector(storeState => storeState.postsModule.posts)
     return <ul className = "posts-list">{posts.map((post) => 
     <li key = {post._id}><PostPreview post = {post}/></li>)}</ul>

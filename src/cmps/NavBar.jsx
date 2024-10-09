@@ -10,7 +10,6 @@ import { InstagramLogo } from '../assets/imgs/LogoSvgs';
 
 export function NavBar() {
   const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
-  console.log('nav bar log', logedUser)
 
   return <ul className="nav-bar" > 
             <div key={"ins-logo"} className='insta-logo'><InstagramLogo/></div>

@@ -12,7 +12,6 @@ export function MinUserCard({user, time = ""}) {
     const navigate = useNavigate();
     const {_id} = useSelector(storeState => storeState.logedUserModule.logedUser)
     const loggedUser= getUserById(_id)
-    console.log('following', user._id)
     const author = getUserById(user._id)
     const [isFollowed, setIsFollowed] = useState(loggedUser.following.map(like => like === user._id).includes(true));
 
@@ -21,12 +20,9 @@ export function MinUserCard({user, time = ""}) {
         if(isFollowed && !loggedUser.following.map(like => like === user._id).includes(true)){
             editUser({...author, followers: [...author.followers, _id]})
             editUser({...loggedUser, following: [...loggedUser.following, _id]})
-            // following.filter(follow => follow !== user._id)
-        // console.log('follow', followers)
         }
         else {
             editUser({...loggedUser, following: loggedUser.following.filter(follow => follow !== _id)})
-            // following.push(user._id)
         }
     },[isFollowed])
 

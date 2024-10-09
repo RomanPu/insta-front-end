@@ -37,7 +37,6 @@ async function query(filterBy) {
         }
         return users;
     } catch (error) {
-        console.log('error:', error);
         throw error;
     }
 }

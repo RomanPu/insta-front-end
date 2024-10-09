@@ -18,18 +18,12 @@ export function LogedUser(){
     }
 
    function oNselctedUser(ev){
-        //console.log('ev.target.value',ev.target)
         const user = getUserById(ev.target.value)
         switchUser({_id: user._id, name: user.name, userName: user.name,
             avatarPic: user.avatarPic})
         setSwitchOn(prev => !prev)
-        // for (let i = 0; i < 15; i++){
-        //     await postService.createPost(users[1], utilService.makeLorem(10), users[2].avatarPic)
-        // }
     }
 
-    console.log('logedUser pre load', logedUser)
-  
     return <div className='logged-user'>
         <Avatar picUrl = {logedUser.avatarPic}/>
         <div className='user-info'>

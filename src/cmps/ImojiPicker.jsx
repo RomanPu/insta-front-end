@@ -3,7 +3,6 @@ import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 
 export function EmojiPicker( {onSelect} ){
-    console.log('picker', onSelect)
     return (
         <Picker data={data} onEmojiSelect ={onSelect} />
     );

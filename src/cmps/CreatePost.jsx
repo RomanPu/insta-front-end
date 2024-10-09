@@ -20,7 +20,6 @@ export function CreatePost(){
     }
 
    async  function onCreatePost(){
-        console.log("create post", post)
         await postService.createPost(logedUser, post, gImgUrl)
         navigate("/instush/")
     }   
@@ -64,13 +63,11 @@ function WritePost({setPost, post, logedUser}){
     const textareaRef = useRef(null);
 
     function handleEmojiSelect  (e){
-        console.log("emoji", e);
         let sym = e.unified.split("-");
         let codesArray = [];
         sym.forEach((el) => codesArray.push("0x" + el));
         let emoji = String.fromCodePoint(...codesArray);
         setPost( prev => prev + emoji);
-        // setShowEmojiPicker(false);
       };
     
 
