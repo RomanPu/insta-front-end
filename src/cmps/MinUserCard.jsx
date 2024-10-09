@@ -2,39 +2,45 @@ import { Avatar } from "./Avatar";
 import React from "react";
 import { utilService } from "../services/util.service";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useSelector } from "react-redux";
-import { getUserById } from '../store/users/users.actions'
+import { getUserById ,editUser} from '../store/users/users.actions'
+import { useEffectUpdate } from "../customHooks/useEffectUpdate";
 
 
 export function MinUserCard({user, time = ""}) {
     const navigate = useNavigate();
     const {_id} = useSelector(storeState => storeState.logedUserModule.logedUser)
-    const {following,}= getUserById(_id)
-    // const author = utilService.getUserById(user._id)
-    const [isFollowed, setIsFollowed] = useState(following.map(like => like === user._id).includes(true));
+    const loggedUser= getUserById(_id)
+    console.log('following', user._id)
+    const author = getUserById(user._id)
+    const [isFollowed, setIsFollowed] = useState(loggedUser.following.map(like => like === user._id).includes(true));
 
 
-    // useEffectUpdate(() => { 
-    //     if (isFollowed) {
-    //       editPost({...post, likes: [...likes, user._id]})
-    //     }
-    //     else {
-    //       editPost({...post, likes: likes.filter(like => like !== user._id)})
-    //     }
-    // },[isFollowed])
+    useEffectUpdate(() => { 
+        if(isFollowed && !loggedUser.following.map(like => like === user._id).includes(true)){
+            editUser({...author, followers: [...author.followers, _id]})
+            editUser({...loggedUser, following: [...loggedUser.following, _id]})
+            // following.filter(follow => follow !== user._id)
+        // console.log('follow', followers)
+        }
+        else {
+            editUser({...loggedUser, following: loggedUser.following.filter(follow => follow !== _id)})
+            // following.push(user._id)
+        }
+    },[isFollowed])
 
     function onChangeFollow(){
         setIsFollowed(prev => !prev)
-        console.log('follow', followers)
-      }
+    }
 
-    return <a onClick={ () => navigate(`../instush/profile/${user._id}`) }><div className= {`min-user-card`} >
-                <Avatar  picUrl = {user.avatarPic}/>
-                <h1>{user.name}</h1>
+    return <div className= {`min-user-card`}>
+                <a onClick={ () => navigate(`../instush/profile/${user._id}`) }> 
+                    <Avatar  picUrl = {user.avatarPic}/>
+                    <h1>{user.name}</h1>
+                </a>
                 {time && <h2>{utilService.createPostTimeFormat(time)}</h2>}
-                {isFollowed && <botton className = "followed">Followed</botton>}
-                {!isFollowed && <botton className = "follow">Follow</botton>}
-                 </div>
-            </a>
+                {isFollowed && <button onClick = {onChangeFollow} className = "followed">Followed</button>}
+                {!isFollowed && <button onClick = {onChangeFollow} className = "follow">Follow</button>}
+            </div>
 }

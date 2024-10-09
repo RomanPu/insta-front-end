@@ -24,7 +24,7 @@ export function usersReducer(state = initialState, action) {
         //console.log('action:', action)
         return {
                 ...state,
-                users: state.users.map(user => { return user._id === action.post._id ? action.post : user})
+                users: state.users.map(user => { return user._id === action._id ? action.user : user})
             };
 
     }

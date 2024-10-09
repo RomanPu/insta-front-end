@@ -9,7 +9,23 @@
         padding: 0px 0px 12px 4px;
 
         button{
+            margin-left: auto;
             background-color: white;
+            color: black;
+            margin: 0px 0px 0px auto;
+            padding: 0px;
+        }
+
+        .follow{
+            color: blue;
+        }
+
+        .follow:hover{
+            color: black;
+        }
+
+        .followed:hover{
+            color: gray;
         }
 
         .avatar{
@@ -28,5 +44,11 @@
             display: list-item;
             list-style-type: disc;
             margin-left: 5px;
+        }
+
+        a{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
         }
 }

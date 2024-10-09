@@ -28,6 +28,7 @@ export async function setUsers(newUsers) {
 }
 
 export async function editUser(user) {
+    console.log('edit', user)
     try {
             const savedUser = await userService.save(user)   
             console.log('edit', savedUser)
