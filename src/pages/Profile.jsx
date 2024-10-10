@@ -6,8 +6,11 @@ import { useParams } from 'react-router-dom';
 
 import { Avatar } from '../cmps/Avatar';
 import { getUserById } from '../store/users/users.actions'
+import { ProfilesList } from '../cmps/ProfilesList';
 
 export function Profile (){
+    const [followingList, setFollowingList] = useState(false)
+    const [followersList, setFollowersList] = useState(false)
     const posts = useSelector(storeState => storeState.postsModule.posts)
     const { _id} = useParams()    
     const user = getUserById(_id)
@@ -24,8 +27,13 @@ export function Profile (){
                         <h1>{user.userName}</h1>
                         <div className='stats'>
                             <span><strong>{user.posts.length}</strong> posts</span>
-                            <span><strong>{user.followers.length}</strong> followers</span>
-                            <span><strong>{user.following.length}</strong> following</span>
+                            <span onClick={() => setFollowersList(prev=> !prev)}><strong>
+                              {user.followers.length}</strong> followers</span>
+                            {followersList && <ProfilesList user = {user} type = {'followers'}/>}
+                            <span onClick={() => setFollowingList(prev=> !prev)}><strong>
+                              {user.following.length}</strong> following</span>
+                            {followingList && <ProfilesList user = {user} type = {'following'}/>}
+
                         </div>
                         <h2>{user.name}</h2>
                         <div className={"body"}>

@@ -8,7 +8,7 @@ import { getUserById ,editUser} from '../store/users/users.actions'
 import { useEffectUpdate } from "../customHooks/useEffectUpdate";
 
 
-export function MinUserCard({user, time = "", followButton = true}) {
+export function MinUserCard({user, time = "", followButton = true, type = "only-user"}) {
     const navigate = useNavigate();
     const {_id} = useSelector(storeState => storeState.logedUserModule.logedUser)
     const author = useSelector(storeState => storeState.usersModule.users.find(u => u._id === user._id))
@@ -36,7 +36,11 @@ export function MinUserCard({user, time = "", followButton = true}) {
     return <div className= {`min-user-card`}>
                 <a onClick={ () => navigate(`../instush/profile/${author._id}`) }> 
                     <Avatar  picUrl = {author.avatarPic}/>
-                    <h1>{author.name}</h1>
+                    {type === "both"  && <div className='user-info'>
+                        <h1>{user.userName}</h1>
+                        <p>{user.name}</p>
+                    </div>}
+                    {type === "only-user"  &&  <h1>{user.userName}</h1>}
                 </a>
                 {time && <h2>{utilService.createPostTimeFormat(time)}</h2>}
                 {isFollowed && followButton && <button onClick = {onChangeFollow} className = "followed">Followed</button>}

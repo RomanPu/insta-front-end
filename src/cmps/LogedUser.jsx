@@ -19,7 +19,7 @@ export function LogedUser(){
 
    function oNselctedUser(ev){
         const user = getUserById(ev.target.value)
-        switchUser({_id: user._id, name: user.name, userName: user.name,
+        switchUser({_id: user._id, name: user.name, userName: user.userName,
             avatarPic: user.avatarPic})
         setSwitchOn(prev => !prev)
     }

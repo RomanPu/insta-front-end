@@ -9,6 +9,8 @@ import { MinUserCard } from './MinUserCard';
 import { Comments } from './Comments';
 import { EmojiIcon, EmojiPicker } from './ImojiPicker';
 import { getUserById } from '../store/users/users.actions'
+import { ProfilesList } from './ProfilesList';
+
 
 
 
@@ -23,6 +25,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
   const [isExpanded, setIsExpanded] = useState(type === "deteiled" ? true : false);
   const textareaRef = useRef(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [likesList, setLikesList] = useState(false);
   const  navigate = useNavigate();
 
   const toggleExpand = () => {
@@ -31,10 +34,10 @@ export default function PostPreview({post, type = 'post-preview'}) {
 
   useEffectUpdate(() => { 
       if (isLiked) {
-        editPost({...post, likes: [...likes, user._id]})
+        editPost({...post, likes: [...likes, logedUser._id]})
       }
       else {
-        editPost({...post, likes: likes.filter(like => like !== user._id)})
+        editPost({...post, likes: likes.filter(like => like !== logedUser._id)})
       }
   },[isLiked])
 
@@ -88,7 +91,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
       <div className='post-container'>
         <div className = {type}>
           <div className='header'>
-            <MinUserCard user= {{name: author, followed: "followed", 
+            <MinUserCard user= {{userName: user.userName, followed: "followed", 
                avatarPic: user.avatarPic, _id: user._id}} time = {createdAt} 
                followButton = {false}/>
             {type === "deteiled" && <div className='dots'><Dots /></div>}
@@ -104,7 +107,8 @@ export default function PostPreview({post, type = 'post-preview'}) {
             <ShareIcon />
             <div className='save-icon'><Save /></div>
         </div>
-        <div className="likes">{`${likes.length} likes`}</div>
+        <div className="likes" onClick={() => setLikesList(prev => !prev)}>{`${likes.length} likes`}</div>
+        {likesList && <ProfilesList likedUsersList = {likes}/>}
         <div className='body-and-comments'>
           <div className={`body-${isExpanded ? 'expanded' : 'collapsed'} body`}>
             {isExpanded ? body : `${body.substring(0, 100)}... `}
