@@ -6,7 +6,8 @@ export function PostGallery({ posts, type = 'explore-view' }) {
 
     return (
             <div className= {`post-gallery explore-view`}> 
-                {posts.map(post => { return <span onClick={() => navigate(`post/${post._id}`)} key={ post._id}className= {`${type}`} >
+                {posts.map(post => { return <span onClick={() => 
+                    navigate(`post/${post._id}`)} key={ post._id}className= {`${type}`} >
                     <img  key={post.id} src={post.picUrl} alt="Post" /> 
                         <div className='actions'>
                         <span><LikeIcon/>  <p>{` ${post.likes.length}`}</p></span>
@@ -15,7 +16,7 @@ export function PostGallery({ posts, type = 'explore-view' }) {
             </div>
     );
 }
-
+// `/${type === 'explore-view' ? 'explore' : 'profile'}/post/${post._id}`
 
 function LikeIcon(){
     return (

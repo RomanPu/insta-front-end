@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { PostGallery } from '../cmps/PostGallery';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 
 import { Avatar } from '../cmps/Avatar';
 import { getUserById } from '../store/users/users.actions'
 import { ProfilesList } from '../cmps/ProfilesList';
 
 export function Profile (){
+
     const [followingList, setFollowingList] = useState(false)
     const [followersList, setFollowersList] = useState(false)
     const posts = useSelector(storeState => storeState.postsModule.posts)
     const { _id} = useParams()    
-    const user = getUserById(_id)
+    const user = useRef(getUserById(_id))
     const [isExpanded, setIsExpanded] = useState(false);
+
+    console.log("pro",user, _id)
 
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
@@ -22,22 +25,22 @@ export function Profile (){
 
     return <main className="profile-conteiner">
                 <div className="profile-header"> 
-                    <div className='pro-pic'><Avatar picUrl = {user.avatarPic}/></div>
+                    <div className='pro-pic'><Avatar picUrl = {user.current.avatarPic}/></div>
                     <div className='user-info'>
-                        <h1>{user.userName}</h1>
+                        <h1>{user.current.userName}</h1>
                         <div className='stats'>
-                            <span><strong>{user.posts.length}</strong> posts</span>
+                            <span><strong>{user.current.posts.length}</strong> posts</span>
                             <span onClick={() => setFollowersList(prev=> !prev)}><strong>
-                              {user.followers.length}</strong> followers</span>
-                            {followersList && <ProfilesList user = {user} type = {'followers'}/>}
+                              {user.current.followers.length}</strong> followers</span>
+                            {followersList && <ProfilesList user = {user.current} type = {'followers'}/>}
                             <span onClick={() => setFollowingList(prev=> !prev)}><strong>
-                              {user.following.length}</strong> following</span>
-                            {followingList && <ProfilesList user = {user} type = {'following'}/>}
+                              {user.current.following.length}</strong> following</span>
+                            {followingList && <ProfilesList user = {user.current} type = {'following'}/>}
 
                         </div>
                         <h2>{user.name}</h2>
                         <div className={"body"}>
-                            {isExpanded ? user.body : `${user.body.substring(0, 100)}... `}
+                            {isExpanded ? user.body : `${user.current.body.substring(0, 100)}... `}
                             {!isExpanded && (<span className="more-link" onClick={toggleExpand}> more</span>)}
                          </div>
                      </div>
@@ -50,6 +53,7 @@ export function Profile (){
                 <section className="gallery">
                     <PostGallery posts = {posts} type={'profile-view'}/>
                 </section>
+                <Outlet/>   
             </main>
 }
 

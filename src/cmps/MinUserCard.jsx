@@ -34,7 +34,7 @@ export function MinUserCard({user, time = "", followButton = true, type = "only-
     }
 
     return <div className= {`min-user-card`}>
-                <a onClick={ () => navigate(`../instush/profile/${author._id}`) }> 
+                <a onClick={ () => navigate(`../profile/${author._id}`) }> 
                     <Avatar  picUrl = {author.avatarPic}/>
                     {type === "both"  && <div className='user-info'>
                         <h1>{user.userName}</h1>

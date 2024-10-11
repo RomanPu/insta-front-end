@@ -21,13 +21,13 @@ export function CreatePost(){
 
    async  function onCreatePost(){
         await postService.createPost(logedUser, post, gImgUrl)
-        navigate("/instush/")
+        navigate("/")
     }   
 
     return (
         <div className="create-post">
             <div className="create-post-conteiner">
-            <Link to = {'/instush/'}><div className = "close">{<WhiteX/>}</div></Link>
+            <Link to = {'/'}><div className = "close">{<WhiteX/>}</div></Link>
                 {state === "pic-post" &&<div className="header">
                     <span onClick={()=>setState("pic-select")}><BackIcon/></span>
                     <h1>Create new post</h1>
