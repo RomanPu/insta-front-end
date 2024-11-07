@@ -1,4 +1,6 @@
 .post-view{
+    width: 100vw;
+    height: 100%;
     .preview-and-comments{
         display: grid;
         align-items: flex-start;
@@ -7,10 +9,15 @@
         // background-color:  white;
         
         .post-container:has(.deteiled) {
+            position: fixed;
             background-color:  rgba(0, 0, 0, 0.5);
             width: 100vw;
             height: 100vh;
             z-index: 500;
+            justify-self: flex-end;
+            // display: flex;
+            // justify-content: center;
+            // align-items: center;
          }
 
 

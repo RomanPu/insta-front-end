@@ -32,6 +32,12 @@ export default function PostPreview({post, type = 'post-preview'}) {
       setIsExpanded(!isExpanded);
   };
 
+  useEffect(() => {
+      if (type === "deteiled") document.body.classList.add('no-scroll');
+      return () => document.body.classList.remove('no-scroll');
+  }, []);
+
+
   useEffectUpdate(() => { 
       if (isLiked) {
         editPost({...post, likes: [...likes, logedUser._id]})

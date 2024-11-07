@@ -11,7 +11,6 @@ export function PostDeteiled() {
     const { p_id} = useParams()
     const post = useSelector(storeState => storeState.postsModule
         .posts.find(post => post._id === p_id))
-        console.log("Dpost",post)
     return <PostPreview type = "deteiled" post={post} user = {getUserById(post.userId)}/>
 }
  
