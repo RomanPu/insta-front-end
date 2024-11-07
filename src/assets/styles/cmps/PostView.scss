@@ -220,14 +220,6 @@
         position: relative;
         display: inline-block;
         }
-
-        .emoji-picker {
-            position: absolute;
-            bottom: 100%;
-            left: 0;
-            transform: translateY(-10%) translateX(110%);
-            z-index: 600;
-        }
         
         .text-area {
             border: 1px solid rgb(203 213 225);

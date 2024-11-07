@@ -135,9 +135,8 @@ export default function PostPreview({post, type = 'post-preview'}) {
             />
             {comment && <button className='.send' onClick={handleCommentSubmit}>Post</button>}
             {type === "post-preview" && <button onClick={() => setShowEmojiPicker(prev => !prev)}>{<EmojiIcon/>}</button>}
-            {showEmojiPicker && <div className='emoji-picker'>
-                <EmojiPicker onSelect={ handleEmojiSelect} />
-            </div>}
+            <EmojiPicker onSelect={ handleEmojiSelect} showEmojiPicker={showEmojiPicker}
+             setShowEmojiPicker={setShowEmojiPicker} />
           </div>
       </div>
       {type === "deteiled" && 

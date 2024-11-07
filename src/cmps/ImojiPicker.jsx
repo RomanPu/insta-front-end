@@ -1,12 +1,63 @@
-import React from 'react';
-import data from '@emoji-mart/data'
-import Picker from '@emoji-mart/react'
+import React, { useRef, useState, useEffect } from 'react';
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
 
-export function EmojiPicker( {onSelect} ){
+export function EmojiPicker({ onSelect, showEmojiPicker, setShowEmojiPicker}) {
+    const emojiPickerRef = useRef(null);
+    const [emojiPickerPosition, setEmojiPickerPosition] = useState('down');
+
+    useEffect(() => {
+        if (showEmojiPicker && emojiPickerRef.current) {
+            const emojiPickerRect = emojiPickerRef.current.getBoundingClientRect();
+            const spaceAbove = emojiPickerRect.top;
+            const spaceBelow = window.innerHeight - emojiPickerRect.bottom;
+
+            if (spaceAbove > spaceBelow) {
+                setEmojiPickerPosition('up');
+            } else {
+                setEmojiPickerPosition('down');
+            }
+        }
+
+        if (showEmojiPicker) {
+            document.addEventListener('mousedown', handleClickOutside);
+          } else {
+            document.removeEventListener('mousedown', handleClickOutside);
+          }
+      
+          return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+          };
+
+    }, [showEmojiPicker]);
+
+    const handleClickOutside = (event) => {
+        console.log('event', event.target);
+        if (emojiPickerRef.current && !emojiPickerRef.current.contains(event.target)) {
+          setShowEmojiPicker(false);
+        }
+      };
+    
+      useEffect(() => {
+        if (showEmojiPicker) {
+          document.addEventListener('mousedown', handleClickOutside);
+        } else {
+          document.removeEventListener('mousedown', handleClickOutside);
+        }
+    
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
+      }, [showEmojiPicker]);
+
     return (
-        <Picker data={data} onEmojiSelect ={onSelect} />
+        showEmojiPicker && (
+            <div ref={emojiPickerRef} className={`emoji-picker ${emojiPickerPosition}`}>
+                <Picker data={data} onEmojiSelect={onSelect} />
+            </div>
+        )
     );
-};
+}
 
 export function EmojiIcon () {
     return (
