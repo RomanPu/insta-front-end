@@ -20,7 +20,7 @@ export function Profile (){
     console.log("pro",user, _id)
 
     const toggleExpand = () => {
-        setIsExpanded(!isExpanded);
+        setIsExpanded(true);
     };
 
     return <main className="profile-conteiner">
@@ -40,7 +40,7 @@ export function Profile (){
                         </div>
                         <h2>{user.name}</h2>
                         <div className={"body"}>
-                            {isExpanded ? user.body : `${user.current.body.substring(0, 100)}... `}
+                            {isExpanded ? user.current.body : `${user.current.body.substring(0, 100)}... `}
                             {!isExpanded && (<span className="more-link" onClick={toggleExpand}> more</span>)}
                          </div>
                      </div>
