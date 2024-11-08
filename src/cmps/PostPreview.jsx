@@ -113,8 +113,8 @@ export default function PostPreview({post, type = 'post-preview'}) {
             <ShareIcon />
             <div className='save-icon'><Save /></div>
         </div>
-        <div className="likes" onClick={() => setLikesList(prev => !prev)}>{`${likes.length} likes`}</div>
-        {likesList && <ProfilesList likedUsersList = {likes}/>}
+        <div className="likes" onClick={() => setLikesList(true)}>{`${likes.length} likes`}</div>
+        {likesList && <ProfilesList likedUsersList = {likes} onClose={setLikesList} type = {'likes'}/>}
         <div className='body-and-comments'>
           <div className={`body-${isExpanded ? 'expanded' : 'collapsed'} body`}>
             {isExpanded ? body : `${body.substring(0, 100)}... `}

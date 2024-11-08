@@ -1,16 +1,18 @@
 import { MinUserCard } from './MinUserCard.jsx';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
 
-export function ProfilesList({user, type = "following", likedUsersList = ""}) {
-    const navigate = useNavigate();
+export function ProfilesList({user, type = "", likedUsersList = "", onClose}) {
     const allUsers = useSelector(storeState => storeState.usersModule.users)
     let fillteredUsers =[]
-    if (!likedUsersList.length) {
-        fillteredUsers = allUsers.filter(u => user[type].map(userId => userId === u._id).includes(true))
-    }else{
+    console.log('likedUsersList', likedUsersList)
+    if (type === 'likes' && likedUsersList.length > 0) { 
+        console.log('fillteredUsers', fillteredUsers)
         fillteredUsers = allUsers.filter(u => likedUsersList.map(userId => userId === u._id).includes(true))
+    }else if (type === 'followers' || type === 'following'){
+        fillteredUsers = allUsers.filter(u => user[type].map(userId => userId === u._id).includes(true))
     }
+
+    console.log('fillteredU')
 
     return (
         <div className="profiles-conteiner">
@@ -18,9 +20,9 @@ export function ProfilesList({user, type = "following", likedUsersList = ""}) {
             <ul className="profiles-list">
             <div className='header'>
                 <h1>{type}</h1>
-                <div className = "close" onClick={() => navigate(-1)}><CloseIcon/></div>
+                <div className = "close" onClick={() => onClose(false)}><CloseIcon/></div>
             </div>
-                {fillteredUsers.map((user) => <div className='profile-row' key={user._id}><MinUserCard user={user} /></div>)}
+                {!(fillteredUsers.length === 0) && fillteredUsers.map((user) => <div className='profile-row' key={user._id}><MinUserCard user={user} /></div>)}
             </ul>
         </div>
     )

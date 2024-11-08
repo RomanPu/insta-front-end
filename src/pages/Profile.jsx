@@ -30,12 +30,14 @@ export function Profile (){
                         <h1>{user.current.userName}</h1>
                         <div className='stats'>
                             <span><strong>{user.current.posts.length}</strong> posts</span>
-                            <span onClick={() => setFollowersList(prev=> !prev)}><strong>
+                            <span onClick={() => setFollowersList(true)}><strong>
                               {user.current.followers.length}</strong> followers</span>
-                            {followersList && <ProfilesList user = {user.current} type = {'followers'}/>}
-                            <span onClick={() => setFollowingList(prev=> !prev)}><strong>
+                            {followersList && <ProfilesList user = {user.current} type = {'followers'}
+                            onClose={setFollowersList}/>}
+                            <span onClick={() => setFollowingList(true)}><strong>
                               {user.current.following.length}</strong> following</span>
-                            {followingList && <ProfilesList user = {user.current} type = {'following'}/>}
+                            {followingList && <ProfilesList user = {user.current} type = {'following'}
+                            onClose={setFollowingList}/>}
 
                         </div>
                         <h2>{user.name}</h2>
