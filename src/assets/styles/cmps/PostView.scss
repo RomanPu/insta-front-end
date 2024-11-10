@@ -63,7 +63,7 @@
                 "pic add-comment";
     
                 grid-template-columns: auto 500px;
-                grid-template-rows: 69px 1fr 55px 18px 54px;
+                grid-template-rows: 69px 1fr 55px 22px 54px;
                 .actions{
                     background-color: white;
                     grid-area: actions;
@@ -77,11 +77,12 @@
                     background-color: white;
                     grid-area: likes;
                     padding: 0px 20px 4px 16px;
+                    margin-block-end: 5px;
                 }
     
                 .comment-section{
                     background-color: white;
-                    border-top: 0.6px solid $gray2;
+                    border-top: 0.6px solid #aaaaaa63;
                     grid-area: add-comment;
                     margin: 0px;
                     padding: 6px 16px 8px 16px;

@@ -11,7 +11,7 @@ export function SuggedestedFriends( {type = ""} ) {
 
     return <div className = "freinds-block">
         <div className='header'>
-            <h2>Suggested Friends</h2>
+            <h2>Suggested for you</h2>
             <h1>See All</h1>
         </div>
         <ul className = "suggedested-friends">{users.map((user) => 
