@@ -9,7 +9,26 @@
     left: 0;
     width: $nav-medium-width;
     margin: 0;
-    // box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    .bold {
+        font-weight: 600;
+        .nav-bar-action{
+            .nav-bar-buttom-link{
+                .nav-bar-buttom-content{
+                    .nav-bar-buttom-name{
+                        font-weight: 600;
+                    }
+
+                }
+            }
+        }
+
+        .nav-bar-buttom-name {
+            font-weight: 600; // Change font weight for child elements
+        }
+    }
+    
+
 
     .nav-bar-buttom-link{
         height: 52px;
