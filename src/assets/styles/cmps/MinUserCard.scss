@@ -30,6 +30,15 @@
 
         .avatar{
             margin-inline-end: 12px;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+
+        h1{
+            &:hover{
+                cursor: pointer;
+            }
         }
 
 

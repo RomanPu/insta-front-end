@@ -41,11 +41,24 @@
             margin: 0px;
         }
 
+        h1, h2, .pro-pic {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
         .stats{
             height: 38px;
             span{
                 margin-inline-end: 40px;
+
+                &:nth-child(2), &:nth-child(3){
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
             }
+
         }
 
 

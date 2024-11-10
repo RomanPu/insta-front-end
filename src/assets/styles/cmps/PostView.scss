@@ -185,11 +185,25 @@
             font-size: 14px;
             color: black;
             font-weight: 600;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+
+        .more-link{
+            &:hover{
+                cursor: pointer;
+            }
         }
 
         img {
             width: 468px;
             height: 585px;
+            
+            &:hover{
+                cursor: pointer;
+            }
+            
         }
 
     }
