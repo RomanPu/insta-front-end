@@ -9,20 +9,10 @@
     left: 0;
     width: $nav-medium-width;
     margin: 0;
+    font-weight: 400;
 
     .bold {
         font-weight: 600;
-        .nav-bar-action{
-            .nav-bar-buttom-link{
-                .nav-bar-buttom-content{
-                    .nav-bar-buttom-name{
-                        font-weight: 600;
-                    }
-
-                }
-            }
-        }
-
         .nav-bar-buttom-name {
             font-weight: 600; // Change font weight for child elements
         }
@@ -63,7 +53,6 @@
             color-scheme: light;
             font-size: 16px;
             line-height: 24px;
-            font-weight: 400;
             padding-inline-start: 16px;
             width: max-content;
             text-align: left;
