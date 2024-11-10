@@ -20,7 +20,7 @@ export default function PostPreview({post, type = 'post-preview'}) {
   const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
 
   const { author, createdAt, body, picUrl, likes, comments, isFollowed, } = post;
-  const [isLiked, setIsLiked] = useState(likes.map(like => like === user._id).includes(true));
+  const [isLiked, setIsLiked] = useState(likes.map(like => like === logedUser._id).includes(true));
   const [comment, setComment] = useState('');
   const [isExpanded, setIsExpanded] = useState(type === "deteiled" ? true : false);
   const textareaRef = useRef(null);
