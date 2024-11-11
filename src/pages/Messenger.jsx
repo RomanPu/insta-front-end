@@ -1,5 +1,3 @@
-export function Messenger(){
-    return <div>
-        messenger
-    </div>
+export function Messenger() {
+  return <div>messenger</div>
 }

@@ -1,19 +1,16 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers } from "redux"
 
-import { usersReducer } from './users/users.reducer'
-import { postsReducer } from './posts/posts.reducer'
-import { logedUserReducer } from './logedUser/logeduser.reducer'
-
+import { usersReducer } from "./users/users.reducer"
+import { postsReducer } from "./posts/posts.reducer"
+import { logedUserReducer } from "./logedUser/logeduser.reducer"
 
 const rootReducer = combineReducers({
-    postsModule: postsReducer,
-    usersModule: usersReducer,
-    logedUserModule: logedUserReducer,
+  postsModule: postsReducer,
+  usersModule: usersReducer,
+  logedUserModule: logedUserReducer,
 })
 
-const middleware = (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() : undefined
+const middleware = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
+  : undefined
 export const store = createStore(rootReducer, middleware)
-
-
-
-
