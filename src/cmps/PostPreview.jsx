@@ -8,11 +8,11 @@ import { postService } from '../services/post.service'
 import { MinUserCard } from './MinUserCard'
 import { Comments } from './Comments'
 import { EmojiIcon, EmojiPicker } from './ImojiPicker'
-import { getUserById } from '../store/users/users.actions'
+
 import { ProfilesList } from './ProfilesList'
 
 export default function PostPreview({ post, type = 'post-preview' }) {
-    const user = getUserById(post.userId)
+    const user = useSelector(storeState => storeState.usersModule.users.find(user => user._id === post.userId))
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
 
     const { author, createdAt, body, picUrl, likes, comments, isFollowed } = post

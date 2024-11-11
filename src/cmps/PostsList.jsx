@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 import PostPreview from './PostPreview'
 import { useEffect } from 'react'
 import { LoadPosts } from '../store/posts/posts.actions'
-import { getUserById } from '../store/users/users.actions'
 // LoadPosts()
 
 export function PostsList({ _id }) {

@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { useParams, Outlet } from 'react-router-dom'
 
 import { Avatar } from '../cmps/Avatar'
-import { getUserById } from '../store/users/users.actions'
 import { ProfilesList } from '../cmps/ProfilesList'
 
 export function Profile() {
@@ -13,7 +12,8 @@ export function Profile() {
     const [followersList, setFollowersList] = useState(false)
     const posts = useSelector(storeState => storeState.postsModule.posts)
     const { _id } = useParams()
-    const user = useRef(getUserById(_id))
+    const user = useSelector(storeState => storeState.usersModule.users.find(user => user._id === _id))
+    //const user = useRef(getUserById(_id))
     const [isExpanded, setIsExpanded] = useState(false)
 
     console.log('pro', user, _id)
@@ -26,30 +26,30 @@ export function Profile() {
         <main className="profile-conteiner">
             <div className="profile-header">
                 <div className="pro-pic">
-                    <Avatar picUrl={user.current.avatarPic} />
+                    <Avatar picUrl={user.avatarPic} />
                 </div>
                 <div className="user-info">
-                    <h1>{user.current.userName}</h1>
+                    <h1>{user.userName}</h1>
                     <div className="stats">
                         <span>
-                            <strong>{user.current.posts.length}</strong> posts
+                            <strong>{user.posts.length}</strong> posts
                         </span>
                         <span onClick={() => setFollowersList(true)}>
-                            <strong>{user.current.followers.length}</strong> followers
+                            <strong>{user.followers.length}</strong> followers
                         </span>
                         {followersList && (
-                            <ProfilesList user={user.current} type={'followers'} onClose={setFollowersList} />
+                            <ProfilesList user={user} type={'followers'} onClose={setFollowersList} />
                         )}
                         <span onClick={() => setFollowingList(true)}>
-                            <strong>{user.current.following.length}</strong> following
+                            <strong>{user.following.length}</strong> following
                         </span>
                         {followingList && (
-                            <ProfilesList user={user.current} type={'following'} onClose={setFollowingList} />
+                            <ProfilesList user={user} type={'following'} onClose={setFollowingList} />
                         )}
                     </div>
                     <h2>{user.name}</h2>
                     <div className={'body'}>
-                        {isExpanded ? user.current.body : `${user.current.body.substring(0, 100)}... `}
+                        {isExpanded ? user.body : `${user.body.substring(0, 100)}... `}
                         {!isExpanded && (
                             <span className="more-link" onClick={toggleExpand}>
                                 {' '}

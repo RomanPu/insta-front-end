@@ -1,13 +1,14 @@
 import * as React from 'react'
 
 import { useParams } from 'react-router-dom'
-import { getUserById } from '../store/users/users.actions'
-import { getPostById } from '../store/posts/posts.actions'
-
+import { useSelector } from 'react-redux'
 import PostPreview from './PostPreview'
+
 
 export function PostDeteiled() {
     const { p_id } = useParams()
-    const post = getPostById(p_id)
-    return <PostPreview type="deteiled" post={post} user={getUserById(post.userId)} />
+    const post = useSelector(storeState => storeState.postsModule.posts.find(post => post._id === p_id))
+    const user = useSelector(storeState => storeState.usersModule.users.find(user => user._id === post.userId))
+    
+    return <PostPreview type="deteiled" post={post} user={user} />
 }
