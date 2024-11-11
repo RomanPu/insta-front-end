@@ -22,7 +22,7 @@ export function MinUserCard({ user, time = '', followButton = true, type = 'only
         loggedUser.following.map(follow => follow === author._id).includes(true)
     )
 
-    useEffect(() => {
+    useEffectUpdate(() => {
         if (isFollowed && !loggedUser.following.map(like => like === user._id).includes(true)) {
             editUser({ ...author, followers: [...author.followers, _id] })
             editUser({
@@ -32,7 +32,7 @@ export function MinUserCard({ user, time = '', followButton = true, type = 'only
         } else {
             editUser({
                 ...loggedUser,
-                following: loggedUser.following.filter(follow => follow !== _id)
+                following: loggedUser.following.filter(follow => follow !== author._id)
             })
         }
     }, [isFollowed])
