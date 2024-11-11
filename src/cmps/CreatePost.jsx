@@ -1,4 +1,4 @@
-import { postService } from '../services/post.service'
+import { createPost } from '../store/posts/posts.actions'
 import { useSelector } from 'react-redux'
 import { useState, useRef } from 'react'
 import { uploadService } from '../services/img.upload.service'
@@ -20,7 +20,7 @@ export function CreatePost() {
 	}
 
 	async function onCreatePost() {
-		await postService.createPost(logedUser, post, gImgUrl)
+		await createPost(logedUser, post, gImgUrl)
 		navigate('/')
 	}
 

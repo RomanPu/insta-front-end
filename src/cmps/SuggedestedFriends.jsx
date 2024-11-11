@@ -1,13 +1,12 @@
 import { useSelector } from 'react-redux'
 import { MinUserCard } from './MinUserCard'
+import { getUserById } from '../store/users/users.actions'
 
 export function SuggedestedFriends({ type = '' }) {
 	const { _id } = useSelector(
 		storeState => storeState.logedUserModule.logedUser
 	)
-	const loggedUser = useSelector(storeState =>
-		storeState.usersModule.users.find(user => user._id === _id)
-	)
+	const loggedUser = getUserById(_id)
 	const allUsers = useSelector(storeState => storeState.usersModule.users)
 	const romovedLoggedUser = allUsers.filter(user => user._id !== _id)
 	const users = romovedLoggedUser.filter(

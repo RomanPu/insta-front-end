@@ -17,12 +17,8 @@ export function MinUserCard({
 	const { _id } = useSelector(
 		storeState => storeState.logedUserModule.logedUser
 	)
-	const author = useSelector(storeState =>
-		storeState.usersModule.users.find(u => u._id === user._id)
-	)
-	const loggedUser = useSelector(storeState =>
-		storeState.usersModule.users.find(user => user._id === _id)
-	)
+	const author = getUserById(user._id)
+	const loggedUser = getUserById(_id)
 	const [isFollowed, setIsFollowed] = useState(
 		loggedUser.following.map(follow => follow === author._id).includes(true)
 	)
