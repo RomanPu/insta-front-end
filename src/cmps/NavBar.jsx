@@ -1,4 +1,5 @@
-import * as React from "react"
+import React from "react"
+import { useState } from "react"
 import { NavBarAction } from "./NavBarAction"
 import {
   HomeIcon,
@@ -22,7 +23,7 @@ export function NavBar() {
     (storeState) => storeState.logedUserModule.logedUser,
   )
   const location = useLocation()
-  const [corrPage, setCorrPage] = React.useState("home")
+  const [corrPage, setCorrPage] = useState("home")
   // var isSelctedArr = [false, false, false, false, false, false, false, false, false]
   const pageNameArr = [
     "search",
