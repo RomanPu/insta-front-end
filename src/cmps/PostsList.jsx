@@ -15,7 +15,7 @@ export function PostsList({ _id }) {
 
     useEffect(() => {
         LoadPosts()
-    }, [])
+    }, [allPosts])
 
     return (
         <ul className="posts-list">
