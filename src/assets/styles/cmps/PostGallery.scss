@@ -1,74 +1,71 @@
+.post-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(40px, 1fr));
+  grid-template-rows: repeat(1fr);
+  grid-auto-flow: dense;
+  gap: 6px;
+  align-content: start;
+  gap: 2px;
+  align-content: start;
+  padding: 24px 20px 0px 20px;
+  width: 100%;
+  height: 100vh;
 
+  & > .explore-view:nth-child(3n + 0) {
+    grid-row: span 2;
+  }
 
-
-.post-gallery{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(40px, 1fr));
-    grid-template-rows: repeat(1fr);
-    grid-auto-flow: dense;
-    gap: 6px;
-    align-content: start;
-    gap: 2px;
-    align-content: start;
-    padding:24px 20px 0px 20px;
+  span {
+    position: relative;
+    display: inline-block;
     width: 100%;
-    height: 100vh;
-
-
-    &>.explore-view:nth-child(3n + 0) {
-        grid-row: span 2;
+    grid-column: auto;
+    grid-row: auto;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
- 
-    span{
-        position: relative;
-        display: inline-block;
+    .actions {
+      display: none;
+      position: absolute;
+      top: 0%;
+      z-index: 10; /* Ensure it's above the image */
+      background-color: rgba(
+        0,
+        0,
+        0,
+        0.5
+      ); /* Optional: Add background for visibility */
+      color: white; /* Optional: Text color */
+      padding: 5px; /* Optional: Padding for the button */
+      border-radius: 5px;
+      span {
+        display: flex;
+        justify-content: center;
+        color: white;
+        svg {
+          width: 20px;
+          height: 20px;
+          color: white;
+        }
+
+        p {
+          margin-left: 2px;
+        }
+      }
+    }
+
+    &:hover {
+      .actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
-        grid-column: auto;
-        grid-row: auto; 
-        img{
-
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .actions{
-            display: none;
-            position: absolute;
-            top: 0%;
-            z-index: 10; /* Ensure it's above the image */
-            background-color: rgba(0, 0, 0, 0.5); /* Optional: Add background for visibility */
-            color: white; /* Optional: Text color */
-            padding: 5px; /* Optional: Padding for the button */
-            border-radius: 5px; 
-            span{
-                display: flex;
-                justify-content: center;
-                color: white;
-                svg{
-                    width: 20px;
-                    height: 20px;
-                    color: white;
-                }
-
-                p{
-                  margin-left: 2px;
-                }
-            }
-
-        }
-
-        &:hover {
-            .actions {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 100%;
-                height: 100%;
-            }
-            cursor: pointer;
-        }
+        height: 100%;
+      }
+      cursor: pointer;
     }
-
+  }
 }

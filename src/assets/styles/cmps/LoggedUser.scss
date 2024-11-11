@@ -1,41 +1,40 @@
-.logged-user{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    // justify-content: center;
-    // justify-content: space-between;
-    padding-inline-start: 4px;
+.logged-user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // justify-content: center;
+  // justify-content: space-between;
+  padding-inline-start: 4px;
+  height: 44px;
+  // gap: 1rem;
+  padding: 8px 16px;
+  margin-block-end: 10px;
+
+  .avatar {
+    width: 44px;
     height: 44px;
-    // gap: 1rem;
-    padding: 8px 16px;
-    margin-block-end: 10px;
+    margin-inline-end: 12px;
+  }
 
-    .avatar{
-        width: 44px;
-        height: 44px;
-        margin-inline-end: 12px;
-    }
-    
-    p{
-        font-size: 14px;
-        line-height: 18px;
-        margin: 0;
-        color: rgb(115, 115, 115);
-    }
+  p {
+    font-size: 14px;
+    line-height: 18px;
+    margin: 0;
+    color: rgb(115, 115, 115);
+  }
 
-
-    button{
-        align-self: center;
-        //margin: 0px 8px;
-        margin-inline-start: auto;
-        padding: 0;
-        font-weight: 600;
-        color: rgb(0, 149, 246);
-        text-decoration-color: rgb(0, 149, 246);
-        width: auto;
-        margin-inline-end: 8px;
-        background-color: transparent;
-        font-size: 12px;
-        cursor: pointer;
-    }
+  button {
+    align-self: center;
+    //margin: 0px 8px;
+    margin-inline-start: auto;
+    padding: 0;
+    font-weight: 600;
+    color: rgb(0, 149, 246);
+    text-decoration-color: rgb(0, 149, 246);
+    width: auto;
+    margin-inline-end: 8px;
+    background-color: transparent;
+    font-size: 12px;
+    cursor: pointer;
+  }
 }
