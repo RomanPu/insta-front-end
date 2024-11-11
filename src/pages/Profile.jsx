@@ -5,13 +5,15 @@ import { useState } from 'react'
 import { useParams, Outlet } from 'react-router-dom'
 
 import { Avatar } from '../cmps/Avatar'
+
 import { ProfilesList } from '../cmps/ProfilesList'
 
 export function Profile() {
     const [followingList, setFollowingList] = useState(false)
     const [followersList, setFollowersList] = useState(false)
-    const posts = useSelector(storeState => storeState.postsModule.posts)
     const { _id } = useParams()
+    const allPosts = useSelector(storeState => storeState.postsModule.posts)
+    const posts = allPosts.filter(post => post.userId === _id)
     const user = useSelector(storeState => storeState.usersModule.users.find(user => user._id === _id))
     //const user = useRef(getUserById(_id))
     const [isExpanded, setIsExpanded] = useState(false)
