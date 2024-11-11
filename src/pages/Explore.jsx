@@ -6,16 +6,16 @@ import { useEffect } from 'react'
 import { LoadPosts } from '../store/posts/posts.actions'
 
 export function Explore() {
-	const posts = useSelector(storeState => storeState.postsModule.posts)
+    const posts = useSelector(storeState => storeState.postsModule.posts)
 
-	useEffect(() => {
-		LoadPosts()
-	}, [])
+    useEffect(() => {
+        LoadPosts()
+    }, [])
 
-	return (
-		<div className="explore-page">
-			<PostGallery posts={posts} />
-			<Outlet />
-		</div>
-	)
+    return (
+        <div className="explore-page">
+            <PostGallery posts={posts} />
+            <Outlet />
+        </div>
+    )
 }

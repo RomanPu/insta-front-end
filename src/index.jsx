@@ -9,9 +9,9 @@ import './assets/styles/main.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-	<Provider store={store}>
-		<Router>
-			<RootCmp />
-		</Router>
-	</Provider>
+    <Provider store={store}>
+        <Router>
+            <RootCmp />
+        </Router>
+    </Provider>
 )

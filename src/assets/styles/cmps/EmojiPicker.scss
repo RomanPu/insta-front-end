@@ -1,14 +1,14 @@
 .emoji-picker {
-	position: absolute;
-	z-index: 600;
-	left: 0;
-	&.up {
-		bottom: 100%;
-		transform: translateY(-10%) translateX(110%);
-	}
+    position: absolute;
+    z-index: 600;
+    left: 0;
+    &.up {
+        bottom: 100%;
+        transform: translateY(-10%) translateX(110%);
+    }
 
-	&.down {
-		top: 100%;
-		transform: translateY(10%) translateX(110%);
-	}
+    &.down {
+        top: 100%;
+        transform: translateY(10%) translateX(110%);
+    }
 }

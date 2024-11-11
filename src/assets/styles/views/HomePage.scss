@@ -1,21 +1,21 @@
 .home-page-conteiner {
-	margin-inline-start: 244px;
-	.home-page {
-		display: flex;
-		justify-content: center;
-		border-left: 0.6px solid $gray2;
+    margin-inline-start: 244px;
+    .home-page {
+        display: flex;
+        justify-content: center;
+        border-left: 0.6px solid $gray2;
 
-		.side-bar {
-			width: 383px;
-			padding-inline-start: 66px;
-			margin-block-start: 36px;
-		}
+        .side-bar {
+            width: 383px;
+            padding-inline-start: 66px;
+            margin-block-start: 36px;
+        }
 
-		.posts-section {
-			margin-block-start: 24px;
-			max-width: 630px;
-			width: 100%;
-			padding: 0px;
-		}
-	}
+        .posts-section {
+            margin-block-start: 24px;
+            max-width: 630px;
+            width: 100%;
+            padding: 0px;
+        }
+    }
 }

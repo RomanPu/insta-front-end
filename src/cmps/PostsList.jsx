@@ -8,24 +8,22 @@ import { getUserById } from '../store/users/users.actions'
 // LoadPosts()
 
 export function PostsList({ _id }) {
-	const user = getUserById(_id)
-	const allPosts = useSelector(storeState => storeState.postsModule.posts)
+    const user = getUserById(_id)
+    const allPosts = useSelector(storeState => storeState.postsModule.posts)
 
-	const posts = allPosts.filter(post =>
-		user.following.map(follow => follow === post.userId).includes(true)
-	)
+    const posts = allPosts.filter(post => user.following.map(follow => follow === post.userId).includes(true))
 
-	useEffect(() => {
-		LoadPosts()
-	}, [])
+    useEffect(() => {
+        LoadPosts()
+    }, [])
 
-	return (
-		<ul className="posts-list">
-			{posts.map(post => (
-				<li key={post._id}>
-					<PostPreview post={post} />
-				</li>
-			))}
-		</ul>
-	)
+    return (
+        <ul className="posts-list">
+            {posts.map(post => (
+                <li key={post._id}>
+                    <PostPreview post={post} />
+                </li>
+            ))}
+        </ul>
+    )
 }

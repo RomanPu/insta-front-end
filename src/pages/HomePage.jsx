@@ -7,24 +7,22 @@ import { useSelector } from 'react-redux'
 // import { userService } from "../services/user.service";
 
 export function HomePage() {
-	const logedUser = useSelector(
-		storeState => storeState.logedUserModule.logedUser
-	)
+    const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
 
-	userService.createUsers()
+    userService.createUsers()
 
-	return (
-		<div className="home-page-conteiner">
-			<section className="home-page">
-				<section className="posts-section">
-					<PostsList _id={logedUser._id} />
-				</section>
-				<section className="side-bar">
-					<LogedUser />
-					<SuggedestedFriends />
-				</section>
-				<Outlet />
-			</section>
-		</div>
-	)
+    return (
+        <div className="home-page-conteiner">
+            <section className="home-page">
+                <section className="posts-section">
+                    <PostsList _id={logedUser._id} />
+                </section>
+                <section className="side-bar">
+                    <LogedUser />
+                    <SuggedestedFriends />
+                </section>
+                <Outlet />
+            </section>
+        </div>
+    )
 }
