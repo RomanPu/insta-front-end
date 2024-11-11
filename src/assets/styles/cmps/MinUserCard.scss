@@ -1,62 +1,62 @@
 .min-user-card {
-  display: flex;
-  align-items: center;
-  // flex-direction: row;
-  // justify-content: flex-start;
-  // align-items: center;
-  width: 100%;
-  height: 44px;
-  padding: 0px 0px 12px 4px;
+	display: flex;
+	align-items: center;
+	// flex-direction: row;
+	// justify-content: flex-start;
+	// align-items: center;
+	width: 100%;
+	height: 44px;
+	padding: 0px 0px 12px 4px;
 
-  button {
-    margin-left: auto;
-    background-color: white;
-    color: black;
-    margin: 0px 0px 0px auto;
-    padding: 0px;
-  }
+	button {
+		margin-left: auto;
+		background-color: white;
+		color: black;
+		margin: 0px 0px 0px auto;
+		padding: 0px;
+	}
 
-  .follow {
-    color: blue;
-  }
+	.follow {
+		color: blue;
+	}
 
-  .follow:hover {
-    color: black;
-  }
+	.follow:hover {
+		color: black;
+	}
 
-  .followed:hover {
-    color: gray;
-  }
+	.followed:hover {
+		color: gray;
+	}
 
-  .avatar {
-    margin-inline-end: 12px;
-    &:hover {
-      cursor: pointer;
-    }
-  }
+	.avatar {
+		margin-inline-end: 12px;
+		&:hover {
+			cursor: pointer;
+		}
+	}
 
-  h1 {
-    &:hover {
-      cursor: pointer;
-    }
-  }
+	h1 {
+		&:hover {
+			cursor: pointer;
+		}
+	}
 
-  h2 {
-    display: list-item;
-    list-style-type: disc;
-    margin-inline-start: 30px;
-    // padding: 0px;
-  }
+	h2 {
+		display: list-item;
+		list-style-type: disc;
+		margin-inline-start: 30px;
+		// padding: 0px;
+	}
 
-  h3 {
-    display: list-item;
-    list-style-type: disc;
-    margin-left: 5px;
-  }
+	h3 {
+		display: list-item;
+		list-style-type: disc;
+		margin-left: 5px;
+	}
 
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
+	a {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
 }
