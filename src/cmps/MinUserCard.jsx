@@ -10,12 +10,8 @@ import { useEffectUpdate } from '../customHooks/useEffectUpdate'
 export function MinUserCard({ user, time = '', followButton = true, type = 'only-user' }) {
     const navigate = useNavigate()
     const { _id } = useSelector(storeState => storeState.logedUserModule.logedUser)
-    const loggedUser = useSelector(storeState =>
-		storeState.usersModule.users.find(user => user._id === _id)
-	)
-    const author = useSelector(storeState =>
-		storeState.usersModule.users.find(u => u._id === user._id)
-	)
+    const loggedUser = useSelector(storeState => storeState.usersModule.users.find(user => user._id === _id))
+    const author = useSelector(storeState => storeState.usersModule.users.find(u => u._id === user._id))
     const [isFollowed, setIsFollowed] = useState(
         loggedUser.following.map(follow => follow === author._id).includes(true)
     )
@@ -36,8 +32,6 @@ export function MinUserCard({ user, time = '', followButton = true, type = 'only
         await editUser({ ...author, followers: [...author.followers, _id] })
         await editUser({ ...loggedUser, following: [...loggedUser.following, author._id] })
     }
-
-
 
     function onChangeFollow() {
         setIsFollowed(prev => !prev)

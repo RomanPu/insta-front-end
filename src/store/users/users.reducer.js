@@ -19,7 +19,7 @@ export function usersReducer(state = initialState, action) {
                 users: action.users
             }
         case EDIT_USER:
-            const modArr = state.users.map(user => user._id === action.user._id ? action.user : user)
+            const modArr = state.users.map(user => (user._id === action.user._id ? action.user : user))
             return {
                 ...state,
                 users: [...modArr]

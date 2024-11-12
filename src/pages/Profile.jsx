@@ -39,15 +39,11 @@ export function Profile() {
                         <span onClick={() => setFollowersList(true)}>
                             <strong>{user.followers.length}</strong> followers
                         </span>
-                        {followersList && (
-                            <ProfilesList user={user} type={'followers'} onClose={setFollowersList} />
-                        )}
+                        {followersList && <ProfilesList user={user} type={'followers'} onClose={setFollowersList} />}
                         <span onClick={() => setFollowingList(true)}>
                             <strong>{user.following.length}</strong> following
                         </span>
-                        {followingList && (
-                            <ProfilesList user={user} type={'following'} onClose={setFollowingList} />
-                        )}
+                        {followingList && <ProfilesList user={user} type={'following'} onClose={setFollowingList} />}
                     </div>
                     <h2>{user.name}</h2>
                     <div className={'body'}>

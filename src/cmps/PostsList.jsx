@@ -10,8 +10,8 @@ export function PostsList({ _id }) {
     const user = useSelector(storeState => storeState.usersModule.users.find(user => user._id === _id))
     const allPosts = useSelector(storeState => storeState.postsModule.posts)
     const posts = allPosts.filter(post => user.following.map(follow => follow === post.userId).includes(true))
-    
-//if new user followed - update posts
+
+    //if new user followed - update posts
     useEffect(() => {
         LoadPosts()
     }, [user])

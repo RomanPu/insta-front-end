@@ -14,7 +14,6 @@ import { ProfilesList } from './ProfilesList'
 export default function PostPreview({ post, type = 'post-preview' }) {
     const user = useSelector(storeState => storeState.usersModule.users.find(user => user._id === post.userId))
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
-    
 
     const { author, createdAt, body, picUrl, likes, comments, isFollowed } = post
     const [isLiked, setIsLiked] = useState(likes.map(like => like === logedUser._id).includes(true))
@@ -36,13 +35,15 @@ export default function PostPreview({ post, type = 'post-preview' }) {
 
     useEffectUpdate(() => {
         if (isLiked) {
-            (async () => {editPost({ ...post, likes: [...likes, logedUser._id] })})()        
+            ;(async () => {
+                editPost({ ...post, likes: [...likes, logedUser._id] })
+            })()
         } else {
-
-            (async () => {editPost({ ...post, likes: likes.filter(like => like !== logedUser._id) })})()
+            ;(async () => {
+                editPost({ ...post, likes: likes.filter(like => like !== logedUser._id) })
+            })()
         }
     }, [isLiked])
-
 
     function handleLike() {
         setIsLiked(prev => !prev)
