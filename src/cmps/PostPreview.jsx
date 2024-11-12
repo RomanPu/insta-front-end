@@ -36,14 +36,13 @@ export default function PostPreview({ post, type = 'post-preview' }) {
 
     useEffectUpdate(() => {
         if (isLiked) {
-            editPost({ ...post, likes: [...likes, logedUser._id] })
+            (async () => {editPost({ ...post, likes: [...likes, logedUser._id] })})()        
         } else {
-            editPost({
-                ...post,
-                likes: likes.filter(like => like !== logedUser._id)
-            })
+
+            (async () => {editPost({ ...post, likes: likes.filter(like => like !== logedUser._id) })})()
         }
     }, [isLiked])
+
 
     function handleLike() {
         setIsLiked(prev => !prev)
