@@ -1,5 +1,6 @@
 import { MinUserCard } from './MinUserCard.jsx'
 import { useSelector } from 'react-redux'
+import { useEffectStopScroll } from '../customHooks/useEffectStopScroll'
 
 export function ProfilesList({ user, type = '', likedUsersList = '', onClose }) {
     const allUsers = useSelector(storeState => storeState.usersModule.users)
@@ -11,7 +12,7 @@ export function ProfilesList({ user, type = '', likedUsersList = '', onClose }) 
         fillteredUsers = allUsers.filter(u => user[type].map(userId => userId === u._id).includes(true))
     }
 
-    console.log('fillteredU')
+    useEffectStopScroll()
 
     return (
         <div className="profiles-conteiner">
