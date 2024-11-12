@@ -26,7 +26,9 @@ export function LogedUser() {
     }
 
     async function oNselctedUser(ev) {
+        console.log('ev.target.value', ev)
         const user = getUserById(ev.target.value)
+        console.log('user', user)
         switchUser({
             _id: user._id,
             name: user.name,
@@ -54,7 +56,7 @@ export function LogedUser() {
             </div>
             {!switchOn && <button onClick={switchUserOn}>Switch</button>}
             {switchOn && (
-                <select onChange={oNselctedUser} name="users" id="users">
+                <select onChange={oNselctedUser} name="users" id="users" value={logedUser._id}>
                     {users.map(user => (
                         <option key={user._id} value={user._id}>
                             {user.name}
