@@ -6,7 +6,6 @@ export function ProfilesList({ user, type = '', likedUsersList = '', onClose }) 
     let fillteredUsers = []
     console.log('likedUsersList', likedUsersList)
     if (type === 'likes' && likedUsersList.length > 0) {
-        console.log('fillteredUsers', fillteredUsers)
         fillteredUsers = allUsers.filter(u => likedUsersList.map(userId => userId === u._id).includes(true))
     } else if (type === 'followers' || type === 'following') {
         fillteredUsers = allUsers.filter(u => user[type].map(userId => userId === u._id).includes(true))

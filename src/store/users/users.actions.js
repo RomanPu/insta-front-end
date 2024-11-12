@@ -25,7 +25,9 @@ export async function setUsers(newUsers) {
 
 export async function editUser(user) {
     try {
+        console.log('editUser', user)
         const savedUser = await userService.save(user)
+        console.log('savedUser', savedUser)
         store.dispatch({ type: EDIT_USER, user: { ...savedUser } })
     } catch (error) {
         throw error

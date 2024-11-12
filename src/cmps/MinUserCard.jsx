@@ -22,18 +22,22 @@ export function MinUserCard({ user, time = '', followButton = true, type = 'only
 
     useEffectUpdate(() => {
         if (isFollowed && !loggedUser.following.map(like => like === user._id).includes(true)) {
-            editUser({ ...author, followers: [...author.followers, _id] })
-            editUser({
-                ...loggedUser,
-                following: [...loggedUser.following, author._id]
-            })
+            onFolow()
         } else {
+            console.log('unfollow')
             editUser({
                 ...loggedUser,
                 following: loggedUser.following.filter(follow => follow !== author._id)
             })
         }
     }, [isFollowed])
+
+    async function onFolow() {
+        await editUser({ ...author, followers: [...author.followers, _id] })
+        await editUser({ ...loggedUser, following: [...loggedUser.following, author._id] })
+    }
+
+
 
     function onChangeFollow() {
         setIsFollowed(prev => !prev)
