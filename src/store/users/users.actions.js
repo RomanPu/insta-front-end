@@ -6,10 +6,10 @@ export function addUser(newUser) {
     store.dispatch({ type: ADD_USER, user: newUser })
 }
 
-export async function LoadUsers(newusers) {
+export async function LoadUsers() {
     try {
-        const savedusers = await userService.saveAll(newusers)
-        store.dispatch({ type: SET_USERS, users: savedusers })
+        const users = await userService.query()
+        store.dispatch({ type: SET_USERS, users: users })
     } catch (error) {
         throw error
     }

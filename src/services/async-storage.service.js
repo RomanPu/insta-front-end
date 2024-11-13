@@ -1,3 +1,7 @@
+import users from '../data/user.json'
+import posts from '../data/post.json'
+import { utilService } from './util.service'
+
 export const storageService = {
     query,
     get,
@@ -5,6 +9,7 @@ export const storageService = {
     put,
     remove
 }
+_uploadData()
 
 function query(entityType, delay = 500) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
@@ -62,4 +67,18 @@ function _makeId(length = 5) {
         text += possible.charAt(Math.floor(Math.random() * possible.length))
     }
     return text
+}
+
+function _uploadData() {
+    let users = utilService.loadFromStorage('users')
+    if (!users || !users.length) {
+         localStorage.setItem('users', JSON.stringify(users))
+         console.log('users', users)
+    }
+ 
+    let posts = utilService.loadFromStorage('posts')
+    if (!posts || !posts.length) {
+        localStorage.setItem('posts', JSON.stringify(posts))
+        console.log('posts', posts)
+    }
 }

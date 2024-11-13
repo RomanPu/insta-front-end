@@ -2,14 +2,15 @@ import { Outlet } from 'react-router'
 import { LogedUser } from '../cmps/LogedUser'
 import { PostsList } from '../cmps/PostsList'
 import { SuggedestedFriends } from '../cmps/SuggedestedFriends'
-import { userService } from '../services/user.service'
+import { LoadUsers } from '../store/users/users.actions'
 import { useSelector } from 'react-redux'
-// import { userService } from "../services/user.service";
+import { useEffect } from 'react'
 
 export function HomePage() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
-
-    userService.createUsers()
+    useEffect(() => {
+        (async () => await LoadUsers())()
+    }, [])
 
     return (
         <div className="home-page-conteiner">
