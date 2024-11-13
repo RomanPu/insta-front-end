@@ -1,5 +1,5 @@
-import users from '../data/user.json'
-import posts from '../data/post.json'
+import demoUsers from '../data/user.json'
+import demoPosts from '../data/post.json'
 import { utilService } from './util.service'
 
 export const storageService = {
@@ -72,13 +72,13 @@ function _makeId(length = 5) {
 function _uploadData() {
     let users = utilService.loadFromStorage('users')
     if (!users || !users.length) {
-         localStorage.setItem('users', JSON.stringify(users))
+         localStorage.setItem('users', JSON.stringify(demoUsers))
          console.log('users', users)
     }
  
     let posts = utilService.loadFromStorage('posts')
     if (!posts || !posts.length) {
-        localStorage.setItem('posts', JSON.stringify(posts))
+        localStorage.setItem('posts', JSON.stringify(demoPosts))
         console.log('posts', posts)
     }
 }

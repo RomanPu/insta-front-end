@@ -4,14 +4,21 @@ import { PostsList } from '../cmps/PostsList'
 import { SuggedestedFriends } from '../cmps/SuggedestedFriends'
 import { LoadUsers } from '../store/users/users.actions'
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState} from 'react'
 
 export function HomePage() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
-    useEffect(() => {
-        (async () => await LoadUsers())()
-    }, [])
 
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        (async () => {
+            await LoadUsers();
+            setLoading(false);
+        })();
+    }, []);
+
+    if (loading) return <div>Loading...</div>;
     return (
         <div className="home-page-conteiner">
             <section className="home-page">
