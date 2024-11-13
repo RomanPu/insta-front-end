@@ -13,7 +13,6 @@
 
         .post-container:has(.deteiled) {
             position: fixed;
-            background-color: rgba(0, 0, 0, 0.5);
             width: 100vw;
             height: 100vh;
             z-index: 500;
@@ -36,6 +35,7 @@
             }
 
             .deteiled {
+                box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
                 height: 100%;
                 position: fixed;
                 top: 50%;
@@ -251,6 +251,3 @@
     }
 }
 
-// .post-view:has(.deteiled) {
-//     width: 100%;
-// }
