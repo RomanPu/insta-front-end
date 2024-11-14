@@ -51,6 +51,25 @@
                     margin-left: 2px;
                 }
             }
+
+            span:nth-child(1) {
+                svg{ 
+                    margin-left: auto;
+                } 
+
+                p{
+                    margin-right: 10px;
+                }            
+            }
+
+            span:nth-child(2) {
+                p{ 
+                    margin-right: auto;
+                } 
+                svg{
+                    margin-left: 10px;
+                }  
+            }
         }
 
         &:hover {
