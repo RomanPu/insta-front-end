@@ -88,7 +88,10 @@
             .write-post {
                 .emoji-picker {
                     position: fixed;
-                    transform: translateY(-10%) translateX(80%);
+                    bottom: 100%;
+                    top: 0;
+                    left: 0;
+                    transform: translateY(-10%) translateX(10%);
                     z-index: 600;
                 }
                 .header {

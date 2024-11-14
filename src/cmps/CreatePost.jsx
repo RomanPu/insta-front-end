@@ -103,7 +103,11 @@ function WritePost({ setPost, post, logedUser }) {
             </div>
             {showEmojiPicker && (
                 <div className="emoji-picker">
-                    <EmojiPicker onSelect={handleEmojiSelect} />
+                    <EmojiPicker
+                        onSelect={handleEmojiSelect}
+                        showEmojiPicker={showEmojiPicker}
+                        setShowEmojiPicker={setShowEmojiPicker}
+                    />
                 </div>
             )}
             <div className="comment-section">
