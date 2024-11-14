@@ -1,7 +1,8 @@
 [
+
   {
     "_id": "949Px",
-    "author": "Admin",
+    "author": "Emi W",
     "userId": "RRiVO",
     "likes": ["hcZ2w", "DdbAn", "N8O69", "ZSe08"],
     "category": "Technology",
@@ -12,7 +13,7 @@
   },
   {
     "_id": "evEho",
-    "author": "Admin",
+    "author": "Emi W",
     "userId": "RRiVO",
     "likes": ["DdbAn", "N8O69"],
     "category": "Technology",
@@ -23,7 +24,7 @@
   },
   {
     "_id": "WeSLl",
-    "author": "Admin",
+    "author": "Emi W",
     "userId": "RRiVO",
     "likes": [],
     "category": "Technology",
@@ -34,7 +35,7 @@
   },
   {
     "_id": "RAdrH",
-    "author": "Editor",
+    "author": "jane.smith",
     "userId": "hcZ2w",
     "likes": ["ZSe08", "N8O69"],
     "category": "Technology",
@@ -45,7 +46,7 @@
   },
   {
     "_id": "SRQwu",
-    "author": "Editor",
+    "author": "jane.smith",
     "userId": "hcZ2w",
     "likes": [],
     "category": "Technology",
@@ -56,7 +57,7 @@
   },
   {
     "_id": "d3S4S",
-    "author": "Editor",
+    "author": "jane.smith",
     "userId": "hcZ2w",
     "likes": [],
     "category": "Technology",
@@ -67,7 +68,7 @@
   },
   {
     "_id": "HCejW",
-    "author": "Viewer",
+    "author": "alice.johnson",
     "userId": "DdbAn",
     "likes": [],
     "category": "Technology",
@@ -78,7 +79,7 @@
   },
   {
     "_id": "qiDaM",
-    "author": "Viewer",
+    "author": "alice.johnson",
     "userId": "DdbAn",
     "likes": [],
     "category": "Technology",
@@ -89,7 +90,7 @@
   },
   {
     "_id": "rBCh1",
-    "author": "Viewer",
+    "author": "alice.johnson",
     "userId": "DdbAn",
     "likes": [],
     "category": "Technology",
@@ -100,7 +101,7 @@
   },
   {
     "_id": "x9EN6",
-    "author": "Admin",
+    "author": "Emi W",
     "userId": "RRiVO",
     "likes": [],
     "category": "Technology",
@@ -111,7 +112,7 @@
   },
   {
     "_id": "2oKts",
-    "author": "Admin",
+    "author": "Emi W",
     "userId": "RRiVO",
     "likes": [],
     "category": "Technology",
@@ -122,7 +123,7 @@
   },
   {
     "_id": "Z8QOF",
-    "author": "Admin",
+    "author": "Emi W",
     "userId": "RRiVO",
     "likes": [],
     "category": "Technology",
@@ -133,7 +134,7 @@
   },
   {
     "_id": "0QQLf",
-    "author": "Editor",
+    "author": "jane.smith",
     "userId": "hcZ2w",
     "likes": [],
     "category": "Technology",
@@ -144,7 +145,7 @@
   },
   {
     "_id": "6flnG",
-    "author": "Editor",
+    "author": "jane.smith",
     "userId": "hcZ2w",
     "likes": [],
     "category": "Technology",
@@ -155,7 +156,7 @@
   },
   {
     "_id": "odPhD",
-    "author": "Editor",
+    "author": "jane.smith",
     "userId": "hcZ2w",
     "likes": [],
     "category": "Technology",
@@ -166,7 +167,7 @@
   },
   {
     "_id": "Fqww1",
-    "author": "Viewer",
+    "author": "alice.johnson",
     "userId": "DdbAn",
     "likes": [],
     "category": "Technology",
@@ -177,7 +178,7 @@
   },
   {
     "_id": "aCOYA",
-    "author": "Viewer",
+    "author": "alice.johnson",
     "userId": "DdbAn",
     "likes": [],
     "category": "Technology",
@@ -188,7 +189,7 @@
   },
   {
     "_id": "HLmPD",
-    "author": "Viewer",
+    "author": "alice.johnson",
     "userId": "DdbAn",
     "likes": [],
     "category": "Technology",
@@ -199,7 +200,7 @@
   },
   {
     "_id": "K7VFL",
-    "author": "Editor",
+    "author": "Bob.Brown",
     "userId": "N8O69",
     "likes": [],
     "category": "Technology",
@@ -210,7 +211,7 @@
   },
   {
     "_id": "JTL29",
-    "author": "Editor",
+    "author": "Bob.Brown",
     "userId": "N8O69",
     "likes": [],
     "category": "Technology",
@@ -221,7 +222,7 @@
   },
   {
     "_id": "l7e77",
-    "author": "Editor",
+    "author": "Bob.Brown",
     "userId": "N8O69",
     "likes": [],
     "category": "Technology",
@@ -232,7 +233,7 @@
   },
   {
     "_id": "PBYX0",
-    "author": "Viewer",
+    "author": "charlie.black",
     "userId": "ZSe08",
     "likes": [],
     "category": "Technology",
@@ -243,7 +244,7 @@
   },
   {
     "_id": "WMprd",
-    "author": "Viewer",
+    "author": "charlie.black",
     "userId": "ZSe08",
     "likes": [],
     "category": "Technology",
@@ -254,7 +255,7 @@
   },
   {
     "_id": "9ksuz",
-    "author": "Viewer",
+    "author": "charlie.black",
     "userId": "ZSe08",
     "likes": [],
     "category": "Technology",
