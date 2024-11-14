@@ -98,6 +98,17 @@
                     background-color: white;
                     grid-area: comments;
                     overflow-y: auto;
+                    .body{
+                        display: flex;
+                        padding: 4px 14px 16px 14px;
+                        span{
+                            margin-inline-end: 4px;
+                        }
+
+                        .avatar {
+                            margin-inline-end: 18px;
+                        }
+                    }
                     .comments-list {
                         padding: 0;
                         margin-top: 20px;

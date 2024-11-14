@@ -8,6 +8,7 @@ import { postService } from '../services/post.service'
 import { MinUserCard } from './MinUserCard'
 import { Comments } from './Comments'
 import { EmojiIcon, EmojiPicker } from './ImojiPicker'
+import { Avatar } from './Avatar'
 
 import { ProfilesList } from './ProfilesList'
 
@@ -129,13 +130,17 @@ export default function PostPreview({ post, type = 'post-preview' }) {
                         {likesList && <ProfilesList likedUsersList={likes} onClose={setLikesList} type={'likes'} />}
                         <div className="body-and-comments">
                             <div className={`body-${isExpanded ? 'expanded' : 'collapsed'} body`}>
-                                {isExpanded ? body : `${body.substring(0, 100)}... `}
-                                {!isExpanded && (
-                                    <span className="more-link" onClick={toggleExpand}>
-                                        {' '}
-                                        more
-                                    </span>
-                                )}
+                                 {type === 'deteiled' && <Avatar picUrl={user.avatarPic} />}
+                                <p>
+                                    <span style={{ fontWeight: 600 }}>{author} </span>
+                                    {isExpanded ? body : `${body.substring(0, 100)}... `}
+                                    {!isExpanded && (
+                                        <span className="more-link" onClick={toggleExpand}>
+                                            {' '}
+                                            more
+                                        </span>
+                                    )}
+                                </p>
                             </div>
                             {type === 'deteiled' && (
                                 <div>
