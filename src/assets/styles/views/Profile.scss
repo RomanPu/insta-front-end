@@ -4,6 +4,15 @@
     flex-direction: column;
     height: 100vh;
     overflow: scroll;
+
+    @include for-wide-layout{
+        margin-inline-start: 72px;
+    }
+
+    @include for-mobile-layout{
+        margin-inline-start: 0px;
+        padding: 0px;
+    }
     
 
     .profile{
