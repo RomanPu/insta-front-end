@@ -26,55 +26,57 @@ export function Profile() {
 
     return (
         <main className="profile-conteiner">
-            <div className="profile-header">
-                <div className="pro-pic">
-                    <Avatar picUrl={user.avatarPic} />
-                </div>
-                <div className="user-info">
-                    <h1>{user.userName}</h1>
-                    <div className="stats">
-                        <span>
-                            <strong>{user.posts.length}</strong> posts
-                        </span>
-                        <span onClick={() => setFollowersList(true)}>
-                            <strong>{user.followers.length}</strong> followers
-                        </span>
-                        {followersList && <ProfilesList user={user} type={'followers'} onClose={setFollowersList} />}
-                        <span onClick={() => setFollowingList(true)}>
-                            <strong>{user.following.length}</strong> following
-                        </span>
-                        {followingList && <ProfilesList user={user} type={'following'} onClose={setFollowingList} />}
+            <dev className = "profile">
+                <div className="profile-header">
+                    <div className="pro-pic">
+                        <Avatar picUrl={user.avatarPic} />
                     </div>
-                    <h2>{user.name}</h2>
-                    <div className={'body'}>
-                        {isExpanded ? user.body : `${user.body.substring(0, 100)}... `}
-                        {!isExpanded && (
-                            <span className="more-link" onClick={toggleExpand}>
-                                {' '}
-                                more
+                    <div className="user-info">
+                        <h1>{user.userName}</h1>
+                        <div className="stats">
+                            <span>
+                                <strong>{user.posts.length}</strong> posts
                             </span>
-                        )}
+                            <span onClick={() => setFollowersList(true)}>
+                                <strong>{user.followers.length}</strong> followers
+                            </span>
+                            {followersList && <ProfilesList user={user} type={'followers'} onClose={setFollowersList} />}
+                            <span onClick={() => setFollowingList(true)}>
+                                <strong>{user.following.length}</strong> following
+                            </span>
+                            {followingList && <ProfilesList user={user} type={'following'} onClose={setFollowingList} />}
+                        </div>
+                        <h2>{user.name}</h2>
+                        <div className={'body'}>
+                            {isExpanded ? user.body : `${user.body.substring(0, 100)}... `}
+                            {!isExpanded && (
+                                <span className="more-link" onClick={toggleExpand}>
+                                    {' '}
+                                    more
+                                </span>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="profile-nav">
-                <button>
-                    <Posts />
-                    <span>POSTS</span>
-                </button>
-                <button>
-                    <Reels />
-                    <span>REELS</span>
-                </button>
-                <button>
-                    <Tagged />
-                    <span>TAGGED</span>
-                </button>
-            </div>
-            <section className="gallery">
-                <PostGallery posts={posts} type={'profile-view'} />
-            </section>
-            <Outlet />
+                <div className="profile-nav">
+                    <button>
+                        <Posts />
+                        <span>POSTS</span>
+                    </button>
+                    <button>
+                        <Reels />
+                        <span>REELS</span>
+                    </button>
+                    <button>
+                        <Tagged />
+                        <span>TAGGED</span>
+                    </button>
+                </div>
+                <section className="gallery">
+                    <PostGallery posts={posts} type={'profile-view'} />
+                </section>
+                <Outlet />
+            </dev>
         </main>
     )
 }
