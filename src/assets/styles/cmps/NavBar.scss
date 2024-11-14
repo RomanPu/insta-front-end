@@ -1,3 +1,5 @@
+// @import 'mixins';
+
 .nav-bar {
     position: fixed;
     display: flex;
@@ -10,6 +12,19 @@
     width: $nav-medium-width;
     margin: 0;
     font-weight: 400;
+
+    @include for-wide-layout{
+        width: 72px;
+    }
+
+    @include for-mobile-layout{
+        flex-direction: row;
+        top: calc(100% - 72px);
+        z-index: 500;
+        background-color: white;
+        width: 100%;
+        justify-content: center;
+    }
 
     .bold {
         font-weight: 600;
@@ -53,6 +68,10 @@
             width: max-content;
             text-align: left;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+            @include for-wide-layout{
+                display: none;
+            }
         }
 
         .nav-bar-icon {
@@ -73,6 +92,11 @@
         height: 73px;
         margin: 0px 0px 19px;
         padding: 30px 12px 16px;
+
+        @include for-wide-layout{
+            display: none;
+        }
+
         img {
             height: 37px;
             width: 103px;
@@ -80,3 +104,4 @@
         }
     }
 }
+

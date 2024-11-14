@@ -1,14 +1,25 @@
 .home-page-conteiner {
     margin-inline-start: 244px;
+
+    @include for-wide-layout{
+        margin-inline-start: 72px;
+    }
     .home-page {
         display: flex;
         justify-content: center;
         border-left: 0.6px solid $gray2;
+        
+        @include for-mobile-layout{
+            border-left: none;
+        }
 
         .side-bar {
             width: 383px;
             padding-inline-start: 66px;
             margin-block-start: 36px;
+            @include for-wide-layout{
+                display: none;
+            }
         }
 
         .posts-section {
