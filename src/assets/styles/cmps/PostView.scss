@@ -44,6 +44,7 @@
                 background-color: white;
                 max-height: calc(100vh - 40px);
                 max-width: calc(100% - 64px - 64px);
+                // width: 100%;
                 margin: 40px 64px;
                 margin: auto;
                 display: grid;
@@ -55,8 +56,13 @@
                     'pic likes'
                     'pic add-comment';
 
-                grid-template-columns: auto 500px;
+                grid-template-columns: 1fr 500px;
                 grid-template-rows: 69px 1fr 55px 22px 54px;
+
+                @include for-normal-layout{
+                    grid-template-columns: 1fr 405px;
+                    width: 100%;
+                }
                 .actions {
                     background-color: white;
                     grid-area: actions;
@@ -130,14 +136,16 @@
                         height: 100%;
                         object-fit: contain;
                         background-color: black;
-                        min-width: 500px;
+                        // min-width: 500px;
                     }
                     width: 100%;
                     height: 100%;
-                    max-width: 504px;
-                    max-height: 897px;
-                    min-width: 527px;
+                    min-width: 500px;
                     grid-area: pic;
+                    @include for-normal-layout{
+                        max-width: 337px;
+                        min-width: 0px;
+                    }
                 }
 
                 .header {
