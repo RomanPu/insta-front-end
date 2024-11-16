@@ -34,16 +34,19 @@ export function Profile() {
                     <div className="user-info">
                         <h1>{user.userName}</h1>
                         <div className="stats">
-                            <span>
-                                <strong>{user.posts.length}</strong> posts
-                            </span>
-                            <span onClick={() => setFollowersList(true)}>
-                                <strong>{user.followers.length}</strong> followers
-                            </span>
+                            <p>
+                                <span>{user.posts.length}</span> 
+                                <span>posts</span> 
+                            </p>
+                            <p onClick={() => setFollowersList(true)}>
+                                <span>{user.followers.length}</span>
+                                <span>followers</span> 
+                            </p>
                             {followersList && <ProfilesList user={user} type={'followers'} onClose={setFollowersList} />}
-                            <span onClick={() => setFollowingList(true)}>
-                                <strong>{user.following.length}</strong> following
-                            </span>
+                            <p onClick={() => setFollowingList(true)}>
+                                <span>{user.following.length}</span>
+                                <span>following</span>
+                            </p>
                             {followingList && <ProfilesList user={user} type={'following'} onClose={setFollowingList} />}
                         </div>
                         <h2>{user.name}</h2>
