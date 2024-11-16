@@ -1,8 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { PostGallery } from '../cmps/PostGallery'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { useParams, Outlet } from 'react-router-dom'
+import { LoadUsers } from '../store/users/users.actions'
+import { LoadPosts } from '../store/posts/posts.actions'
 
 import { Avatar } from '../cmps/Avatar'
 
@@ -15,7 +17,7 @@ export function Profile() {
     const allPosts = useSelector(storeState => storeState.postsModule.posts)
     const posts = allPosts.filter(post => post.userId === _id)
     const user = useSelector(storeState => storeState.usersModule.users.find(user => user._id === _id))
-    //const user = useRef(getUserById(_id))
+    const [loading, setLoading] = useState(true);
     const [isExpanded, setIsExpanded] = useState(false)
 
     console.log('pro', user, _id)
@@ -24,6 +26,18 @@ export function Profile() {
         setIsExpanded(true)
     }
 
+    //on page refresh, load users and posts
+    useEffect(() => {
+        if (!user) {
+            (async () => {
+                await LoadUsers();
+                await LoadPosts();
+                setLoading(false);
+            })();
+        }
+    },[]);
+
+    if (loading) return <div>Loading...</div>;
     return (
         <main className="profile-conteiner">
             <dev className = "profile">
