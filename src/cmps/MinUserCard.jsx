@@ -43,11 +43,11 @@ export function MinUserCard({ user, time = '', followButton = true, type = 'only
                 <Avatar picUrl={author.avatarPic} />
                 {type === 'both' && (
                     <div className="user-info">
-                        <h1>{user.userName}</h1>
+                        <h1>{user.username}</h1>
                         <p>{user.name}</p>
                     </div>
                 )}
-                {type === 'only-user' && <h1>{user.userName}</h1>}
+                {type === 'only-user' && <h1>{user.username}</h1>}
             </a>
             {time && <h2>{utilService.createPostTimeFormat(time)}</h2>}
             {isFollowed && followButton && (

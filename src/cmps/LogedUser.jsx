@@ -32,7 +32,7 @@ export function LogedUser() {
         switchUser({
             _id: user._id,
             name: user.name,
-            userName: user.userName,
+            username: user.username,
             avatarPic: user.avatarPic
         })
         setSwitchOn(prev => !prev)
@@ -51,7 +51,7 @@ export function LogedUser() {
         <div className="logged-user">
             <Avatar picUrl={logedUser.avatarPic} />
             <div className="user-info">
-                <h1>{logedUser.userName}</h1>
+                <h1>{logedUser.username}</h1>
                 <p>{logedUser.name}</p>
             </div>
             {!switchOn && <button onClick={switchUserOn}>Switch</button>}

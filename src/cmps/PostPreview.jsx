@@ -97,7 +97,7 @@ export default function PostPreview({ post, type = 'post-preview' }) {
                         <div className="header">
                             <MinUserCard
                                 user={{
-                                    userName: user.userName,
+                                    username: user.username,
                                     followed: 'followed',
                                     avatarPic: user.avatarPic,
                                     _id: user._id

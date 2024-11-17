@@ -99,7 +99,7 @@ function WritePost({ setPost, post, logedUser }) {
         <div className="write-post">
             <div className="header">
                 <Avatar picUrl={logedUser.avatarPic} />
-                <h1>{logedUser.userName}</h1>
+                <h1>{logedUser.username}</h1>
             </div>
             {showEmojiPicker && (
                 <div className="emoji-picker">

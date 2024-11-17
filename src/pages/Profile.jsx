@@ -33,7 +33,7 @@ export function Profile() {
                         <Avatar picUrl={user.avatarPic} />
                     </div>
                     <div className="user-info">
-                        <h1>{user.userName}</h1>
+                        <h1>{user.username}</h1>
                         <div className="stats">
                             <p>
                                 <span>{user.posts.length}</span> 

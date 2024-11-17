@@ -43,7 +43,7 @@ export async function createPost(user, body, urlPic) {
     console.log('createPost -> user', user)
     let post = {
         _id: '',
-        author: user.userName,
+        author: user.username,
         userId: user._id,
         likes: [],
         category: 'Technology',

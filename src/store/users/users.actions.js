@@ -13,7 +13,7 @@ export async function LoadUsers() {
         switchUser({
             _id: users[0]._id,
             name: users[0].name,
-            userName: users[0].userName,
+            username: users[0].username,
             avatarPic: users[0].avatarPic
         })
         console.log('LoadUsers', users)
