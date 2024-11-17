@@ -6,6 +6,7 @@ import { utilService } from '../../services/util.service'
 export async function LoadPosts() {
     try {
         const newPosts = await postService.query()
+        console.log('LoadPosts -> newPosts', newPosts)
         store.dispatch({ type: SET_POSTS, posts: newPosts})
     } catch (error) {
         throw error

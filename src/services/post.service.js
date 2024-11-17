@@ -1,5 +1,15 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
+import Axios from 'axios'
+
+var axios = Axios.create({
+    withCredentials: true,
+})
+
+const BASE_URL = (process.env.NODE_ENV !== 'development') ?
+    '/api/post/' :
+    '//localhost:3030/api/post/'
+
 export const postService = {
     query,
     save,
@@ -15,48 +25,52 @@ const STORAGE_KEY = 'posts'
 
 async function query(filterBy) {
     try {
-        let posts = await storageService.query(STORAGE_KEY)
-        if (filterBy) {
-            const { minLikes = 0, author = '', category = '' } = filterBy
-            posts = posts.filter(
-                post =>
-                    post.category.toLowerCase().includes(category.toLowerCase()) &&
-                    post.author.toLowerCase().includes(author.toLowerCase()) &&
-                    post.likes >= minLikes
-            )
-        }
+        // let posts = await storageService.query(STORAGE_KEY)
+        // if (filterBy) {
+        //     const { minLikes = 0, author = '', category = '' } = filterBy
+        //     posts = posts.filter(
+        //         post =>
+        //             post.category.toLowerCase().includes(category.toLowerCase()) &&
+        //             post.author.toLowerCase().includes(author.toLowerCase()) &&
+        //             post.likes >= minLikes
+        //     )
+        // }
+        var { data: posts } = await axios.get(BASE_URL, { params: filterBy })
         return posts
     } catch (error) {
         throw error
     }
 }
 
-function getById(id) {
-    return storageService.get(STORAGE_KEY, id)
+async function getById(id) {
+    const url = BASE_URL + id
+    var { data: post } = await axios.get(url)
+    return post
 }
 
-function remove(id) {
-    return storageService.remove(STORAGE_KEY, id)
+async function remove(id) {
+    const url = BASE_URL + id
+    var { data: res } = await axios.delete(url)
+    return res
 }
 
 async function saveAll(postsToSave) {
     let savedPosts = []
     for (const postToSave of postsToSave) {
-        if (postToSave._id) {
-            savedPosts.push(await storageService.put(STORAGE_KEY, postToSave))
-        } else {
-            savedPosts.push(await storageService.post(STORAGE_KEY, postToSave))
-        }
+        // if (postToSave._id) {
+        //     savedPosts.push(await storageService.put(STORAGE_KEY, postToSave))
+        // } else {
+        //     savedPosts.push(await storageService.post(STORAGE_KEY, postToSave))
+        // }
+        await save(postToSave)
     }
     return savedPosts
 }
 
-function save(postToSave) {
-    if (postToSave._id) {
-        return storageService.put(STORAGE_KEY, postToSave)
-    } else {
-        return storageService.post(STORAGE_KEY, postToSave)
-    }
+async function save(postToSave) {
+    const method = postToSave._id ? 'put' : 'post'
+    const { data: savedpost } = await axios[method](BASE_URL, postToSave)
+    return savedpost
 }
 
 function getDefaultFilter() {
