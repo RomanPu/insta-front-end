@@ -6,7 +6,6 @@ import { utilService } from '../../services/util.service'
 export async function LoadPosts() {
     try {
         const newPosts = await postService.query()
-        console.log('LoadPosts -> newPosts', newPosts)
         store.dispatch({ type: SET_POSTS, posts: newPosts})
     } catch (error) {
         throw error
@@ -32,7 +31,6 @@ export async function editPost(post) {
 
 export async function addPost(post) {
     try {
-        console.log('addPost -> post', post)
         const savedPost = await postService.save(post)
         store.dispatch({ type: ADD_POST, post: savedPost })
     } catch (error) {
@@ -41,7 +39,6 @@ export async function addPost(post) {
 }
 
 export async function createPost(user, body, urlPic) {
-    console.log('createPost -> user', user)
     let post = {
         _id: '',
         author: user.username,

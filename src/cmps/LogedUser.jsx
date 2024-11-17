@@ -26,9 +26,7 @@ export function LogedUser() {
     }
 
     async function oNselctedUser(ev) {
-        console.log('ev.target.value', ev)
         const user = getUserById(ev.target.value)
-        console.log('user', user)
         switchUser({
             _id: user._id,
             name: user.name,
@@ -36,15 +34,6 @@ export function LogedUser() {
             avatarPic: user.avatarPic
         })
         setSwitchOn(prev => !prev)
-
-        // const pics = [pic1, pic2, pic3, pic4, pic5, user1, user2, user3, user4, user5]
-        // for (let u of users){
-        //     console.log('demo', u)
-        //     for (let i = 0; i < 3; i++){
-        //         const randPic = pics[utilService.getRandomIntInclusive(0, pics.length -1)]
-        //        await createPost(u, utilService.makeLorem(), randPic)
-        //     }
-        // }
     }
 
     return (

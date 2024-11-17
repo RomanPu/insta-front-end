@@ -9,7 +9,7 @@ export const storageService = {
     put,
     remove
 }
-_uploadData()
+// _uploadData()
 
 function query(entityType, delay = 500) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
@@ -73,12 +73,10 @@ function _uploadData() {
     let users = utilService.loadFromStorage('users')
     if (!users || !users.length) {
          localStorage.setItem('users', JSON.stringify(demoUsers))
-         console.log('users', users)
     }
  
     let posts = utilService.loadFromStorage('posts')
     if (!posts || !posts.length) {
         localStorage.setItem('posts', JSON.stringify(demoPosts))
-        console.log('posts', posts)
     }
 }

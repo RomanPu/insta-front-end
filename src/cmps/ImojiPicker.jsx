@@ -31,7 +31,6 @@ export function EmojiPicker({ onSelect, showEmojiPicker, setShowEmojiPicker }) {
     }, [showEmojiPicker])
 
     const handleClickOutside = event => {
-        console.log('event', event.target)
         if (emojiPickerRef.current && !emojiPickerRef.current.contains(event.target)) {
             setShowEmojiPicker(false)
         }

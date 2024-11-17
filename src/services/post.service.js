@@ -25,16 +25,6 @@ const STORAGE_KEY = 'posts'
 
 async function query(filterBy) {
     try {
-        // let posts = await storageService.query(STORAGE_KEY)
-        // if (filterBy) {
-        //     const { minLikes = 0, author = '', category = '' } = filterBy
-        //     posts = posts.filter(
-        //         post =>
-        //             post.category.toLowerCase().includes(category.toLowerCase()) &&
-        //             post.author.toLowerCase().includes(author.toLowerCase()) &&
-        //             post.likes >= minLikes
-        //     )
-        // }
         var { data: posts } = await axios.get(BASE_URL, { params: filterBy })
         return posts
     } catch (error) {
@@ -57,11 +47,6 @@ async function remove(id) {
 async function saveAll(postsToSave) {
     let savedPosts = []
     for (const postToSave of postsToSave) {
-        // if (postToSave._id) {
-        //     savedPosts.push(await storageService.put(STORAGE_KEY, postToSave))
-        // } else {
-        //     savedPosts.push(await storageService.post(STORAGE_KEY, postToSave))
-        // }
         await save(postToSave)
     }
     return savedPosts

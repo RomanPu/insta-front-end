@@ -5,7 +5,6 @@ import { useEffectStopScroll } from '../customHooks/useEffectStopScroll'
 export function ProfilesList({ user, type = '', likedUsersList = '', onClose }) {
     const allUsers = useSelector(storeState => storeState.usersModule.users)
     let fillteredUsers = []
-    console.log('likedUsersList', likedUsersList)
     if (type === 'likes' && likedUsersList.length > 0) {
         fillteredUsers = allUsers.filter(u => likedUsersList.map(userId => userId === u._id).includes(true))
     } else if (type === 'followers' || type === 'following') {

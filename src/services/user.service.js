@@ -1,12 +1,14 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
-import { LoadUsers, setUsers } from '../store/users/users.actions.js'
+import Axios from 'axios'
 
-import pic1 from '../assets/imgs/pic1.jpeg'
-import pic2 from '../assets/imgs/pic2.jpeg'
-import pic3 from '../assets/imgs/pic3.jpeg'
-import pic4 from '../assets/imgs/pic4.jpeg'
-import pic5 from '../assets/imgs/pic5.jpeg'
+var axios = Axios.create({
+    withCredentials: true,
+})
+
+const BASE_URL = (process.env.NODE_ENV !== 'development') ?
+    '/api/user/' :
+    '//localhost:3030/api/user/'
 
 export const userService = {
     query,
@@ -24,48 +26,37 @@ const STORAGE_KEY = 'users'
 
 async function query(filterBy) {
     try {
-        let users = await storageService.query(STORAGE_KEY)
-        if (filterBy) {
-            const { minPosts = 0, name = '', role = '' } = filterBy
-            users = users.filter(
-                user =>
-                    user.role.toLowerCase().includes(role.toLowerCase()) &&
-                    user.name.toLowerCase().includes(name.toLowerCase()) &&
-                    user.posts.length >= minPosts
-            )
-        }
-        return users
+        var { data: posts } = await axios.get(BASE_URL, { params: filterBy })
+        return posts
     } catch (error) {
         throw error
     }
 }
 
-function getById(id) {
-    return storageService.get(STORAGE_KEY, id)
+async function getById(id) {
+    const url = BASE_URL + id
+    var { data: user } = await axios.get(url)
+    return user
 }
 
-function remove(id) {
-    return storageService.remove(STORAGE_KEY, id)
+async function remove(id) {
+    const url = BASE_URL + id
+    var { data: res } = await axios.delete(url)
+    return res
 }
 
 async function saveAll(usersToSave) {
-    let savedUsers = []
-    for (const userToSave of usersToSave) {
-        if (userToSave._id) {
-            savedUsers.push(await storageService.put(STORAGE_KEY, userToSave))
-        } else {
-            savedUsers.push(await storageService.post(STORAGE_KEY, userToSave))
-        }
+    let savedPosts = []
+    for (const postToSave of postsToSave) {
+        await save(postToSave)
     }
-    return savedUsers
+    return savedPosts
 }
 
-function save(userToSave) {
-    if (userToSave._id) {
-        return storageService.put(STORAGE_KEY, userToSave)
-    } else {
-        return storageService.post(STORAGE_KEY, userToSave)
-    }
+async function save(userToSave) {
+    const method = userToSave._id ? 'put' : 'post'
+    const { data: saveduser } = await axios[method](BASE_URL, userToSave)
+    return saveduser
 }
 
 function createUser(name = '', role = '', posts = []) {

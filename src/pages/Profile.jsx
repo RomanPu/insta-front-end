@@ -19,8 +19,6 @@ export function Profile() {
     const user = useSelector(storeState => storeState.usersModule.users.find(user => user._id === _id))
     const [isExpanded, setIsExpanded] = useState(false)
 
-    console.log('pro', user, _id)
-
     const toggleExpand = () => {
         setIsExpanded(true)
     }

@@ -20,7 +20,6 @@ export function MinUserCard({ user, time = '', followButton = true, type = 'only
         if (isFollowed && !loggedUser.following.map(like => like === user._id).includes(true)) {
             onFolow()
         } else {
-            console.log('unfollow')
             editUser({
                 ...loggedUser,
                 following: loggedUser.following.filter(follow => follow !== author._id)

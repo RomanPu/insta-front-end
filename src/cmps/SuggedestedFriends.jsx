@@ -8,7 +8,6 @@ export function SuggedestedFriends({ type = '' }) {
     const allUsers = useSelector(storeState => storeState.usersModule.users)
     const romovedLoggedUser = allUsers.filter(user => user._id !== _id)
     const users = romovedLoggedUser.filter(user => !loggedUser.following.some(follow => follow === user._id))
-    console.log(users)
 
     return (
         <div className="freinds-block">
