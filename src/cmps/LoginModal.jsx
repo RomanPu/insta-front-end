@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,6 +9,11 @@ export function LoginModal() {
     const [password, setPassword] = useState('')
     const { type} = useParams()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (type === 'pop-up') document.body.classList.add('no-scroll')
+        return () => document.body.classList.remove('no-scroll')
+    }, [])
 
     function onLogin(ev) {
         ev.preventDefault()
