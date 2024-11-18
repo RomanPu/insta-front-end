@@ -1,0 +1,78 @@
+import { useState } from 'react'
+import { useParams } from 'react-router'
+import { useNavigate } from 'react-router-dom'
+
+import logo from '../assets/imgs/Sticker.png'
+
+export function LoginModal() {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const { type} = useParams()
+    const navigate = useNavigate()
+
+    function onLogin(ev) {
+        ev.preventDefault()
+        navigate(-1)
+    }
+
+    function onUsernameChange(ev) {
+        setUsername(ev.target.value)
+    }
+
+    function onPasswordChange(ev) {
+        setPassword(ev.target.value)
+    }
+
+    return (
+        <div className= {`login-modal ${type}`}>
+            <div className='close' onClick={() => navigate(-1)}>{<BlackX />}</div>
+            <img className = {logo} src={logo} alt="Instagram Logo" />
+            <form onSubmit = {onLogin}>
+                <label className={!username && "no-txt"} htmlFor="username">
+                    <span className='username-p-holder'>Phone number, username, or email</span>
+                    <input className={username && "no-txt"} onChange = {onUsernameChange} type="text" placeholder="Phone number, username, or email" />
+                </label>
+                <label className={!password && "no-txt"} htmlFor="password">
+                    <span className='password-p-holder'>Password</span>
+                    <input onChange = {onPasswordChange}type="password" placeholder="Password" />
+                </label>
+                <button>Log in</button>
+            </form>
+        </div>
+    )
+}
+
+function BlackX() {
+    return (
+        <svg
+            aria-label="Close"
+            className="x1lliihq x1n2onr6 x9bdzbf"
+            fill="currentColor"
+            height="18"
+            role="img"
+            viewBox="0 0 24 24"
+            width="18"
+        >
+            <title>Close</title>
+            <polyline
+                fill="none"
+                points="20.643 3.357 12 12 3.353 20.647"
+                stroke="black"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="3"
+            ></polyline>
+            <line
+                fill="none"
+                stroke="black"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="3"
+                x1="20.649"
+                x2="3.354"
+                y1="20.649"
+                y2="3.354"
+            ></line>
+        </svg>
+    )
+}

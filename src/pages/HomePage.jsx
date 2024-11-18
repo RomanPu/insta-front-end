@@ -8,7 +8,6 @@ import { useEffect, useState} from 'react'
 
 export function HomePage() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
-
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

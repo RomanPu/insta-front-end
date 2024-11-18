@@ -8,6 +8,7 @@ import { NavBar } from './cmps/NavBar'
 import { PostDeteiled } from './cmps/PostDeteiled'
 import { CreatePost } from './cmps/CreatePost'
 import { Explore } from './pages/Explore'
+import { LoginModal } from './cmps/LoginModal'
 
 export function RootCmp() {
     return (
@@ -17,6 +18,7 @@ export function RootCmp() {
                 <Routes>
                     <Route path="/" element={<HomePage />}>
                         <Route path="/post/:p_id" element={<PostDeteiled />} />
+                        <Route path="/login/:type" element={<LoginModal/>} />
                     </Route>
                     <Route path="/profile/:_id" element={<Profile />}>
                         <Route path="/profile/:_id/post/:p_id" element={<PostDeteiled />} />
