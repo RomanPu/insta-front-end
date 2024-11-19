@@ -79,6 +79,7 @@
         height: auto;
         width: 270px;
         padding: 0;
+        position: relative;
 
         input{
             font-size: 12px;
@@ -100,22 +101,20 @@
         span{
             font-size: 12px;
             font-weight: lighter;
-            position: relative;
-            top: 20px;
+            position: absolute;
             left: 8px;
             color: $gray2;
         }
 
         &.no-txt span{
+            display: none;
             color: transparent;
         }
     
         &.no-txt input{
-            // position: relative;
-            // top: 18px;
+
             padding: 0 0 0 8px;
             &::placeholder{
-                // padding: 24px 0 2px 8px;
                 font-size: 12px;
                 font-weight: 600;
                 color: black;

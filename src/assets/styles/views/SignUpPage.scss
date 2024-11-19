@@ -55,6 +55,7 @@
             height: auto;
             width: 270px;
             padding: 0;
+            position: relative;
     
             input{
                 font-size: 12px;
@@ -76,8 +77,8 @@
                     span{
                 font-size: 12px;
                 font-weight: lighter;
-                position: relative;
-                top: 20px;
+                position: absolute;
+                // top: 20px;
                 left: 8px;
                 color: $gray2;
             }
