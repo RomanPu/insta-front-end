@@ -87,7 +87,8 @@
             font-weight: 600;
             border: none;
             border-radius: 2px;
-            height: 36px;
+            width: 100%;
+            height: 40px;
             
             &::placeholder{
                 font-size: 12px;
@@ -96,31 +97,17 @@
             }
         }
 
-        .username-p-holder{
+        span{
             font-size: 12px;
             font-weight: lighter;
-            position: absolute;
-            top: 45%;
-            left: 18%;
+            position: relative;
+            top: 20px;
+            left: 8px;
             color: $gray2;
         }
-
-        .password-p-holder{
-            font-size: 12px;
-            font-weight: lighter;
-            position: absolute;
-            top: 55%;
-            left: 18%;
-            color: $gray2;
-        }
-
-
-
 
         &.no-txt span{
-            display: none;
-            padding: 0 8px;  // Horizontal padding only
-            height: 36px;
+            color: transparent;
         }
     
         &.no-txt input{

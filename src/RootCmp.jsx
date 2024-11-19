@@ -11,16 +11,18 @@ import { CreatePost } from './cmps/CreatePost'
 import { Explore } from './pages/Explore'
 import { LoginModal } from './cmps/LoginModal'
 import { LoginPage } from './pages/LoginPage'
+import { SignUpPage } from './pages/SignUpPage'
 
 export function RootCmp() {
     const location = useLocation();
-    const isLoginPage = location.pathname === '/login';
+    const isNavOn = (location.pathname === '/login' || location.pathname === '/signup')
     return (
         <div className="main-layout">
-            {!isLoginPage && <NavBar />}
+            {!isNavOn && <NavBar />}
             {
                 <Routes>
                     <Route path="/login" element={<LoginPage />}></Route>
+                    <Route path="/signup" element={<SignUpPage/>} />
                     <Route path="/" element={<HomePage />}>
                         <Route path="/post/:p_id" element={<PostDeteiled />} />
                         <Route path="/login/:type" element={<LoginModal/>} />

@@ -1,5 +1,6 @@
 import { LoginModal } from "../cmps/LoginModal"
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 export function LoginPage() {
     const [isSignUp, setIsSignUp] = useState(false)
@@ -13,7 +14,7 @@ export function LoginPage() {
         <div className="login-secetion">
             <LoginModal layout = {"page-view"}/>
             <div className="sign-up">
-                <p>Don't have an account? <button onClick={() => setIsSignUp(true)} rel="stylesheet" href="" >Sign up</button></p>
+                <p>Don't have an account? <Link to = {"../signup"} rel="stylesheet" href="" >Sign up</Link></p>
             </div>
         </div>
     </div>)

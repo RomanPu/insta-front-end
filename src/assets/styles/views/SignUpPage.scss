@@ -1,0 +1,132 @@
+.signup-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    .signup-modal{
+        width: 350px;
+        margin-top: 12px;
+        height: 100%;
+        border: 1px solid rgb(219 219 219);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+
+        h1{
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            margin: 0 40px 10px;
+        }
+    
+        img{
+            width: 175px;
+            height: 51px;
+            object-fit: cover;
+            margin: 36px 0 12px;
+        }
+    
+        form{
+            margin: 25px 0 0 0;
+            // height: 100vh;
+        }
+    
+        button{
+            top: 50px;
+            position: relative;
+            width: 270px;
+            height: 36px;
+            font-weight: 600;
+            background-color:  rgb(0, 149, 246);
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 12px;
+            cursor: pointer;
+        }
+        label{
+            display: flex;
+            flex-direction: column;
+            margin: 0 0 4px;
+            height: auto;
+            width: 270px;
+            padding: 0;
+    
+            input{
+                font-size: 12px;
+                background-color: rgb(245 245 245);
+                padding: 24px 0 2px 8px;
+                font-weight: 600;
+                border: none;
+                border-radius: 2px;
+                height: 36px;
+                border: 1px solid rgb(219 219 219);
+                
+                &::placeholder{
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: black;
+                }
+            }
+    
+                    span{
+                font-size: 12px;
+                font-weight: lighter;
+                position: relative;
+                top: 20px;
+                left: 8px;
+                color: $gray2;
+            }
+    
+            &.no-txt span{
+                display: none;
+                padding: 0 8px;  // Horizontal padding only
+                height: 36px;
+            }
+        
+            &.no-txt input{
+                // position: relative;
+                // top: 18px;
+                padding: 0 0 0 8px;
+                &::placeholder{
+                    // padding: 24px 0 2px 8px;
+                    font-size: 12px;
+                   font-weight: lighter;
+                    color: $gray2;
+                    
+                }
+            }
+        } 
+    } 
+
+    .login-link{
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        width: 350px;
+        height: 62px;
+        padding: 10px 0;
+        border: 1px solid rgb(219 219 219);
+        margin-block-end: 10px;
+        margin-block-start: 10px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        // position: relative;
+        // top: 50px;
+
+        a{
+            color: rgb(0, 149, 246);
+            font-weight: 600;
+            font-size: 14px;
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+        }
+    }  
+
+} 
