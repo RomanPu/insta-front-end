@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import logo from '../assets/imgs/Sticker.png'
 
-export function LoginModal() {
+export function LoginModal({layout = ""}) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const { type} = useParams()
@@ -13,6 +13,7 @@ export function LoginModal() {
     useEffect(() => {
         if (type === 'pop-up') document.body.classList.add('no-scroll')
         return () => document.body.classList.remove('no-scroll')
+
     }, [])
 
     function onLogin(ev) {
@@ -29,7 +30,7 @@ export function LoginModal() {
     }
 
     return (
-        <div className= {`login-modal ${type}`}>
+        <div className= {`login-modal ${type} ${layout}`}>
             <div className='close' onClick={() => navigate(-1)}>{<BlackX />}</div>
             <img className = {logo} src={logo} alt="Instagram Logo" />
             <form onSubmit = {onLogin}>

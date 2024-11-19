@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router'
+import { useLocation } from 'react-router-dom'
 
 import { HomePage } from './pages/HomePage'
 import { Profile } from './pages/Profile'
@@ -9,13 +10,17 @@ import { PostDeteiled } from './cmps/PostDeteiled'
 import { CreatePost } from './cmps/CreatePost'
 import { Explore } from './pages/Explore'
 import { LoginModal } from './cmps/LoginModal'
+import { LoginPage } from './pages/LoginPage'
 
 export function RootCmp() {
+    const location = useLocation();
+    const isLoginPage = location.pathname === '/login';
     return (
         <div className="main-layout">
-            <NavBar />
+            {!isLoginPage && <NavBar />}
             {
                 <Routes>
+                    <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/" element={<HomePage />}>
                         <Route path="/post/:p_id" element={<PostDeteiled />} />
                         <Route path="/login/:type" element={<LoginModal/>} />
