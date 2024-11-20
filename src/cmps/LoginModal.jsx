@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { userService } from '../services/user.service'
 import { showErrorMsg } from '../services/event-bus.service'
 import { switchUser } from '../store/logedUser/loged.user.actions'
+import { logout } from '../store/logedUser/loged.user.actions'
 
 import logo from '../assets/imgs/Sticker.png'
 
@@ -40,6 +41,14 @@ export function LoginModal({layout = ""}) {
         setPassword(ev.target.value)
     }
 
+    function onLogOut(ev) {
+        ev.preventDefault()
+        console.log('logging out')
+
+        logout()
+        navigate('/login')
+    }
+
     return (
         <div className= {`login-modal ${type} ${layout}`}>
             <div className='close' onClick={() => navigate(-1)}>{<BlackX />}</div>
@@ -54,6 +63,7 @@ export function LoginModal({layout = ""}) {
                     <input onChange = {onPasswordChange}type="password" placeholder="Password" />
                 </label>
                 <button>Log in</button>
+                {type === 'pop-up' && <button className='logout' onClick= {onLogOut}>Log out</button>}
             </form>
         </div>
     )

@@ -72,6 +72,23 @@
         margin: 0 0 12px;
         cursor: pointer;
     }
+
+
+
+
+    .logout{
+        background-color: transparent;
+        width: 270px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 50px;
+        position: relative;
+        font-size: 14px;
+        font-weight: 600;
+        color: rgb(0, 149, 246);
+        margin: 0 0 12px;
+    }
     label{
         display: flex;
         flex-direction: column;

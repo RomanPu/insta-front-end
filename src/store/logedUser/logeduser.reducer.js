@@ -2,6 +2,7 @@ import { LogedUser } from '../../cmps/LogedUser'
 import { utilService } from '../../services/util.service'
 
 export const SET_USER = 'SET_USER'
+export const LOGOUT = 'LOGOUT'
 
 // const utilService.loadFromStorage('loggeduser')
 const logeduser = utilService.loadFromStorage('loggeduser') || []
@@ -9,7 +10,7 @@ console.log('logeduser:', logeduser)
 
 const initialState = {
     logedUser: logeduser,
-    isLoggedin: logeduser && !logeduser.length ? true : false
+    isLoggedin: !logeduser || !logeduser.length ? false : true
 }
 
 
@@ -19,6 +20,8 @@ export function logedUserReducer(state = initialState, action = {}) {
         case SET_USER:
         console.log('action.logedUser:', action.logedUser)
             return { ...state, logedUser: action.logedUser, isLoggedin: true }
+        case LOGOUT:
+                return { ...state, logedUser: {}, isLoggedin: false}
         default:
             return state
     }

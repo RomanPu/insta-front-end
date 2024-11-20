@@ -34,7 +34,7 @@ export function Profile() {
                         <h1>{user.username}</h1>
                         <div className="stats">
                             <p>
-                                <span>{user.posts.length}</span> 
+                                <span>{posts.length}</span> 
                                 <span>posts</span> 
                             </p>
                             <p onClick={() => setFollowersList(true)}>
