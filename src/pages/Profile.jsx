@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { PostGallery } from '../cmps/PostGallery'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
-import { useParams, Outlet } from 'react-router-dom'
+import { useParams, Outlet, Link } from 'react-router-dom'
 import { LoadUsers } from '../store/users/users.actions'
 import { LoadPosts } from '../store/posts/posts.actions'
 
@@ -32,6 +32,7 @@ export function Profile() {
                     </div>
                     <div className="user-info">
                         <h1>{user.username}</h1>
+                        <Link to={`../edit-profile/${user._id}`}>Edit Profile</Link>
                         <div className="stats">
                             <p>
                                 <span>{posts.length}</span> 

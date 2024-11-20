@@ -13,6 +13,7 @@ import { LoginModal } from './cmps/LoginModal'
 import { LoginPage } from './pages/LoginPage'
 import { SignUpPage } from './pages/SignUpPage'
 import { UserMsg } from './cmps/UserMsg'
+import { EditProfile } from './pages/EditProfile'
 
 export function RootCmp() {
     const location = useLocation();
@@ -25,6 +26,7 @@ export function RootCmp() {
                 <Routes>
                     <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/signup" element={<SignUpPage/>} />
+                    <Route path="/edit-profile/:_id" element={<EditProfile/>} />
                     <Route path="/" element={<HomePage />}>
                         <Route path="/post/:p_id" element={<PostDeteiled />} />
                         <Route path="/login/:type" element={<LoginModal/>} />
