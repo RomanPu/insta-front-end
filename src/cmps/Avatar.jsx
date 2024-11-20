@@ -6,6 +6,7 @@ import { useState } from 'react'
 
 export function Avatar({ picUrl = noUserImg }) {
     const canvasRef = useRef(null)
+    console.log('picUrl:', picUrl)
 
     useEffect(() => {
         const canvas = canvasRef.current

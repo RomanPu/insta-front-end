@@ -10,12 +10,8 @@ import { Link, useNavigate } from 'react-router-dom'
 export function LogedUser() {
     const users = useSelector(storeState => storeState.usersModule.users)
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
-    const [switchOn, setSwitchOn] = useState(false)
     const navigate = useNavigate()
 
-    function switchUserOn() {
-        navigate("login/pop-up")
-    }
 
     return (
         <div className="logged-user">

@@ -1,7 +1,6 @@
 import { SET_USERS, EDIT_USER, ADD_USER } from './users.reducer'
 import { store } from '../store'
 import { userService } from '../../services/user.service'
-import { switchUser } from '../logedUser/loged.user.actions'
 
 export function addUser(newUser) {
     store.dispatch({ type: ADD_USER, user: newUser })
@@ -10,12 +9,6 @@ export function addUser(newUser) {
 export async function LoadUsers() {
     try {
         const users = await userService.query()
-        switchUser({
-            _id: users[0]._id,
-            name: users[0].username,
-            username: users[0].username,
-            avatarPic: users[0].avatarPic
-        })
         store.dispatch({ type: SET_USERS, users: users })
     } catch (error) {
         throw error

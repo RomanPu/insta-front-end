@@ -22,7 +22,6 @@ export const userService = {
     save,
     remove,
     getById,
-    createUser,
     getDefaultFilter,
     getFilterFromSearchParams,
     createComment
@@ -57,13 +56,6 @@ async function save(userToSave) {
     return saveduser
 }
 
-function createUser(name = '', role = '', posts = []) {
-    return {
-        name,
-        role,
-        posts
-    }
-}
 
 function getDefaultFilter() {
     return {
@@ -105,7 +97,7 @@ async function login(credentials) {
 async function signup(credentials) {
 
     const { data: user } = await axios.post(BASE_AUTH_URL + 'signup', credentials)
-    return saveLocalUser(user)
+    return user
 }
 
 async function logout() {

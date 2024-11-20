@@ -5,16 +5,22 @@ import { SuggedestedFriends } from '../cmps/SuggedestedFriends'
 import { LoadUsers } from '../store/users/users.actions'
 import { useSelector } from 'react-redux'
 import { useEffect, useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export function HomePage() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
+    const isLoggedin = useSelector(storeState => storeState.logedUserModule.isLoggedin)
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate()
 
     useEffect(() => {
+
         (async () => {
             await LoadUsers();
             setLoading(false);
         })();
+        console.log('logedUser:', logedUser, isLoggedin)
+        if (!isLoggedin) navigate('/login')
     }, []);
 
     if (loading) return <div>Loading...</div>;

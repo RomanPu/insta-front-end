@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useNavigate , Link} from 'react-router-dom'
+import { userService } from '../services/user.service'
+import { showErrorMsg } from '../services/event-bus.service'
+import { switchUser } from '../store/logedUser/loged.user.actions'
+import { addUser } from '../store/users/users.actions'
 
 import logo from '../assets/imgs/Sticker.png'
 
@@ -18,9 +22,18 @@ export function SignUpPage({layout = ""}) {
 
     }, [])
 
-    function onLogin(ev) {
+    async function onSignUp(ev) {
         ev.preventDefault()
-        navigate(-1)
+
+        try {
+            const user = await userService.signup({username, password, email, fullname})
+            addUser(user)
+            switchUser(user)
+            navigate('/')
+            console.log('Logged in:', user)
+        } catch (err) {
+            showErrorMsg(`Cannot login`)
+        } 
     }
 
     function onUsernameChange(ev) {
@@ -44,7 +57,7 @@ export function SignUpPage({layout = ""}) {
             <div className= {`signup-modal`}>
                 <img className = {logo} src={logo} alt="Instagram Logo" />
                 <h1>Sign up to see photos and videos from your friends.</h1>
-                <form onSubmit = {onLogin}>
+                <form onSubmit = {onSignUp}>
                     <label className={!email && "no-txt"} htmlFor="username">
                         <span className='email-p-holder'>Mobile number or email</span>
                         <input className={email && "no-txt"} onChange = {onEmailChange} type="text" placeholder="Mobile number or email"/>
