@@ -52,7 +52,8 @@ async function remove(id) {
 
 async function save(userToSave) {
     const method = userToSave._id ? 'put' : 'post'
-    const { data: saveduser } = await axios[method](BASE_USER_URL, userToSave)
+    // userToSave._id = "test"
+    const { data: saveduser } = await axios[method](BASE_USER_URL , userToSave)
     return saveduser
 }
 
