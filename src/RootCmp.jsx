@@ -12,6 +12,7 @@ import { Explore } from './pages/Explore'
 import { LoginModal } from './cmps/LoginModal'
 import { LoginPage } from './pages/LoginPage'
 import { SignUpPage } from './pages/SignUpPage'
+import { UserMsg } from './cmps/UserMsg'
 
 export function RootCmp() {
     const location = useLocation();
@@ -19,6 +20,7 @@ export function RootCmp() {
     return (
         <div className="main-layout">
             {!isNavOn && <NavBar />}
+            <UserMsg />
             {
                 <Routes>
                     <Route path="/login" element={<LoginPage />}></Route>

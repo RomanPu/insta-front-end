@@ -7,10 +7,17 @@ var axios = Axios.create({
 })
 
 const BASE_URL = (process.env.NODE_ENV !== 'development') ?
-    '/api/user/' :
-    '//localhost:3030/api/user/'
+    '/api/' :
+    '//localhost:3030/api/'
+
+const BASE_USER_URL = BASE_URL + 'user/'
+const BASE_AUTH_URL = BASE_URL + 'auth/'
 
 export const userService = {
+    login,
+    logout,
+    signup,
+
     query,
     save,
     remove,
@@ -18,7 +25,6 @@ export const userService = {
     createUser,
     getDefaultFilter,
     getFilterFromSearchParams,
-    saveAll,
     createComment
 }
 
@@ -26,7 +32,7 @@ const STORAGE_KEY = 'users'
 
 async function query(filterBy) {
     try {
-        var { data: posts } = await axios.get(BASE_URL, { params: filterBy })
+        var { data: posts } = await axios.get(BASE_USER_URL, { params: filterBy })
         return posts
     } catch (error) {
         throw error
@@ -34,28 +40,20 @@ async function query(filterBy) {
 }
 
 async function getById(id) {
-    const url = BASE_URL + id
+    const url = BASE_USER_URL + id
     var { data: user } = await axios.get(url)
     return user
 }
 
 async function remove(id) {
-    const url = BASE_URL + id
+    const url = BASE_USER_URL + id
     var { data: res } = await axios.delete(url)
     return res
 }
 
-async function saveAll(usersToSave) {
-    let savedPosts = []
-    for (const postToSave of postsToSave) {
-        await save(postToSave)
-    }
-    return savedPosts
-}
-
 async function save(userToSave) {
     const method = userToSave._id ? 'put' : 'post'
-    const { data: saveduser } = await axios[method](BASE_URL, userToSave)
+    const { data: saveduser } = await axios[method](BASE_USER_URL, userToSave)
     return saveduser
 }
 
@@ -96,3 +94,22 @@ function createComment(author, body, authorId) {
         _id: utilService.makeId()
     }
 }
+
+async function login(credentials) {
+    const { data: user } = await axios.post(BASE_AUTH_URL + 'login', credentials)
+    if (user) {
+        return user
+    }
+}
+
+async function signup(credentials) {
+
+    const { data: user } = await axios.post(BASE_AUTH_URL + 'signup', credentials)
+    return saveLocalUser(user)
+}
+
+async function logout() {
+    await axios.post(BASE_AUTH_URL + 'logout')
+    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+}
+

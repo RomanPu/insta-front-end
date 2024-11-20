@@ -43,7 +43,7 @@ export function MinUserCard({ user, time = '', followButton = true, type = 'only
                 {type === 'both' && (
                     <div className="user-info">
                         <h1>{user.username}</h1>
-                        <p>{user.name}</p>
+                        <p>{user.username}</p>
                     </div>
                 )}
                 {type === 'only-user' && <h1>{user.username}</h1>}

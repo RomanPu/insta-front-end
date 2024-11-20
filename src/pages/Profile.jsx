@@ -48,7 +48,7 @@ export function Profile() {
                             </p>
                             {followingList && <ProfilesList user={user} type={'following'} onClose={setFollowingList} />}
                         </div>
-                        <h2>{user.name}</h2>
+                        <h2>{user.username}</h2>
                         <div className={'body'}>
                             {isExpanded ? user.body : `${user.body.substring(0, 100)}... `}
                             {!isExpanded && (

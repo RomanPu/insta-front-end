@@ -9,7 +9,7 @@ const initialState = {
 export function usersReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_USER:
-            const updatedNames = [...state.users, action.name]
+            const updatedNames = [...state.users, action.username]
             return { ...state, users: updatedNames }
         default:
             return state

@@ -1,9 +1,7 @@
 import { LoginModal } from "../cmps/LoginModal"
-import { useState } from "react"
 import { Link } from "react-router-dom"
 
 export function LoginPage() {
-    const [isSignUp, setIsSignUp] = useState(false)
     return (
     <div className="login-conteiner">
         <div className="intro-img"> 

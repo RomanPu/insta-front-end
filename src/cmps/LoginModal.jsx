@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
+import { userService } from '../services/user.service'
+import { showErrorMsg } from '../services/event-bus.service'
+import { switchUser } from '../store/logedUser/loged.user.actions'
 
 import logo from '../assets/imgs/Sticker.png'
 
@@ -16,9 +19,17 @@ export function LoginModal({layout = ""}) {
 
     }, [])
 
-    function onLogin(ev) {
+    async function onLogin(ev) {
         ev.preventDefault()
-        navigate(-1)
+
+        try {
+            const user = await userService.login({username, password})
+            switchUser(user)
+            navigate('/')
+            // console.log('Logged in:', user)
+        } catch (err) {
+            showErrorMsg(`Cannot login`)
+        } 
     }
 
     function onUsernameChange(ev) {

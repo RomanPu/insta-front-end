@@ -54,7 +54,7 @@ export default function PostPreview({ post, type = 'post-preview' }) {
         const textarea = textareaRef.current
         textarea.style.height = '18px' // Reset height
 
-        const com = postService.createComment(logedUser.name, comment, logedUser._id, logedUser.avatarPic)
+        const com = postService.createComment(logedUser.username, comment, logedUser._id, logedUser.avatarPic)
         editPost({ ...post, comments: [...comments, com] })
         setComment('')
     }

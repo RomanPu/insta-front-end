@@ -12,7 +12,7 @@ export async function LoadUsers() {
         const users = await userService.query()
         switchUser({
             _id: users[0]._id,
-            name: users[0].name,
+            name: users[0].username,
             username: users[0].username,
             avatarPic: users[0].avatarPic
         })

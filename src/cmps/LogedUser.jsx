@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Avatar } from './Avatar'
 import { switchUser } from '../store/logedUser/loged.user.actions'
 import { getUserById } from '../store/users/users.actions'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 export function LogedUser() {
@@ -15,18 +15,6 @@ export function LogedUser() {
 
     function switchUserOn() {
         navigate("login/pop-up")
-        setSwitchOn(true)
-    }
-
-    async function oNselctedUser(ev) {
-        const user = getUserById(ev.target.value)
-        switchUser({
-            _id: user._id,
-            name: user.name,
-            username: user.username,
-            avatarPic: user.avatarPic
-        })
-        setSwitchOn(false)
     }
 
     return (
@@ -34,18 +22,9 @@ export function LogedUser() {
             <Avatar picUrl={logedUser.avatarPic} />
             <div className="user-info">
                 <h1>{logedUser.username}</h1>
-                <p>{logedUser.name}</p>
+                <p>{logedUser.username}</p>
             </div>
-            {!switchOn && <button onClick={(switchUserOn)}>Switch</button>}
-            {switchOn && (
-                <select onChange={oNselctedUser} name="users" id="users" value={logedUser._id}>
-                    {users.map(user => (
-                        <option key={user._id} value={user._id}>
-                            {user.name}
-                        </option>
-                    ))}
-                </select>
-            )}
+            <Link to="/login/pop-up">Switch</Link>
         </div>
     )
 }
