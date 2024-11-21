@@ -5,12 +5,12 @@ export const SET_USER = 'SET_USER'
 export const LOGOUT = 'LOGOUT'
 
 // const utilService.loadFromStorage('loggeduser')
-const logeduser = utilService.loadFromStorage('loggeduser') || []
+const logeduser = utilService.loadFromStorage('loggeduser') || {}
 console.log('logeduser:', logeduser)
 
 const initialState = {
     logedUser: logeduser,
-    isLoggedin: !logeduser || !logeduser.length ? false : true
+    isLoggedin: Object.keys(logeduser).length !== 0 ? true : false
 }
 
 
