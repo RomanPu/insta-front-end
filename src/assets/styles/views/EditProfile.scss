@@ -17,7 +17,7 @@
         width: 706px;
         padding: 36px  46px;
 
-        h1{
+        h1, h3{
             display: inline-flex;
             align-items: center;
             height: 49px;
@@ -26,6 +26,11 @@
             font-size: 20px;
             font-weight: 700;
             // margin-bottom: 24px;
+        }
+
+        h3{
+            font-size: 16px;
+            color: black;
         }
 
         .user-card-conteiner{
@@ -43,6 +48,7 @@
                 padding: 16px;
                 height: 88px;
                 border-radius: 20px;
+                margin-block-end: 16px;
                 // flex-direction: column;
                 // margin-bottom: 24px;
 
@@ -92,23 +98,12 @@
             }
         }
         .write-bio {
-            margin-block-start: 8px;
-            display: flex;
-            align-items: flex-start;
-            flex-direction: column;
-            overflow-y: scroll;
-            position: relative;
-            margin-block-start: 30px;
-            border: 1px solid rgb(219 223 228);
-            border-radius: 25px;
-            height: auto;
-            width: auto;
-            padding: 10px 80px 10px 16px;
-            // * {
-            //     width: 100%;
-            // }
-
+           // margin-block-end: 16px;
             .emoji-and-count {
+                display: flex;
+                justify-content: flex-end;
+                position: relative;
+                bottom: 30px;
                 span {
                     width: auto;
                     font-size: 12px;
@@ -118,16 +113,59 @@
             }
 
             .text-area {
+                margin-block-start: 8px;
+                padding: 10px 80px 10px 16px;
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+                overflow-y: scroll;
+                position: relative;
+                border: 1px solid rgb(219 223 228);
+                border-radius: 25px;
                 width: 610px;
                 height: 60px;
-                border: none; /* Remove border */
                 resize: none; /* Prevent resizing */
                 outline: none; /* Remove outline on focus */
                 font-size: 16px; /* Match font size */
-                line-height: 18px;
+                line-height: 20px;
                 // padding: 0;
                 overflow: hidden; /* Hide scrollbar */
             }
+        }
+
+        select{
+            margin-block-start: 8px;
+            padding: 10px 80px 10px 16px;
+            position: relative;
+            border: 1px solid rgb(219 223 228);
+            border-radius: 25px;
+            width: 610px;
+            height: 40px;
+            font-size: 16px; /* Match font size */
+            line-height: 20px;
+        }
+
+        img{
+            height: 250px;
+            object-fit: cover;
+            margin-block-start: 60px;
+            object-fit: cover;
+
+        }
+
+        .submit{
+            width: 253px;
+            height: 44px;
+            padding: 0 20px;
+            margin-inline-start: auto;
+            margin-block-start: 36px;
+            font-weight: 600;
+            background-color:  rgb(0, 149, 246);
+            border: none;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
         }
     }
 }
