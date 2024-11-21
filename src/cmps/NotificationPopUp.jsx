@@ -14,7 +14,7 @@ export function NotificationPopUp({onClose}) {
 
     const handleClickOutside = event => {
         if (notificationRef.current && !notificationRef.current.contains(event.target)) {
-            onClose()
+            onClose(false)
         }
     }
 

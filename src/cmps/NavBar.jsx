@@ -21,7 +21,7 @@ export function NavBar() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     const location = useLocation()
     const [corrPage, setCorrPage] = useState('home')
-    // var isSelctedArr = [false, false, false, false, false, false, false, false, false]
+    const [activateNotificationPopUp, setActivateNotificationPopUp] = useState(false)
     const pageNameArr = ['search', 'explore', 'reels', 'messeges', 'notifications', 'create', `profile`, 'more']
 
     React.useEffect(() => {
@@ -30,8 +30,8 @@ export function NavBar() {
     }, [location])
 
     return (
-        <div className="nav-bar-container">
-            <ul className="nav-bar">
+        <div className={!activateNotificationPopUp ? "nav-bar-container" : "nav-bar-container small"}>
+            <ul className= {"nav-bar"}>
                 <div key={'ins-logo'} className="insta-logo">
                     <img src={poster} alt="Instagram Logo" />
                 </div>
@@ -51,7 +51,8 @@ export function NavBar() {
                     <NavBarAction name={'Messeges'} icon={<MessengerIcon />} />
                 </li>
                 <li className={corrPage === 'notifications' ? 'bold' : ''} key={'notifications'}>
-                    <NavBarAction name={'Notifications'} icon={<NotificationsIcon />} />
+                    <NavBarAction name={'Notifications'} icon={<NotificationsIcon />}
+                     actionFunc= {setActivateNotificationPopUp}/>
                 </li>
                 <li className={corrPage === 'create' ? 'bold' : ''} key={'create'}>
                     <NavBarAction name={'Create'} icon={<NewPostIcon />} link={'/createpost'} />
@@ -67,7 +68,7 @@ export function NavBar() {
                     <NavBarAction name={'More'} icon={<SettingsIcon />} />
                 </li>
             </ul>
-            <NotificationPopUp />
+            {activateNotificationPopUp && <NotificationPopUp onClose={setActivateNotificationPopUp} />}
         </div>
     )
 }

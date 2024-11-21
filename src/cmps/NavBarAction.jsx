@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 
 export function NavBarAction({ icon = '', link = '/', name = '', actionFunc = null }) {
+
+    console.log('actionFunc:', actionFunc, name)
     return (
         <div>
             {actionFunc ? (
