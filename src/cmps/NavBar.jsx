@@ -68,6 +68,7 @@ export function NavBar() {
                     <NavBarAction name={'More'} icon={<SettingsIcon />} />
                 </li>
             </ul>
+            {/* <NotificationPopUp onClose={setActivateNotificationPopUp}/> */}
             {activateNotificationPopUp && <NotificationPopUp onClose={setActivateNotificationPopUp} />}
         </div>
     )

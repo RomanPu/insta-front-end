@@ -1,10 +1,11 @@
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 
 export function NotificationPopUp({onClose}) {
-
+    const [show, setShow] = useState("")// for slide effect
     useEffect(() => {
+        setShow("show")
         document.addEventListener('mousedown', handleClickOutside)
 
         return () => {
@@ -12,14 +13,17 @@ export function NotificationPopUp({onClose}) {
         }
     }, [])
 
-    const handleClickOutside = event => {
-        if (notificationRef.current && !notificationRef.current.contains(event.target)) {
+    function handleClickOutside(event){
+
+        setShow("hide")
+        //wait for animation to end
+        setTimeout(() => {
             onClose(false)
-        }
+        }, 300)
     }
 
     return (
-            <div className="notification-pop-up">
+            <div className={`notification-pop-up ${show}`}>
                 <div className="notification-pop-up-header">
                     <h3>Notifications</h3>
                     {/* <button onClick={() => setNotification(null)}>X</button> */}
