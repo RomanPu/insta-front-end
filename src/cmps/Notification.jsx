@@ -1,31 +1,34 @@
 import { Avatar } from './Avatar'
+import { Link } from 'react-router-dom'
 import { utilService } from '../services/util.service'
 
 
 
-export function Notification( {type = 'profile',about,  body, createdAt, postId, byUser} ) {
+export function Notification( {about,  body, createdAt, post, byUser} ) {
     return (
-        Deteils({byUser,about,  body, createdAt})
+        Deteils({byUser,about,  body, createdAt, post})
     )
 }
 
-function Deteils({byUser,about,  body, createdAt}) {
+function Deteils({byUser,about,  body, createdAt, post}) {
     const timeStr =utilService.createPostTimeFormat(createdAt)
+    console.log('byUser', post)
     return (
-        <li key={byUser._id}>
+        <li className = {"notification-entry"}key={byUser._id}>
             <div className="notification-deteils">
                 <div className="avatar">
                     <Avatar picUrl={byUser.avatarPic} />
                 </div>
                 <div className="content">
                     <p>
-                        <span style={{ fontWeight: 600 }}>{byUser.username} </span>
+                        <Link to={`../profile/${byUser._id}`}>{byUser.username} </Link>
                         <span>{about}</span>
                         <span>{body}</span>
-                        <span>{timeStr}</span>
+                        <span className='createdAt'>{timeStr}</span>
                     </p>
                 </div>
             </div>
+            {post && <Link to = {`../post/${post._id}`}><img src = {post.picUrl} /></Link>}
         </li>
     )
 }

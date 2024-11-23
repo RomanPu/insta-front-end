@@ -58,6 +58,7 @@
         }
     
         .nav-bar-buttom-content {
+            position: relative;
             &:hover {
                 background-color: rgba(0, 0, 0, 0.1);
                 border-radius: 5px;
@@ -95,6 +96,17 @@
                 height: 24px;
                 align-self: center;
                 color: rgb(2 2 2);
+            }
+
+            .new-notification-icon{
+                position: absolute;
+                top: 10;
+                left: 27px;
+                height: 12px;
+                width: 12px;
+                background-color: red;
+                border-radius: 50px;
+                border: 1px solid white;
             }
         }
     

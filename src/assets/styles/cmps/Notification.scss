@@ -1,3 +1,43 @@
-.notification-deteils{
+
+.notification-entry{
     display: flex;
+    .notification-deteils{
+        display: flex;
+    
+        .avatar{
+            width: 44px;
+            height: 44px;
+            margin-inline-end: 14px;
+        }
+        p{
+            line-height: 14px;
+            span{
+                font-size: 14px;
+                line-height: 18px;
+                &:nth-child(3){
+                   margin-inline-start: 5px;
+                }
+            }
+        
+            a{
+                font-weight: 600;
+                color: black;
+            }
+            .createdAt{
+                font-weight: 400;
+                color: rgb(115 115 115);
+                margin-inline-start: 5px;
+            }
+
+        }
+    }
+    
+    img{
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        margin-inline-start: auto;
+    }
+
 }
+
