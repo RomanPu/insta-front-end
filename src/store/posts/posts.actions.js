@@ -2,6 +2,9 @@ import { SET_POSTS, EDIT_POST, ADD_POST } from './posts.reducer'
 import { store } from '../store'
 import { postService } from '../../services/post.service'
 import { utilService } from '../../services/util.service'
+import io from 'socket.io-client'
+
+const socket = io('http://localhost:3030') // Replace with your server URL
 
 export async function LoadPosts() {
     try {
@@ -22,8 +25,11 @@ export async function setPosts(newPosts) {
 
 export async function editPost(post) {
     try {
+        socket.emit('notification', "like your comment like allot!!!")
         const savedPost = await postService.save(post)
         store.dispatch({ type: EDIT_POST, post: { ...savedPost } })
+        console.log("before emit")
+        // socket.off('notification')
     } catch (error) {
         throw error
     }

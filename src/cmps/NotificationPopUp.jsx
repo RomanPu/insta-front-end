@@ -3,7 +3,6 @@ import { useEffect, useState} from 'react'
 import { Notification } from './Notification'
 import { useSelector } from 'react-redux'
 
-
 export function NotificationPopUp({onClose}) {
     const [show, setShow] = useState("")// for slide effect
     const loggedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
