@@ -29,7 +29,7 @@ export function MinUserCard({ user, time = '', followButton = true, type = 'only
 
     async function onFolow() {
         await editUser({ ...author, followers: [...author.followers, _id] })
-        await editUser({ ...loggedUser, following: [...loggedUser.following, author._id] })
+        await editUser({ ...loggedUser, following: [...loggedUser.following, author._id] }, 'follow', author._id)
     }
 
     function onChangeFollow() {

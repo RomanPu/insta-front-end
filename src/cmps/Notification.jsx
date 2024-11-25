@@ -12,7 +12,6 @@ export function Notification( {about,  body, createdAt, post, byUser} ) {
 
 function Deteils({byUser,about,  body, createdAt, post}) {
     const timeStr =utilService.createPostTimeFormat(createdAt)
-    console.log('byUser', post)
     return (
         <li className = {"notification-entry"}key={byUser._id}>
             <div className="notification-deteils">
@@ -28,7 +27,7 @@ function Deteils({byUser,about,  body, createdAt, post}) {
                     </p>
                 </div>
             </div>
-            {post && <Link to = {`../post/${post._id}`}><img src = {post.picUrl} /></Link>}
+            {post && <Link to = {`../post/${post.postId}`}><img src = {post.picUrl} /></Link>}
         </li>
     )
 }

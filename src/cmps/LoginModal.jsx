@@ -25,7 +25,8 @@ export function LoginModal({layout = ""}) {
 
         try {
             const user = await userService.login({username, password})
-            switchUser(user)
+            // console.log('user:', user)
+            await switchUser(user)
             navigate('/')
             // console.log('Logged in:', user)
         } catch (err) {

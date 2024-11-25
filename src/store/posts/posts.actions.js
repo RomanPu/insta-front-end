@@ -2,9 +2,7 @@ import { SET_POSTS, EDIT_POST, ADD_POST } from './posts.reducer'
 import { store } from '../store'
 import { postService } from '../../services/post.service'
 import { utilService } from '../../services/util.service'
-import io from 'socket.io-client'
-
-const socket = io('http://localhost:3030') // Replace with your server URL
+import { notificationService } from '../../services/notification.service'
 
 export async function LoadPosts() {
     try {
@@ -23,13 +21,17 @@ export async function setPosts(newPosts) {
     }
 }
 
-export async function editPost(post) {
+export async function editPost(post, type = '', comment = "") {
     try {
-        socket.emit('notification', "like your comment like allot!!!")
+        if(type){
+            const about = type === 'comment' ? "commented on your post" : "liked your post"
+            const {_id} = utilService.loadFromStorage('loggeduser') 
+            notificationService.save({postId: post._id , userId: _id, about:about,
+                 body: comment, createdAt: "", byUser: _id, forUser: post.userId})
+        }
         const savedPost = await postService.save(post)
         store.dispatch({ type: EDIT_POST, post: { ...savedPost } })
         console.log("before emit")
-        // socket.off('notification')
     } catch (error) {
         throw error
     }
@@ -62,3 +64,6 @@ export async function createPost(user, body, urlPic) {
 export function getPostById(id) {
     return store.getState().postsModule.posts.find(post => post._id === id)
 }
+
+
+

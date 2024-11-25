@@ -37,7 +37,7 @@ export default function PostPreview({ post, type = 'post-preview' }) {
     useEffectUpdate(() => {
         if (isLiked) {
             ;(async () => {
-                editPost({ ...post, likes: [...likes, logedUser._id] })
+                editPost({ ...post, likes: [...likes, logedUser._id] }, 'like')
             })()
         } else {
             ;(async () => {
@@ -55,7 +55,7 @@ export default function PostPreview({ post, type = 'post-preview' }) {
         textarea.style.height = '18px' // Reset height
 
         const com = postService.createComment(logedUser.username, comment, logedUser._id, logedUser.avatarPic)
-        editPost({ ...post, comments: [...comments, com] })
+        editPost({ ...post, comments: [...comments, com] }, 'comment', com.body)
         setComment('')
     }
 

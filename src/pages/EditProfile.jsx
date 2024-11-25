@@ -28,9 +28,6 @@ export function EditProfile() {
         if (file) {
             let imgUrl = await uploadService.uploadImg(file)
             setGImgUrl(imgUrl.secure_url)
-            console.log(imgUrl)
-            // getImgUrl(imgUrl)
-            // setState('pic-post')
         }
     }
 

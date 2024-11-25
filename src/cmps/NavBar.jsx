@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { NavBarAction } from './NavBarAction'
 import {
@@ -16,15 +16,28 @@ import { useSelector } from 'react-redux'
 import poster from '../assets/imgs/Sticker.png'
 import { useLocation } from 'react-router'
 import { NotificationPopUp } from './NotificationPopUp'
+import { socketService} from '../services/socket.service'
+import { addNotification } from '../store/logedUser/loged.user.actions'
 
 export function NavBar() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     const location = useLocation()
     const [corrPage, setCorrPage] = useState('home')
+    const newNotification = useSelector(storeState => storeState.logedUserModule.newNotification)
     const [activateNotificationPopUp, setActivateNotificationPopUp] = useState(false)
     const pageNameArr = ['search', 'explore', 'reels', 'messeges', 'notifications', 'create', `profile`, 'more']
 
-    React.useEffect(() => {
+    useEffect(() => {
+        socketService.on('notification', (notificationId) => {
+            console.log('notificationId:', notificationId)
+            addNotification(notificationId)
+        })
+        return () => {
+            socketService.logout()
+        }
+    },[])
+
+    useEffect(() => {
         const page = pageNameArr.find(pageName => location.pathname.includes(pageName)) || 'home'
         setCorrPage(page)
     }, [location])
@@ -52,7 +65,8 @@ export function NavBar() {
                 </li>
                 <li className={corrPage === 'notifications' ? 'bold' : ''} key={'notifications'}>
                     <NavBarAction name={'Notifications'} icon={<NotificationsIcon />}
-                     actionFunc= {setActivateNotificationPopUp}/>
+                     actionFunc = {setActivateNotificationPopUp} notificationsIconOn = 
+                     {newNotification}/>
                 </li>
                 <li className={corrPage === 'create' ? 'bold' : ''} key={'create'}>
                     <NavBarAction name={'Create'} icon={<NewPostIcon />} link={'/createpost'} />
@@ -68,7 +82,6 @@ export function NavBar() {
                     <NavBarAction name={'More'} icon={<SettingsIcon />} />
                 </li>
             </ul>
-            {/* <NotificationPopUp onClose={setActivateNotificationPopUp}/> */}
             {activateNotificationPopUp && <NotificationPopUp onClose={setActivateNotificationPopUp} />}
         </div>
     )

@@ -2,14 +2,15 @@
 import { useEffect, useState} from 'react'
 import { Notification } from './Notification'
 import { useSelector } from 'react-redux'
+import { readNotifications } from '../store/logedUser/loged.user.actions'
 
 export function NotificationPopUp({onClose}) {
     const [show, setShow] = useState("")// for slide effect
-    const loggedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
-    const post = useSelector(storeState => storeState.postsModule.posts.find(post => post._id === "949Px"))
-    console.log('post', post)
+    const notifications = useSelector(storeState => storeState.logedUserModule.notifications)
+
     useEffect(() => {
         setShow("show")
+        readNotifications()
         document.addEventListener('mousedown', handleClickOutside)
 
         return () => {
@@ -29,8 +30,9 @@ export function NotificationPopUp({onClose}) {
             <div className={`notification-pop-up ${show}`}>
                 <h3>Notifications</h3>
                 <ul className="notification-pop-up-body">
-                   <Notification byUser = {loggedUser} about = {"like your comment lllll llllll llllll llllll"} body = {"ggggg"}
-                   createdAt={new Date()} post = {post}/>
+                    {notifications.map(notification => { return <Notification byUser = {notification.byUser} 
+                    about = {notification.about} body = {notification.body}
+                   createdAt={+notification.createdAt} post = {notification.post}/>})}
                 </ul>
             </div>
     )
