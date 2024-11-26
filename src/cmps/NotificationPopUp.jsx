@@ -26,7 +26,6 @@ export function NotificationPopUp({ onClose }) {
             }, 300)
         }
     }
-
     return (
         <div ref={popupRef} className={`notification-pop-up ${show}`}>
             <h3>Notifications</h3>

@@ -60,13 +60,13 @@ function Deteils({byUser,about,  body, createdAt, post}) {
                     </p>
                 </div>
             </div>
-            {post && <Link to = {`../post/${post.postId}`}><img src = {post.picUrl} /></Link>}
-            {!post && isFollowed && (
+            {Object.keys(post).length !== 0  && <Link to = {`../post/${post.postId}`}><img src = {post.picUrl} /></Link>}
+            {Object.keys(post).length === 0 && isFollowed && (
                 <button onClick={(ev) => onChangeFollow(ev)} className="followed">
                     Followed
                 </button>
             )}
-            {!post && !isFollowed &&  (
+            {Object.keys(post).length === 0 && !isFollowed &&  (
                 <button onClick={(ev) => onChangeFollow(ev)} className="follow">
                     Follow
                 </button>
@@ -74,3 +74,5 @@ function Deteils({byUser,about,  body, createdAt, post}) {
         </li>
     )
 }
+
+

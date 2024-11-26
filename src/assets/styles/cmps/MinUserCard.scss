@@ -28,6 +28,8 @@
     }
 
     .avatar {
+        width: 44px;
+        height: 44px;
         margin-inline-end: 12px;
         &:hover {
             cursor: pointer;
@@ -57,5 +59,6 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        // background-color: white ;
     }
 }

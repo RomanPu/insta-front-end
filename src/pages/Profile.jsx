@@ -30,9 +30,9 @@ export function Profile() {
                     <div className="pro-pic">
                         <Avatar picUrl={user.avatarPic} />
                     </div>
-                    <div className="user-info">
+                    <div className="user-info-profile">
                         <h1>{user.username}</h1>
-                        <Link to={`../edit-profile/${user._id}`}>Edit Profile</Link>
+                        <div className = {"edit-profile"}><Link to={`../edit-profile/${user._id}`}>Edit Profile</Link></div>
                         <div className="stats">
                             <p>
                                 <span>{posts.length}</span> 
