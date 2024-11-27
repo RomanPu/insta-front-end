@@ -1,6 +1,6 @@
 import { Avatar } from '../cmps/Avatar';
 import { useSelector } from 'react-redux';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import logo from '../assets/imgs/Sticker.png'
 import { editUser } from '../store/users/users.actions';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +16,11 @@ export function EditProfile() {
     const [bio, setBio] = useState(loggedUser.body)
     const navigate = useNavigate()
     const fileInputRef = useRef(null)
+
+    useEffect(() => {
+        setGImgUrl(loggedUser.avatarPic)
+        setBio(loggedUser.body)
+    }, [loggedUser])
 
     function onSelectImg() {
         if (fileInputRef.current) {
@@ -54,7 +59,7 @@ export function EditProfile() {
                 <h1>Edit Profile</h1>
                 <div className = 'user-card-conteiner'>
                     <div className="user-card" >
-                        <Avatar picUrl={loggedUser.avatarPic} />
+                        <Avatar picUrl={gImgUrl} />
                         <div className="user-info">
                             <h1>{loggedUser.username}</h1>
                             <p>{loggedUser.username}</p>

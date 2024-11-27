@@ -40,5 +40,6 @@ export function addNotification(notification) {
 }
 
 export function editLogedUser(user) {
+    utilService.saveToStorage('loggeduser', user)
     store.dispatch({ type: EDIT_USER, user })
 }
