@@ -65,10 +65,11 @@ export function getPostById(id) {
     return store.getState().postsModule.posts.find(post => post._id === id)
 }
 
-export function editPostLocal(id, body) {
-    const post = getPostById(id)
-    post.body = body
-    editPost(post)
+export async function editPostLocal(id) {
+
+    const post = await postService.getById(id)
+    console.log('post: change', post)
+    return store.dispatch({ type: EDIT_POST, post: { ...post} })
 }
 
 

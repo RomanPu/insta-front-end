@@ -18,6 +18,7 @@ import { useLocation } from 'react-router'
 import { NotificationPopUp } from './NotificationPopUp'
 import { socketService} from '../services/socket.service'
 import { addNotification } from '../store/logedUser/loged.user.actions'
+import { editPostLocal } from '../store/posts/posts.actions'
 
 export function NavBar() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
@@ -31,6 +32,7 @@ export function NavBar() {
         socketService.on('notification', (notificationId) => {
             console.log('notificationId:', notificationId)
             addNotification(notificationId)
+            editPostLocal(notificationId.post.postId)
         })
         return () => {
             socketService.logout()
