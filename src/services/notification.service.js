@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3030/api/notification';
+const BASE_URL = (process.env.NODE_ENV !== 'development') ?
+    '/api/notification/' :
+    '//localhost:3030/api/notification/'
 
 export const notificationService = {
     query,
