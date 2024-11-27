@@ -24,7 +24,7 @@ export async function setPosts(newPosts) {
 export async function editPost(post, type = '', comment = "") {
     try {
         if(type){
-            const about = type === 'comment' ? "commented on your post" : "liked your post"
+            const about = type === 'comment' ? "commented:" : "liked your post"
             const {_id} = utilService.loadFromStorage('loggeduser') 
             notificationService.save({postId: post._id , userId: _id, about:about,
                  body: comment, createdAt: "", byUser: _id, forUser: post.userId})
@@ -63,6 +63,12 @@ export async function createPost(user, body, urlPic) {
 
 export function getPostById(id) {
     return store.getState().postsModule.posts.find(post => post._id === id)
+}
+
+export function editPostLocal(id, body) {
+    const post = getPostById(id)
+    post.body = body
+    editPost(post)
 }
 
 

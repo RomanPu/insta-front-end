@@ -6,6 +6,7 @@ export const SET_USER = 'SET_USER'
 export const LOGOUT = 'LOGOUT'
 export const NOTIFICATIONS_READ = 'NOTIFICATIONS_READ'
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION'
+export const EDIT_USER = 'EDIT_USER'
 
 // const utilService.loadFromStorage('loggeduser')
 const logeduser = utilService.loadFromStorage('loggeduser') || {}
@@ -31,6 +32,8 @@ export function logedUserReducer(state = initialState, action = {}) {
         console.log('action.logedUser:', action.logedUser)
             return { ...state, logedUser: action.logedUser, isLoggedin: true, 
                 notifications: action.notifications, newNotification: action.isNew}
+        case EDIT_USER:
+            return { ...state, logedUser: action.user}
         case LOGOUT:
                 return { ...state, logedUser: {}, isLoggedin: false,
                  notifications: [], newNotification: false}

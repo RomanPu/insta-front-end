@@ -24,7 +24,7 @@ export function Avatar({ picUrl = noUserImg }) {
 
         // Draw image
         const image = new Image()
-        image.src = picUrl
+        image.src = picUrl ? picUrl : noUserImg
         image.onload = () => {
             context.save()
             context.beginPath()

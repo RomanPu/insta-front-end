@@ -5,6 +5,7 @@ import logo from '../assets/imgs/Sticker.png'
 import { editUser } from '../store/users/users.actions';
 import { useNavigate } from 'react-router-dom';
 import { uploadService } from '../services/img.upload.service'
+import { editLogedUser } from '../store/logedUser/loged.user.actions';
 
 
 export function EditProfile() {
@@ -39,8 +40,13 @@ export function EditProfile() {
     function onSubmit() {
         // console.log(bio)
         editUser({...loggedUser , body: bio, avatarPic: gImgUrl})
+        editLogedUser({...loggedUser ,  avatarPic: gImgUrl})
         navigate(-1)
     }
+
+    // useEffect(() => {
+    //     setGImgUrl(loggedUser.avatarPic)
+    // }, [gImgUrl])
 
     return (
         <div className="edit-profile-layout">
@@ -48,7 +54,7 @@ export function EditProfile() {
                 <h1>Edit Profile</h1>
                 <div className = 'user-card-conteiner'>
                     <div className="user-card" >
-                        <Avatar picUrl={gImgUrl} />
+                        <Avatar picUrl={loggedUser.avatarPic} />
                         <div className="user-info">
                             <h1>{loggedUser.username}</h1>
                             <p>{loggedUser.username}</p>

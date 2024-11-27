@@ -28,7 +28,7 @@ export function SignUpPage({layout = ""}) {
         try {
             const user = await userService.signup({username, password, email, fullname})
             addUser(user)
-            switchUser(user)
+            await switchUser(user)
             navigate('/')
             console.log('Logged in:', user)
         } catch (err) {

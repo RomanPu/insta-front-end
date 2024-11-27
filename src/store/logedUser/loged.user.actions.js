@@ -1,4 +1,4 @@
-import { SET_USER, LOGOUT, NOTIFICATIONS_READ, ADD_NOTIFICATION } from './logeduser.reducer'
+import { SET_USER, LOGOUT, NOTIFICATIONS_READ, ADD_NOTIFICATION, EDIT_USER } from './logeduser.reducer'
 import { store } from '../store'
 import { utilService } from '../../services/util.service'
 import { notificationService } from '../../services/notification.service'
@@ -35,5 +35,9 @@ export function readNotifications() {
 }
 
 export function addNotification(notification) {
-    store.dispatch({ type: 'ADD_NOTIFICATION', notification })
+    store.dispatch({ type: ADD_NOTIFICATION, notification })
+}
+
+export function editLogedUser(user) {
+    store.dispatch({ type: EDIT_USER, user })
 }
