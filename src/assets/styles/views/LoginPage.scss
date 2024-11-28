@@ -2,13 +2,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     max-width: 935px;
     margin: 32px auto 0;
     padding-block-end: 32px;
 
     .intro-img{
+        @include for-wide-layout{
+            display: none;
+        }
+    
+        // @include for-mobile-layout{
+        //     margin-inline-start: 0px;
+        //     padding: 0px;
+        // }
         position: relative;
         flex-basis: 380px;
         margin: 0 32px 12px 0;
@@ -34,7 +42,7 @@
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            width: 400px;
+            width: 350px;
             height: 62px;
             padding: 10px 0;
             border: 1px solid rgb(219 219 219);
@@ -43,6 +51,9 @@
             font-size: 14px;
             font-weight: 400;
             line-height: 18px;
+            @include for-mobile-layout{
+                border: none;
+            }
     
             a{
                 color: rgb(0, 149, 246);

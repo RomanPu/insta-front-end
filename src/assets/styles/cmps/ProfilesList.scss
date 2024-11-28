@@ -46,24 +46,25 @@
                 font-size: 16px;
                 padding-inline-start: 42px;
             }
+        }
 
-            .profile-row {
-                padding: 8px 16px;
+        .profile-row {
+            padding: 8px 16px;
 
-                .min-user-card {
-                    height: 60px;
-                    .avatar {
-                        width: 44px;
-                        height: 44px;
-                    }
+            .min-user-card {
+                height: 44px;
+                padding: 0px;
+                .avatar {
+                    width: 44px;
+                    height: 44px;
+                }
 
-                    button {
-                        background-color: rgb(0, 149, 246);
-                        color: white;
-                        padding: 7px 16px;
-                        font-size: 14px;
-                        border-radius: 8px;
-                    }
+                button {
+                    background-color: rgb(0, 149, 246);
+                    color: white;
+                    padding: 7px 16px;
+                    font-size: 14px;
+                    border-radius: 8px;
                 }
             }
         }

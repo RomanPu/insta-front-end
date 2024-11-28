@@ -1,5 +1,5 @@
 .login-modal{
-    width: 400px;
+    width: 350px;
     height: 425px;
     border: black 1px solid;
     display: flex;
@@ -7,6 +7,7 @@
     justify-content: flex-start;
     flex-direction: column;
     border-radius: 10px;
+
 
     &.pop-up {
         box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
@@ -22,6 +23,9 @@
     &.page-view{
         height: 350px;
         border: 1px solid rgb(219 219 219);
+        @include for-mobile-layout{
+            border: none;
+        }
         justify-content: center;
         .close{
             display: none;
