@@ -36,19 +36,36 @@
         z-index: 500;
         background-color: white;
         width: 100%;
-        justify-content: center;
+        justify-content: space-around;
+        display: block;
     }
     .nav-bar {
         display: flex;
         flex-direction: column;
         padding-inline: 12px;
         list-style: none;
+
+        @include for-mobile-layout{
+            flex-direction: row;
+            justify-content: space-between;
+        }
         .bold {
             font-weight: 600;
             .nav-bar-buttom-name {
                 font-weight: 600; // Change font weight for child elements
             }
         }
+
+        li{     
+            &:nth-child(8),
+            &:nth-child(6),
+            &:nth-child(7),
+            &:nth-child(10) {
+                @include for-mobile-layout{
+                    display: none;
+                }
+            }
+        }      
     
         .nav-bar-buttom-link {
             height: 52px;

@@ -14,8 +14,14 @@
     }
 
     .edit-profile-conteiner{
-        width: 706px;
+        max-width: 706px;
+        width: 100%;
         padding: 36px  46px;
+        @include for-mobile-layout{
+            padding: 0px;
+        }
+
+
 
         h1, h3{
             display: inline-flex;
@@ -49,6 +55,7 @@
                 height: 88px;
                 border-radius: 20px;
                 margin-block-end: 16px;
+                position: relative;
                 // flex-direction: column;
                 // margin-bottom: 24px;
 
@@ -65,6 +72,9 @@
                     flex-direction: column;
                     margin-inline-start: 16px;
                     height: 36px;
+                    @include for-mobile-layout{
+                        align-self: flex-start;
+                    }
 
                     h1{
                         padding: 0px;
@@ -79,6 +89,9 @@
                         font-size: 14px;
                         font-weight: 400;
                         color: rgb(115 115 115);
+                        @include for-mobile-layout{
+                           display: none;
+                        }
                     }
                 }
 
@@ -94,6 +107,18 @@
                     //margin: 0 auto 12px 12px;
                     margin-inline: auto 12px;
                     cursor: pointer;
+                    @include for-mobile-layout{
+                        position: absolute;
+                        left: 75px;
+                        top: 30px;
+                        background-color: transparent;
+                        color: rgb(0, 149, 246);
+                        line-break: auto;
+                        white-space: nowrap; // Prevent text wrapping
+                        overflow: hidden; // Hide overflow text
+                        font-size: 14px;
+                        // text-overflow: ellipsis; 
+                     }
                 }
             }
         }

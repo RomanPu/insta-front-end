@@ -205,7 +205,8 @@
         }
 
         img {
-            width: 468px;
+            width: 100%;
+            //max-width: 630px;
             height: 585px;
             object-fit: contain;
             background-color: black;

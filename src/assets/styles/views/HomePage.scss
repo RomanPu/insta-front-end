@@ -4,6 +4,10 @@
     @include for-wide-layout{
         margin-inline-start: 72px;
     }
+
+    @include for-mobile-layout{
+        margin-inline-start: 0px;
+    }
     .home-page {
         display: flex;
         justify-content: center;
