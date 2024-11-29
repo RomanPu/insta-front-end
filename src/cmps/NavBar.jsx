@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux'
 import poster from '../assets/imgs/Sticker.png'
 import { useLocation } from 'react-router'
 import { NotificationPopUp } from './NotificationPopUp'
+import { SearchPopUp } from './SearchPopUp'
 import { socketService} from '../services/socket.service'
 import { addNotification } from '../store/logedUser/loged.user.actions'
 import { editPostLocal } from '../store/posts/posts.actions'
@@ -26,6 +27,7 @@ export function NavBar() {
     const [corrPage, setCorrPage] = useState('home')
     const newNotification = useSelector(storeState => storeState.logedUserModule.newNotification)
     const [activateNotificationPopUp, setActivateNotificationPopUp] = useState(false)
+    const [activateSearchPopUp, setActivateSearchPopUp] = useState(false)
     const pageNameArr = ['search', 'explore', 'reels', 'messeges', 'notifications', 'create', `profile`, 'more']
 
     useEffect(() => {
@@ -45,7 +47,7 @@ export function NavBar() {
     }, [location])
 
     return (
-        <div className={!activateNotificationPopUp ? "nav-bar-container" : "nav-bar-container small"}>
+        <div className={!activateNotificationPopUp && !activateSearchPopUp ? "nav-bar-container" : "nav-bar-container small"}>
             <ul className= {"nav-bar"}>
                 <div key={'ins-logo'} className="insta-logo">
                     <img src={poster} alt="Instagram Logo" />
@@ -54,7 +56,8 @@ export function NavBar() {
                     <NavBarAction name={'Home'} link={'/'} icon={<HomeIcon />} />
                 </li>
                 <li className={corrPage === 'search' ? 'bold' : ''} key={'search'}>
-                    <NavBarAction name={'Search'} icon={<SearchIcon />} />
+                    <NavBarAction name={'Search'} icon={<SearchIcon />}
+                    actionFunc = {setActivateSearchPopUp} />
                 </li>
                 <li className={corrPage === 'explore' ? 'bold' : ''} key={'explore'}>
                     <NavBarAction name={'Explore'} icon={<ExploreIcon />} link={'/explore'} />
@@ -85,6 +88,7 @@ export function NavBar() {
                 </li>
             </ul>
             {activateNotificationPopUp && <NotificationPopUp onClose={setActivateNotificationPopUp} />}
+            {activateSearchPopUp && <SearchPopUp onClose={setActivateSearchPopUp} />}
         </div>
     )
 }

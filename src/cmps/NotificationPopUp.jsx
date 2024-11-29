@@ -20,9 +20,9 @@ export function NotificationPopUp({ onClose }) {
 
     function handleClickOutside(event) {
         if (popupRef.current && !popupRef.current.contains(event.target)) {
+            setShow("hide")
             setTimeout(() => {
                 onClose(false)
-                setShow("hide")
             }, 300)
         }
     }
