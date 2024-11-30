@@ -28,7 +28,7 @@ export function NavBar() {
     const newNotification = useSelector(storeState => storeState.logedUserModule.newNotification)
     const [activateNotificationPopUp, setActivateNotificationPopUp] = useState(false)
     const [activateSearchPopUp, setActivateSearchPopUp] = useState(false)
-    const pageNameArr = ['search', 'explore', 'reels', 'messeges', 'notifications', 'create', `profile`, 'more']
+    const pageNameArr = ['search', 'explore', 'reels', 'messenger', 'notifications', 'create', `profile`, 'more']
 
     useEffect(() => {
         socketService.on('notification', (notificationId) => {
@@ -47,7 +47,7 @@ export function NavBar() {
     }, [location])
 
     return (
-        <div className={!activateNotificationPopUp && !activateSearchPopUp ? "nav-bar-container" : "nav-bar-container small"}>
+        <div className={!activateNotificationPopUp && !activateSearchPopUp && corrPage !== 'messenger' ? "nav-bar-container" : "nav-bar-container small"}>
             <ul className= {"nav-bar"}>
                 <div key={'ins-logo'} className="insta-logo">
                     <img src={poster} alt="Instagram Logo" />
@@ -65,8 +65,8 @@ export function NavBar() {
                 <li className={corrPage === 'reels' ? 'bold' : ''} key={'reels'}>
                     <NavBarAction name={'Reels'} icon={<ReelsIcon />} />
                 </li>
-                <li className={corrPage === 'messeges' ? 'bold' : ''} key={'messeges'}>
-                    <NavBarAction name={'Messeges'} icon={<MessengerIcon />} />
+                <li className={corrPage === 'messenger' ? 'bold' : ''} key={'messenger'}>
+                   <NavBarAction name={'Messages'} icon={<MessengerIcon />} link={'./messenger/inbox'}/>
                 </li>
                 <li className={corrPage === 'notifications' ? 'bold' : ''} key={'notifications'}>
                     <NavBarAction name={'Notifications'} icon={<NotificationsIcon />}

@@ -18,6 +18,7 @@
 @import 'views/LoginPage';
 @import 'views/SignUpPage';
 @import 'views/EditProfile';
+@import 'views/Messenger';
 
 // Components
 @import 'cmps/EmojiPicker';
@@ -36,3 +37,6 @@
 @import 'cmps/SearchBar';
 @import 'cmps/NotificationPopUp';
 @import 'cmps/Notification';
+@import 'cmps/MessengerSideBar';
+@import 'cmps/Messengerinbox';
+

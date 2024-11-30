@@ -1,0 +1,76 @@
+.messenger-side-bar{
+    max-width: 400px;
+    width: 100%;
+    border-right: 1px solid rgb(230 230 230);
+    .profile{
+        width: 100%;
+        .profile-header{
+            display: flex;
+            height: 75px;
+            width: 100%;
+            padding: 36px 24px 12px;
+            align-items: center;
+
+            h1{
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25px;
+                margin: 0 8px 6px 0;
+                display: flex;
+                align-items: center; 
+            }
+
+            svg{
+                &:nth-child(3){
+                    margin-left: auto;
+                }
+            }
+        }
+
+        .profile-pic{
+            display: flex;
+            width: 74px;
+            height: 74px;
+            margin: 50px 0 0 24px;
+        }
+    }
+
+    .active-message-header{
+        height: 44px;
+        padding: 14px 24px 10px;
+
+        h2{
+            font-size: 16px;
+            font-weight: 700;
+            color: black;
+        }
+    }
+
+    .active-messages-list{
+        list-style: none;
+        padding: 0;
+
+        li{
+            padding: 8px 24px;
+            height:72px;
+
+            .min-user-card{
+                padding: 0;
+                .avatar{
+                    width: 56px;
+                    height: 56px;
+                    margin-right: 12px;
+                }
+
+                h1{
+                    font-weight: 400;
+                }
+            }
+
+            &:hover{
+                background-color: rgb(245 245 245);
+                cursor: pointer;
+            }
+        }
+    }
+}
