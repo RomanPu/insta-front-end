@@ -33,7 +33,7 @@ function ActiveMesagesList() {
     return (
         <ul className="active-messages-list">
             {actArr.map((user) => {
-                return <Link to= {"/"} key={user._id}><li><MinUserCard user = {user} followButton = {false}
+                return <Link to= {"../messenger/create-msg"} key={user._id}><li><MinUserCard user = {user} followButton = {false}
                 type = {"both"}/></li></Link>
             })}
         </ul>

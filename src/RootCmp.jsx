@@ -15,6 +15,7 @@ import { SignUpPage } from './pages/SignUpPage'
 import { UserMsg } from './cmps/UserMsg'
 import { EditProfile } from './pages/EditProfile'
 import { MessengerInbox } from './cmps/MessengerInbox'
+import { CreateMsgModal } from './cmps/CreateMsgModal'
 
 export function RootCmp() {
     const location = useLocation();
@@ -28,6 +29,7 @@ export function RootCmp() {
                     <Route path="/messenger" element={<Messenger />}>
                         <Route path="/messenger/chat/:_id" element={<Messenger/>} />
                         <Route path="/messenger/inbox" element={<MessengerInbox/>} />
+                        <Route path="/messenger/create-msg" element={<CreateMsgModal/>} />
                     </Route>
                     <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/signup" element={<SignUpPage/>} />

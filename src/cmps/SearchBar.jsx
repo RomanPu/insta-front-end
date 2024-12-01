@@ -1,6 +1,6 @@
 import { useState} from 'react';
 
-export function SearchBar({ onSearch }) {
+export function SearchBar({ onSearch, type = "" }) {
     const [search, setSearch] = useState('');
 
     function handleChange(ev) {
@@ -9,7 +9,7 @@ export function SearchBar({ onSearch }) {
     }
 
     return (
-        <div className="search-bar">
+        <div className= {`search-bar ${type}`}>
             <input
                 type="text"
                 value={search}
