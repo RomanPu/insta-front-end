@@ -1,11 +1,15 @@
+import { Link } from 'react-router-dom';
+
 export function MessengerInbox() {
     return (
-        <div className="messenger-inbox-conteiner">
-            <MessengerIcon />
-            <h1>Your messages</h1>
-            <p>Send a message to start a chat</p>
-            <button>Send message</button>
-        </div>
+      
+            <div className="messenger-inbox-conteiner">       
+                <MessengerIcon />
+                <h1>Your messages</h1>
+                <p>Send a message to start a chat</p>
+                <Link to= {"../create-msg"}>Send message</Link>              
+            </div>
+
     )
 }
 

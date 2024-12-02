@@ -11,7 +11,7 @@ export function MessengerSideBar() {
             <div className="profile-header">
                 <h1>{logedUser.username}</h1>
                 <ArrowDown/>
-                <ComposeMsg/>
+                <Link to= {"../messenger/create-msg"}><ComposeMsg/></Link>
             </div>
             <div className='profile-pic'><Avatar picUrl = {logedUser.avatarPic}/></div>
             <div className="active-message-header">
@@ -33,8 +33,8 @@ function ActiveMesagesList() {
     return (
         <ul className="active-messages-list">
             {actArr.map((user) => {
-                return <Link to= {"../messenger/create-msg"} key={user._id}><li><MinUserCard user = {user} followButton = {false}
-                type = {"both"}/></li></Link>
+                return  <li key={user._id}><MinUserCard user = {user} followButton = {false}
+                type = {"both"}/></li>
             })}
         </ul>
     )

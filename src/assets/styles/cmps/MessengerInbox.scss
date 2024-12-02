@@ -21,12 +21,16 @@
     }
 
 
-    button{
+    a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin: 20px 0 0;
         height: 32px;
         padding: 0 16px;
         font-weight: 600;
         background-color:  rgb(0, 149, 246);
+        color: white;
         border: none;
         border-radius: 10px;
         font-size: 14px;
