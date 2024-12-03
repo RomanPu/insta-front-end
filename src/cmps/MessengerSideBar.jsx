@@ -2,6 +2,11 @@ import { useSelector } from 'react-redux'
 import { Avatar } from './Avatar';
 import { MinUserCard } from './MinUserCard';
 import { Link } from 'react-router-dom';
+import { useEffect, useState} from 'react';
+import { LoadUsers } from '../store/users/users.actions';
+import { messegeService } from '../services/messege.service';
+import {loadLoggedUser} from '../store/logedUser/loged.user.actions'
+
 
 export function MessengerSideBar() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
@@ -24,17 +29,24 @@ export function MessengerSideBar() {
 
 
 function ActiveMesagesList() {
-    const {_id} = useSelector(storeState => storeState.logedUserModule.logedUser)
-    const logedUser = useSelector(storeState => storeState.usersModule.users.find(user => user._id === _id))
-    const actArr = [logedUser, logedUser, logedUser, logedUser, logedUser]
+    const  [chats, setChats] = useState([])
+    useEffect (() => {
+        loadLoggedUser()
+        const fetchChats = async () => {
+            await LoadUsers()
+            const temp = await messegeService.query(loadLoggedUser()?._id)
+            console.log("tside barrrrrrrrr", temp);
+            setChats(temp);
+        };
+        fetchChats();
+    }, [])
 
-    console.log('actArr:', actArr)  
-
+    if (!chats.length) return <div>Loading...</div>
     return (
         <ul className="active-messages-list">
-            {actArr.map((user) => {
-                return  <li key={user._id}><MinUserCard user = {user} followButton = {false}
-                type = {"both"}/></li>
+            {chats.map((chat) => {
+                return  <Link to = {`../messenger/chat/${chat._id}`}><li key={chat._id}><MinUserCard user = {chat.correspandents[0]} followButton = {false}
+                type = {"both"}/></li></Link>
             })}
         </ul>
     )

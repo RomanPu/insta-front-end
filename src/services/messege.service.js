@@ -4,7 +4,7 @@ const BASE_URL = (process.env.NODE_ENV !== 'development') ?
     '/api/message/' :
     '//localhost:3030/api/message/'
 
-export const messageService = {
+export const messegeService = {
     query,
     save,
     remove,

@@ -13,8 +13,10 @@ export function MinUserCard({ user, time = '', followButton = true, type = 'only
     const loggedUser = useSelector(storeState => storeState.usersModule.users.find(user => user._id === _id))
     const author = useSelector(storeState => storeState.usersModule.users.find(u => u._id === user._id))
     const [isFollowed, setIsFollowed] = useState(
-        loggedUser.following.map(follow => follow === author._id).includes(true)
+        loggedUser?.following.map(follow => follow === author._id).includes(true)
     )
+
+//
 
     useEffectUpdate(() => {
         if (isFollowed && !loggedUser.following.map(like => like === user._id).includes(true)) {
@@ -43,7 +45,7 @@ export function MinUserCard({ user, time = '', followButton = true, type = 'only
                 {type === 'both' && (
                     <div className="user-info">
                         <h1>{user.username}</h1>
-                        <p>{user.username}</p>
+                        <p>{user.fullname}</p>
                     </div>
                 )}
                 {type === 'only-user' && <h1>{user.username}</h1>}

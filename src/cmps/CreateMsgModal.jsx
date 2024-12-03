@@ -3,15 +3,37 @@ import { Link } from 'react-router-dom'
 import { userService } from '../services/user.service'
 import { SearchBar } from './SearchBar'
 import { MinUserCard } from './MinUserCard'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router'
+import { messegeService } from '../services/messege.service'
+
 
 export function CreateMsgModal() {
+    const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     const [result, setResult] = useState([])
     const [selected, setSelected] = useState([])
+    const navigate = useNavigate()
     useEffect(() => {
         document.body.classList.add('no-scroll')
         return () => document.body.classList.remove('no-scroll')
 
     }, [])
+
+    async function onCreateMsg() {
+        console.log(selected)
+        if (!selected.length) return
+        const msgId = await messegeService.save({correspandents: 
+            [...selected.map(user => user._id), logedUser._id]})
+        navigate(`../chat/${msgId}`)
+    }   
+
+    // {
+    //     "userId": "674714992f2842ab4aceacee",
+    //     "body": "test",
+    //     "owner": "674714992f2842ab4aceacee",
+    //     "byUser": "6745d4876652dd4b3f7bc52a",
+    //     "correspandent": "6745d4876652dd4b3f7bc52a"
+    //   }
 
     function onSelectUser(ev, user) { 
         setSelected(prev => [...prev, user])
@@ -53,7 +75,7 @@ export function CreateMsgModal() {
                     ))}
                 </ul>}
             </div>
-            <button className={`pre-user-selct-btn ${!selected.length ? "" : "user-selected"}`}>Chat</button>
+            <button onClick={onCreateMsg} className={`pre-user-selct-btn ${!selected.length ? "" : "user-selected"}`}>Chat</button>
         </div>
     )
 }

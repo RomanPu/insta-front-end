@@ -1,0 +1,112 @@
+.messenger-chat-conteiner{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    // overflow-y: scroll;
+    overflow-x: hidden;
+
+    .messenger-chat-header{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 75px;
+        width: 100%;
+        padding-inline: 16px;
+        border-bottom: 1px solid rgb(219 219 219);
+    }
+
+    .corespandent-profile{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-block-start: 20px;
+        width: 100%;
+
+        .profile-avatar{
+            display: flex;
+            flex-direction: column;
+            height: 128px;
+            width: 96px;
+            padding-block: 16px;
+        }
+
+        h1{
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            height: 25px;
+        }
+
+        h2{
+            margin:0;           
+            font-size: 14px;
+            font-weight: 400;
+            color: rgb(115 115 115);
+            height: 20px;
+        }
+
+        .view-profile-btn{
+            height: 32px;
+            margin-block: 24px 32px;
+            width: auto;
+            border: 1px solid rgb(219 219 219);
+            border-radius: 8px;
+            background-color: rgb(239 239 239);
+            color: black;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+
+    .write-msg{
+        display: flex;
+        width: 100%;
+        height: 76px;
+        padding: 16px;
+        .comment-section{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            border: 1px solid rgb(219 219 219);
+            border-radius: 8px;
+
+            .text-area {
+                height: 18px;
+                border: none;
+                width: 100%;
+                resize: none; /* Prevent resizing */
+                outline: none; /* Remove outline on focus */
+                font-size: 16px; /* Match font size */
+                line-height: 18px;
+                padding: 0;
+                overflow-y: auto;
+            }
+
+            button{
+                height: 24px;
+                width: 24px;
+                background-color: transparent;
+                padding: 0;
+                margin: 0 12px 0;
+    
+                svg{
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+
+            .send-msg-btn{
+                width: auto;
+                padding: 0;
+                color: rgb(0, 55, 107);
+                background-color: transparent;
+                font-size: 14px;
+            }
+        }
+    }
+}

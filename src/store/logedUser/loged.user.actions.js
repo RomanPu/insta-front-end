@@ -14,6 +14,15 @@ export async function switchUser(user) {
     store.dispatch({ type: SET_USER, logedUser: user, notifications: notifications,
          isNew: isNew} )
 }
+
+export function loadLoggedUser() {
+    const logedUser = utilService.loadFromStorage('loggeduser')
+    if (logedUser._id) {
+        switchUser(logedUser)
+        return logedUser;
+    }
+}
+
 export function logout() {
     store.dispatch({ type: LOGOUT})
     utilService.saveToStorage('loggeduser', {})
