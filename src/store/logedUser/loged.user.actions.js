@@ -8,9 +8,7 @@ export async function switchUser(user) {
     utilService.saveToStorage('loggeduser', user)
     socketService.login(user._id)
     const notifications = await notificationService.query(user._id)
-    console.log('notifications: switch', notifications)
     const isNew = notifications.some(notification => notification.isRead === false)
-    console.log('notifications:', isNew)
     store.dispatch({ type: SET_USER, logedUser: user, notifications: notifications,
          isNew: isNew} )
 }
@@ -33,7 +31,6 @@ export function isLoged() {
 }
 
 export function readNotifications() {
-    console.log('readNotifications')
     const state = store.getState()
     const notifications = state.logedUserModule.notifications
     notifications.forEach(notification => {

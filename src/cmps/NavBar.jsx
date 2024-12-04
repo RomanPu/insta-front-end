@@ -32,7 +32,6 @@ export function NavBar() {
 
     useEffect(() => {
         socketService.on('notification', (notificationId) => {
-            console.log('notificationId:', notificationId)
             addNotification(notificationId)
             editPostLocal(notificationId.post.postId)
         })

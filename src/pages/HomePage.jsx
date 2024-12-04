@@ -19,7 +19,6 @@ export function HomePage() {
             await LoadUsers();
             setLoading(false);
         })();
-        console.log('logedUser:', logedUser, isLoggedin)
         if (!isLoggedin) navigate('/login')
     }, []);
 

@@ -31,17 +31,20 @@ export function MessengerSideBar() {
 function ActiveMesagesList() {
     const  [chats, setChats] = useState([])
     useEffect (() => {
-        loadLoggedUser()
+        
         const fetchChats = async () => {
+            const logedUser = loadLoggedUser()
             await LoadUsers()
-            const temp = await messegeService.query(loadLoggedUser()?._id)
-            console.log("tside barrrrrrrrr", temp);
+            const temp = await messegeService.query( logedUser?._id)
+
+           console.log('temp:', temp)
+            temp.map ( (msg) => msg.correspandents.filter(correspandent => correspandent._id !== logedUser?._id))
             setChats(temp);
         };
         fetchChats();
     }, [])
 
-    if (!chats.length) return <div>Loading...</div>
+    if (!chats.length) return <div></div>
     return (
         <ul className="active-messages-list">
             {chats.map((chat) => {

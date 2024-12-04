@@ -7,6 +7,7 @@ import { Avatar } from "./Avatar";
 import { LoadUsers } from "../store/users/users.actions";
 import { EmojiPicker, EmojiIcon } from "./imojiPicker";
 import { loadLoggedUser } from "../store/logedUser/loged.user.actions";
+import { useSelector } from "react-redux";
 
 
 
@@ -14,21 +15,31 @@ export function MessengerChat() {
     const chatId = useParams()._id;
     const [chat, setChat] = useState(null);
     const [msg, setMsg] = useState("");
+    //TODO use stor loged user
+    let logedUser = loadLoggedUser()
 
     useEffect(() => {
-        console.log("useEffect", chatId);
         const fetchMessage = async () => {
             //TODO fix min user card dependency on users
-            const logedUser = loadLoggedUser()
-            console.log("logedUser", logedUser);
+            logedUser = loadLoggedUser()
             await LoadUsers()
             const temp = await messegeService.getById(chatId)
             temp.correspandents = temp.correspandents.filter(correspandent => correspandent._id !== logedUser._id);
-            console.log("temp", temp);
             setChat(temp);
         };
         fetchMessage();
     }, [])
+
+   async  function onSendMsg() {
+        console.log('clicked')
+        if (!msg) return
+        logedUser = loadLoggedUser()
+        chat.messages.push({ author: logedUser._id, content: msg, createdAt: Date.now() })
+        chat.correspandents.push(logedUser)
+        console.log('chat:', chat)
+        await messegeService.save(chat)
+        setMsg('')
+    }
 
     if (!chat) return <div>Loading...</div>
     return (
@@ -43,13 +54,30 @@ export function MessengerChat() {
                     <button className="view-profile-btn">View profile</button> 
                 </div> 
                 <div className="messenger-chat-messages">
-                    {chat.messages.map((msg, idx) => <Message key={idx} msg={msg} />)}
+                    {chat.messages.map((msg, idx) => <Message key={idx} msg={msg}
+                    logedUserId ={logedUser._id} />)}
                 </div>  
-                <WriteMsg setMsg={setMsg} msg={msg} />    
+                <WriteMsg setMsg={setMsg} msg={msg} sendMsg={onSendMsg} />    
             </div>
 
     )
 }
+
+function Message({ msg , logedUserId}) {
+    const correspandent = useSelector(storeState => storeState.usersModule.users.find(user => user._id === msg.author))
+    console.log('msg:', msg)
+    console.log('correspandent:', correspandent)
+    return (
+        <div className={`message ${logedUserId === correspandent._id ?
+            "my-message" : "correspandent-message"
+        }`}>
+            <Avatar picUrl={correspandent.avatarPic} />
+            <div className="message-content">
+                <p>{msg.content}</p>
+            </div>
+        </div>
+    )
+}                     
 
 const MessengerIcon = () => (
     <svg aria-label="" className="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="96" role="img" viewBox="0 0 96 96" width="96">
@@ -58,7 +86,7 @@ const MessengerIcon = () => (
     </svg>
 );
 
-function WriteMsg({ setMsg, msg }) {
+function WriteMsg({ setMsg, msg, sendMsg }) {
     const [showEmojiPicker, setShowEmojiPicker] = useState(false)
     const textareaRef = useRef(null)
 
@@ -95,7 +123,8 @@ function WriteMsg({ setMsg, msg }) {
                     value={msg}
                     onChange={handleCommentChange}
                 />
-                {msg && <button className="send-msg-btn">Send</button>}
+                {msg && <button className="send-msg-btn"
+                onClick={sendMsg}>Send</button>}
             </div>
         </div>
     )

@@ -30,7 +30,6 @@ export function SignUpPage({layout = ""}) {
             addUser(user)
             await switchUser(user)
             navigate('/')
-            console.log('Logged in:', user)
         } catch (err) {
             showErrorMsg(`Cannot login`)
         } 

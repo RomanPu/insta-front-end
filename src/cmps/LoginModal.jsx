@@ -44,8 +44,6 @@ export function LoginModal({layout = ""}) {
 
     function onLogOut(ev) {
         ev.preventDefault()
-        console.log('logging out')
-
         logout()
         navigate('/login')
     }

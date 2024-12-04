@@ -31,7 +31,6 @@ export async function editPost(post, type = '', comment = "") {
         }
         const savedPost = await postService.save(post)
         store.dispatch({ type: EDIT_POST, post: { ...savedPost } })
-        console.log("before emit")
     } catch (error) {
         throw error
     }
@@ -68,7 +67,6 @@ export function getPostById(id) {
 export async function editPostLocal(id) {
 
     const post = await postService.getById(id)
-    console.log('post: change', post)
     return store.dispatch({ type: EDIT_POST, post: { ...post} })
 }
 

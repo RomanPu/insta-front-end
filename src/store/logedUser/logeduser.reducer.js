@@ -25,11 +25,9 @@ const initialState = {
 }
 
 
-console.log('initialState:', initialState)
 export function logedUserReducer(state = initialState, action = {}) {
     switch (action.type) {
         case SET_USER:
-        console.log('action.logedUser:', action.logedUser)
             return { ...state, logedUser: action.logedUser, isLoggedin: true, 
                 notifications: action.notifications, newNotification: action.isNew}
         case EDIT_USER:

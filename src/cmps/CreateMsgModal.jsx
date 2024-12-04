@@ -20,27 +20,20 @@ export function CreateMsgModal() {
     }, [])
 
     async function onCreateMsg() {
-        console.log(selected)
         if (!selected.length) return
         const msgId = await messegeService.save({correspandents: 
             [...selected.map(user => user._id), logedUser._id]})
         navigate(`../chat/${msgId}`)
     }   
 
-    // {
-    //     "userId": "674714992f2842ab4aceacee",
-    //     "body": "test",
-    //     "owner": "674714992f2842ab4aceacee",
-    //     "byUser": "6745d4876652dd4b3f7bc52a",
-    //     "correspandent": "6745d4876652dd4b3f7bc52a"
-    //   }
-
-    function onSelectUser(ev, user) { 
+    function onSelectUser(user) { 
+        console.log('user:', user)
         setSelected(prev => [...prev, user])
     }
 
     async function onSerach(search) {
         if (!search) return setResult([])
+    //TODO DEBOUNCE
         const res = await userService.query({ username: search })
         setResult(res)
     }
@@ -68,7 +61,7 @@ export function CreateMsgModal() {
                 { result.length > 0 && <ul>
                     {result.map(user => (               
                         <li key={user._id}>
-                            <button onClick={(ev) => onSelectUser(ev, {_id: user._id, username: user.username})}>
+                            <button onClick={(ev) => onSelectUser({_id: user._id, username: user.username})}>
                                 <MinUserCard user={user} type={'both'} followButton={false} />
                             </button>
                         </li>
