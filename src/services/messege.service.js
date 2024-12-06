@@ -11,9 +11,11 @@ export const messegeService = {
     getById,
 };
 
-async function query(forUser) {
+async function query({byUser, isRead}) {
     try {
-        const { data: messages } = await axios.get(BASE_URL, { params: { forUser: forUser } });
+        const { data: messages } = await axios.get(BASE_URL, { params: { byUser: byUser, isRead: 
+            isRead
+         } });
         return messages;
     } catch (error) {
         throw error;

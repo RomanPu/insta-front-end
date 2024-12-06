@@ -20,14 +20,18 @@ import { SearchPopUp } from './SearchPopUp'
 import { socketService} from '../services/socket.service'
 import { addNotification } from '../store/logedUser/loged.user.actions'
 import { editPostLocal } from '../store/posts/posts.actions'
+import { messegeService } from '../services/messege.service'
+import { useNavigate } from 'react-router'
 
 export function NavBar() {
+    const navigate = useNavigate()
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     const location = useLocation()
     const [corrPage, setCorrPage] = useState('home')
     const newNotification = useSelector(storeState => storeState.logedUserModule.newNotification)
     const [activateNotificationPopUp, setActivateNotificationPopUp] = useState(false)
     const [activateSearchPopUp, setActivateSearchPopUp] = useState(false)
+    const [newMsgCount, setNewMsgCount] = useState(false)
     const pageNameArr = ['search', 'explore', 'reels', 'messenger', 'notifications', 'create', `profile`, 'more']
 
     useEffect(() => {
@@ -35,10 +39,21 @@ export function NavBar() {
             addNotification(notificationId)
             editPostLocal(notificationId.post.postId)
         })
+
+        checkForNewMsg()
+        socketService.on('message', () => { 
+            checkForNewMsg()
+        })
         return () => {
             socketService.logout()
         }
     },[])
+
+    async function checkForNewMsg() {
+        const notRead = await messegeService.query({byUser: logedUser._id, isRead: true })
+        console.log('isRead:', notRead)
+        setNewMsgCount(notRead)
+    }
 
     useEffect(() => {
         const page = pageNameArr.find(pageName => location.pathname.includes(pageName)) || 'home'
@@ -65,7 +80,8 @@ export function NavBar() {
                     <NavBarAction name={'Reels'} icon={<ReelsIcon />} />
                 </li>
                 <li className={corrPage === 'messenger' ? 'bold' : ''} key={'messenger'}>
-                   <NavBarAction name={'Messages'} icon={<MessengerIcon />} link={'./messenger/inbox'}/>
+                   <NavBarAction name={'Messages'} icon={<MessengerIcon />}
+                  notificationsIconOn = {newMsgCount} actionFunc = {()=> navigate('./messenger/inbox')}/>
                 </li>
                 <li className={corrPage === 'notifications' ? 'bold' : ''} key={'notifications'}>
                     <NavBarAction name={'Notifications'} icon={<NotificationsIcon />}

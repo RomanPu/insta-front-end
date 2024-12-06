@@ -6,6 +6,7 @@ import { useEffect, useState} from 'react';
 import { LoadUsers } from '../store/users/users.actions';
 import { messegeService } from '../services/messege.service';
 import {loadLoggedUser} from '../store/logedUser/loged.user.actions'
+import { useNavigate } from 'react-router';
 
 
 export function MessengerSideBar() {
@@ -30,26 +31,42 @@ export function MessengerSideBar() {
 
 function ActiveMesagesList() {
     const  [chats, setChats] = useState([])
+    const navigate = useNavigate()
     useEffect (() => {
         
         const fetchChats = async () => {
             const logedUser = loadLoggedUser()
             await LoadUsers()
-            const temp = await messegeService.query( logedUser?._id)
+            const temp = await messegeService.query( {byUser: logedUser?._id});
 
-           console.log('temp:', temp)
-            temp.map ( (msg) => msg.correspandents.filter(correspandent => correspandent._id !== logedUser?._id))
-            setChats(temp);
+            const filtered =  temp.map( (msg) => {
+                msg.correspandents = msg.correspandents.filter(correspandent => correspandent._id !== logedUser?._id);
+                return msg;
+            });
+            setChats(filtered);
         };
         fetchChats();
     }, [])
 
-    if (!chats.length) return <div></div>
+    async function onSelectChat(chat) {
+        const  logedUser = loadLoggedUser()
+         console.log('chat:', logedUser, chat.isRead)
+         chat.correspandents.push(logedUser)
+        chat.isRead = chat.isRead.map( (isRead) => {
+            if (isRead.id === logedUser._id) isRead.isRead = true
+            //console.log('isRead:', isRead, logedUser._id)
+            return isRead
+        })
+        console.log('chat:', chat)
+        await messegeService.save(chat)
+        navigate(`../messenger/chat/${chat._id}`)
+    }
+    if (!chats.length) return <div>test</div>
     return (
         <ul className="active-messages-list">
             {chats.map((chat) => {
-                return  <Link to = {`../messenger/chat/${chat._id}`}><li key={chat._id}><MinUserCard user = {chat.correspandents[0]} followButton = {false}
-                type = {"both"}/></li></Link>
+                    return  <button onClick = {() => onSelectChat(chat)}><li key={chat._id}><MinUserCard user = {chat.correspandents[0]} followButton = {false}
+                type = {"both"}/></li></button>
             })}
         </ul>
     )

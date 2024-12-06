@@ -24,19 +24,19 @@ export function MessengerChat() {
             logedUser = loadLoggedUser()
             await LoadUsers()
             const temp = await messegeService.getById(chatId)
+            console.log('from server', temp)
             temp.correspandents = temp.correspandents.filter(correspandent => correspandent._id !== logedUser._id);
             setChat(temp);
         };
         fetchMessage();
-    }, [])
+    }, [chatId])
 
    async  function onSendMsg() {
-        console.log('clicked')
         if (!msg) return
         logedUser = loadLoggedUser()
         chat.messages.push({ author: logedUser._id, content: msg, createdAt: Date.now() })
-        chat.correspandents.push(logedUser)
-        console.log('chat:', chat)
+        if (!chat.correspandents.find(correspandent => correspandent._id === logedUser._id))
+            chat.correspandents.push(logedUser)
         await messegeService.save(chat)
         setMsg('')
     }
@@ -65,8 +65,6 @@ export function MessengerChat() {
 
 function Message({ msg , logedUserId}) {
     const correspandent = useSelector(storeState => storeState.usersModule.users.find(user => user._id === msg.author))
-    console.log('msg:', msg)
-    console.log('correspandent:', correspandent)
     return (
         <div className={`message ${logedUserId === correspandent._id ?
             "my-message" : "correspandent-message"
