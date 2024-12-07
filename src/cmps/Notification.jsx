@@ -40,7 +40,6 @@ function Deteils({byUser,about,  body, createdAt, post}) {
     }
 
     function onChangeFollow(ev) {
-        console.log('ev', ev)
         ev.stopPropagation()
         setIsFollowed(prev => !prev)
     }

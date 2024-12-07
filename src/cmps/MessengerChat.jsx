@@ -1,65 +1,61 @@
 
 import { useParams } from "react-router";
-import { messegeService } from "../services/messege.service";
 import { useEffect, useState, useRef } from "react";
 import { MinUserCard } from "./MinUserCard";
 import { Avatar } from "./Avatar";
-import { LoadUsers } from "../store/users/users.actions";
 import { EmojiPicker, EmojiIcon } from "./imojiPicker";
-import { loadLoggedUser } from "../store/logedUser/loged.user.actions";
+import { editMessage, setCurrentMsg } from "../store/logedUser/loged.user.actions";
 import { useSelector } from "react-redux";
+import { utilService } from "../services/util.service";
 
 
 
 export function MessengerChat() {
     const chatId = useParams()._id;
-    const [chat, setChat] = useState(null);
-    const [msg, setMsg] = useState("");
-    //TODO use stor loged user
-    let logedUser = loadLoggedUser()
+    const [msg, setMsg] = useState('')
+    const chat = useSelector(storeState => storeState.logedUserModule.messages.filter(msg => msg._id === chatId)[0])
+    const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
 
     useEffect(() => {
-        const fetchMessage = async () => {
-            //TODO fix min user card dependency on users
-            logedUser = loadLoggedUser()
-            await LoadUsers()
-            const temp = await messegeService.getById(chatId)
-            console.log('from server', temp)
-            temp.correspandents = temp.correspandents.filter(correspandent => correspandent._id !== logedUser._id);
-            setChat(temp);
+        return () => {
+            utilService.saveToStorage('currentMsg', "")
         };
-        fetchMessage();
-    }, [chatId])
+    }, []);
+
+    useEffect(() => {
+        chat.correspandents = chat.correspandents.filter(correspandent => correspandent._id !== logedUser._id);
+        if (!chat.isRead.some(isRead => isRead.id === logedUser._id)) {
+            editMessage(chat)
+        }
+        utilService.saveToStorage('currentMsg', chat._id)
+
+    }, [chat])
 
    async  function onSendMsg() {
         if (!msg) return
-        logedUser = loadLoggedUser()
         chat.messages.push({ author: logedUser._id, content: msg, createdAt: Date.now() })
-        if (!chat.correspandents.find(correspandent => correspandent._id === logedUser._id))
-            chat.correspandents.push(logedUser)
-        await messegeService.save(chat)
+        await editMessage(chat)
         setMsg('')
     }
 
     if (!chat) return <div>Loading...</div>
     return (
-            <div className="messenger-chat-conteiner">       
-                <div className="messenger-chat-header"> 
-                  <MinUserCard user = {chat.correspandents[0]} followButton = {false} />
-                </div>
-                <div className="corespandent-profile">
-                    <div className="profile-avatar"><Avatar picUrl={chat.correspandents[0].avatarPic}/></div>
-                    <h1>{chat.correspandents[0].fullname}</h1>
-                    <h2>{chat.correspandents[0].username}</h2>
-                    <button className="view-profile-btn">View profile</button> 
-                </div> 
-                <div className="messenger-chat-messages">
-                    {chat.messages.map((msg, idx) => <Message key={idx} msg={msg}
-                    logedUserId ={logedUser._id} />)}
-                </div>  
-                <WriteMsg setMsg={setMsg} msg={msg} sendMsg={onSendMsg} />    
+        <div className="messenger-chat-conteiner">       
+            <div className="messenger-chat-header"> 
+                <MinUserCard user = {chat.correspandents[0]} followButton = {false} />
             </div>
-
+            <div className="corespandent-profile">
+                <div className="profile-avatar"><Avatar picUrl={chat.correspandents[0].avatarPic}/></div>
+                <h1>{chat.correspandents[0].fullname}</h1>
+                <h2>{chat.correspandents[0].username}</h2>
+                <button className="view-profile-btn">View profile</button> 
+            </div> 
+            <div className="messenger-chat-messages">
+                {chat.messages.map((msg, idx) => <Message key={idx} msg={msg}
+                logedUserId ={logedUser._id} />)}
+            </div>  
+            <WriteMsg setMsg={setMsg} msg={msg} sendMsg={onSendMsg} />    
+        </div>
     )
 }
 

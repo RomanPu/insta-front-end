@@ -21,7 +21,6 @@ function createSocketService() {
     setup() {
       const {_id} = utilService.loadFromStorage('loggeduser') || {}
       socket = io(baseUrl)
-      console.log('Socket is ready', _id)
       if(_id) this.login(_id)
     },
     on(eventName, cb) {
@@ -33,7 +32,6 @@ function createSocketService() {
       else socket.off(eventName, cb)
     },
     emit(eventName, data) {
-      console.log('Emitting', eventName, data)
       socket.emit(eventName, data)
     },
     login(userId) {

@@ -3,10 +3,8 @@ import { Avatar } from './Avatar';
 import { MinUserCard } from './MinUserCard';
 import { Link } from 'react-router-dom';
 import { useEffect, useState} from 'react';
-import { LoadUsers } from '../store/users/users.actions';
-import { messegeService } from '../services/messege.service';
-import {loadLoggedUser} from '../store/logedUser/loged.user.actions'
 import { useNavigate } from 'react-router';
+import { editMessage } from '../store/logedUser/loged.user.actions';
 
 
 export function MessengerSideBar() {
@@ -30,35 +28,19 @@ export function MessengerSideBar() {
 
 
 function ActiveMesagesList() {
+    const messages = useSelector(storeState => storeState.logedUserModule.messages)
+    const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     const  [chats, setChats] = useState([])
     const navigate = useNavigate()
     useEffect (() => {
-        
-        const fetchChats = async () => {
-            const logedUser = loadLoggedUser()
-            await LoadUsers()
-            const temp = await messegeService.query( {byUser: logedUser?._id});
-
-            const filtered =  temp.map( (msg) => {
-                msg.correspandents = msg.correspandents.filter(correspandent => correspandent._id !== logedUser?._id);
-                return msg;
-            });
-            setChats(filtered);
-        };
-        fetchChats();
-    }, [])
+        setChats(messages.map( (msg) => {
+            msg.correspandents = msg.correspandents.filter(correspandent => correspandent._id !== logedUser?._id);
+            return msg;
+        }))
+    }, [messages])
 
     async function onSelectChat(chat) {
-        const  logedUser = loadLoggedUser()
-         console.log('chat:', logedUser, chat.isRead)
-         chat.correspandents.push(logedUser)
-        chat.isRead = chat.isRead.map( (isRead) => {
-            if (isRead.id === logedUser._id) isRead.isRead = true
-            //console.log('isRead:', isRead, logedUser._id)
-            return isRead
-        })
-        console.log('chat:', chat)
-        await messegeService.save(chat)
+        await editMessage(chat)
         navigate(`../messenger/chat/${chat._id}`)
     }
     if (!chats.length) return <div>test</div>

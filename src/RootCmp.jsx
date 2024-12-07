@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router'
 import { useLocation } from 'react-router-dom'
 
@@ -17,8 +17,34 @@ import { EditProfile } from './pages/EditProfile'
 import { MessengerInbox } from './cmps/MessengerInbox'
 import { CreateMsgModal } from './cmps/CreateMsgModal'
 import { MessengerChat } from './cmps/MessengerChat'
+import { switchUser, loadMsgs } from './store/logedUser/loged.user.actions'
+import { LoadPosts } from './store/posts/posts.actions'
+import { LoadUsers } from './store/users/users.actions'
+import { utilService } from './services/util.service'
+
 
 export function RootCmp() {
+    const [loading, setLoading] = useState(true)
+    const [login, setLogin] = useState(false)
+
+    useEffect(() => {
+        async function loadDb() 
+        {
+            const logeduser = utilService.loadFromStorage('loggeduser') || {}
+            if (Object.keys(logeduser).length !== 0){
+                await switchUser(logeduser)
+                await LoadPosts()
+                await LoadUsers()
+                await loadMsgs()
+                setLoading(false)
+            }
+            else setLogin(true)
+        }
+       loadDb()
+
+    },[])
+    if (login) return <LoginPage />
+    if (loading) return <div>Loading...</div>
     const location = useLocation();
     const isNavOn = (location.pathname === '/login' || location.pathname === '/signup')
     return (

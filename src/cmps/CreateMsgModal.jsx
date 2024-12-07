@@ -5,7 +5,7 @@ import { SearchBar } from './SearchBar'
 import { MinUserCard } from './MinUserCard'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
-import { messegeService } from '../services/messege.service'
+import { addMessage } from '../store/logedUser/loged.user.actions'
 
 
 export function CreateMsgModal() {
@@ -21,13 +21,14 @@ export function CreateMsgModal() {
 
     async function onCreateMsg() {
         if (!selected.length) return
-        const msgId = await messegeService.save({correspandents: 
+        // const msgId = await messegeService.save({correspandents: 
+        //     [...selected.map(user => user._id), logedUser._id]})
+        const msgId = await addMessage({correspandents: 
             [...selected.map(user => user._id), logedUser._id]})
         navigate(`../chat/${msgId}`)
     }   
 
     function onSelectUser(user) { 
-        console.log('user:', user)
         setSelected(prev => [...prev, user])
     }
 

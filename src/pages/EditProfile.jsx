@@ -25,7 +25,6 @@ export function EditProfile() {
     function onSelectImg() {
         if (fileInputRef.current) {
             fileInputRef.current.click()
-            console.log('clicked')
         }
     }
 

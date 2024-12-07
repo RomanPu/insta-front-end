@@ -1,4 +1,8 @@
-import axios from 'axios';
+import Axios from 'axios'
+
+var axios = Axios.create({
+    withCredentials: true,
+})
 
 const BASE_URL = (process.env.NODE_ENV !== 'development') ?
     '/api/message/' :

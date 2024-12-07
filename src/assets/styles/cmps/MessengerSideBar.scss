@@ -48,27 +48,36 @@
         list-style: none;
         padding: 0;
 
-        li{
-            padding: 8px 24px;
-            height:72px;
-
-            .min-user-card{
-                padding: 0;
-                .avatar{
-                    width: 56px;
-                    height: 56px;
-                    margin-right: 12px;
+        button{
+            display: inline;
+            padding: 0;
+            background: transparent;
+            width: 100%;
+            li{
+                padding: 8px 24px;
+                height:72px;
+                background-color: transparent;
+    
+                .min-user-card{
+                    padding: 0;
+                    .avatar{
+                        width: 56px;
+                        height: 56px;
+                        margin-right: 12px;
+                    }
+    
+                    h1{
+                        font-weight: 400;
+                    }
                 }
-
-                h1{
-                    font-weight: 400;
+    
+                &:hover{
+                    background-color: rgb(245 245 245);
+                    cursor: pointer;
                 }
             }
 
-            &:hover{
-                background-color: rgb(245 245 245);
-                cursor: pointer;
-            }
+ 
         }
     }
 }
