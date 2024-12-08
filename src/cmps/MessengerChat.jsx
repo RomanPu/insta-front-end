@@ -4,9 +4,10 @@ import { useEffect, useState, useRef } from "react";
 import { MinUserCard } from "./MinUserCard";
 import { Avatar } from "./Avatar";
 import { EmojiPicker, EmojiIcon } from "./imojiPicker";
-import { editMessage, setCurrentMsg } from "../store/logedUser/loged.user.actions";
+import { editMessage} from "../store/logedUser/loged.user.actions";
 import { useSelector } from "react-redux";
 import { utilService } from "../services/util.service";
+import { Link } from "react-router-dom";
 
 
 
@@ -48,7 +49,7 @@ export function MessengerChat() {
                 <div className="profile-avatar"><Avatar picUrl={chat.correspandents[0].avatarPic}/></div>
                 <h1>{chat.correspandents[0].fullname}</h1>
                 <h2>{chat.correspandents[0].username}</h2>
-                <button className="view-profile-btn">View profile</button> 
+                <Link to = {`../../../profile/${logedUser._id}`} className="view-profile-btn">View profile</Link> 
             </div> 
             <div className="messenger-chat-messages">
                 {chat.messages.map((msg, idx) => <Message key={idx} msg={msg}

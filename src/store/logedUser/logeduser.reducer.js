@@ -56,12 +56,11 @@ export function logedUserReducer(state = initialState, action = {}) {
             return { ...state, newNotification: true, notifications: [action.notification, ...state.notifications]
             }
         case EDIT_MSG:
-            console.log('action.msgs:', countUnread([action.msg], state.logedUser))
             return { ...state, messages: state.messages.map( msg => msg._id === action.msg._id ?  action.msg: msg)
             , unreadCnt: countUnread([action.msg], state.logedUser)
             }
         case ADD_MSG:
-            return { ...state, messages:  [...state.messages, action.msg]}
+            return { ...state, messages:  [...state.messages, action.msg], unreadCnt: countUnread([action.msg], state.logedUser)}
         case LOAD_MSGS:
             return { ...state, messages: [...action.msgs], unreadCnt: countUnread(action.msgs, state.logedUser)}
         case SET_CURRENT_MSG:
@@ -72,7 +71,6 @@ export function logedUserReducer(state = initialState, action = {}) {
 }
 
 function countUnread(messages, user) {
-    console.log('messages:', messages)
     return messages.filter(msg => msg.isRead.some(isRead =>
          isRead.id === user._id  && isRead.isRead === false )).length
 }

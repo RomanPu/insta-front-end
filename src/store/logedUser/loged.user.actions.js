@@ -56,11 +56,13 @@ export function editLogedUser(user) {
     store.dispatch({ type: EDIT_USER, user })
 }
 
-export async function editMessage(chat) {
+export async function editMessage(chat, type = '') {
     const logedUser = store.getState().logedUserModule.logedUser
     chat.correspandents.push(logedUser)
     chat.isRead = chat.isRead.map( (isRead) => {
         if (isRead.id === logedUser._id) isRead.isRead = true
+        else isRead.isRead = type === "read" ? isRead.isRead : false
+        // false for other users if added somthing new. if only read return same
         return isRead
     })
 
@@ -75,9 +77,14 @@ export function editMsgLocal(msg) {
 }
 
 export async function addMessage(msg) {
-    var addedMsg = await messegeService.save(msg)
+    const addedMsg = await messegeService.save(msg)
     store.dispatch({ type: ADD_MSG, msg: addedMsg })
     return addedMsg._id
+}
+
+export async function addMsgLocal(msg) {
+    store.dispatch({ type: ADD_MSG, msg: msg })
+    return msg._id
 }
 
 export async function loadMsgs() {

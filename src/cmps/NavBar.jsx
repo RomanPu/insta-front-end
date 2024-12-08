@@ -20,7 +20,7 @@ import { SearchPopUp } from './SearchPopUp'
 import { socketService} from '../services/socket.service'
 import { addNotification } from '../store/logedUser/loged.user.actions'
 import { editPostLocal } from '../store/posts/posts.actions'
-import { editMsgLocal } from '../store/logedUser/loged.user.actions'
+import { editMsgLocal, addMsgLocal } from '../store/logedUser/loged.user.actions'
 import { useNavigate } from 'react-router'
 import { messegeService } from '../services/messege.service'
 import { utilService } from '../services/util.service'
@@ -43,7 +43,7 @@ export function NavBar() {
         })
 
         // checkForNewMsg()
-        socketService.on('message', async  (id) => { 
+        socketService.on('edit-message', async  (id) => { 
             const currentMsgId = utilService.loadFromStorage('currentMsg')
             console.log('currentMsgId:', currentMsgId)
             const msg = await messegeService.getById(id)
@@ -58,6 +58,12 @@ export function NavBar() {
                 console.log('msg: socket', msg)
             editMsgLocal(msg)
         })
+
+        socketService.on('add-message', async  (id) => { 
+            const msg = await messegeService.getById(id)
+            addMsgLocal(msg)
+        })
+        
         return () => {
             socketService.logout()
         }

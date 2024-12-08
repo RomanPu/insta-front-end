@@ -26,6 +26,8 @@ import { utilService } from './services/util.service'
 export function RootCmp() {
     const [loading, setLoading] = useState(true)
     const [login, setLogin] = useState(false)
+    const location = useLocation()
+    console.log("start")
 
     useEffect(() => {
         async function loadDb() 
@@ -45,7 +47,6 @@ export function RootCmp() {
     },[])
     if (login) return <LoginPage />
     if (loading) return <div>Loading...</div>
-    const location = useLocation();
     const isNavOn = (location.pathname === '/login' || location.pathname === '/signup')
     return (
         <div className="main-layout">

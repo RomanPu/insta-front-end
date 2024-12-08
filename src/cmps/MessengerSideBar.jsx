@@ -30,6 +30,7 @@ export function MessengerSideBar() {
 function ActiveMesagesList() {
     const messages = useSelector(storeState => storeState.logedUserModule.messages)
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
+    const [selectedChatId, setSelectedChatId] = useState(null);
     const  [chats, setChats] = useState([])
     const navigate = useNavigate()
     useEffect (() => {
@@ -40,14 +41,18 @@ function ActiveMesagesList() {
     }, [messages])
 
     async function onSelectChat(chat) {
-        await editMessage(chat)
+        setSelectedChatId(chat._id);
+        await editMessage(chat, 'read')
         navigate(`../messenger/chat/${chat._id}`)
     }
-    if (!chats.length) return <div>test</div>
+    if (!chats.length) return <div></div>
     return (
         <ul className="active-messages-list">
             {chats.map((chat) => {
-                    return  <button onClick = {() => onSelectChat(chat)}><li key={chat._id}><MinUserCard user = {chat.correspandents[0]} followButton = {false}
+                    return  <button onClick = {() => onSelectChat(chat)}
+                    className={`${selectedChatId === chat._id ? 'selected' : ''}
+                     ${chat.isRead.find(isRead => isRead.id === logedUser._id && !isRead.isRead) ? 'not-read' : '' }`}>
+                        <li key={chat._id}><MinUserCard user = {chat.correspandents[0]} followButton = {false}
                 type = {"both"}/></li></button>
             })}
         </ul>

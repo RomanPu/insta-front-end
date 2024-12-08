@@ -1,10 +1,8 @@
 import { useState} from 'react';
 
-export function SearchBar({ onSearch, type = "" }) {
-    const [search, setSearch] = useState('');
+export function SearchBar({ onSearch, type = "" , value = ""}) {
 
     function handleChange(ev) {
-        setSearch(ev.target.value); 
         onSearch(ev.target.value);       
     }
 
@@ -12,7 +10,7 @@ export function SearchBar({ onSearch, type = "" }) {
         <div className= {`search-bar ${type}`}>
             <input
                 type="text"
-                value={search}
+                value={value}
                 onChange={handleChange}
                 placeholder="Search"
             />

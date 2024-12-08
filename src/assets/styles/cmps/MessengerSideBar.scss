@@ -57,6 +57,8 @@
                 padding: 8px 24px;
                 height:72px;
                 background-color: transparent;
+                display: flex;
+                align-items: center;
     
                 .min-user-card{
                     padding: 0;
@@ -76,6 +78,23 @@
                     cursor: pointer;
                 }
             }
+
+            &.selected li {
+                background-color: rgb(200, 200, 200); // Change this to your desired selected color
+            }
+            &.not-read li {
+                .min-user-card{   
+                    h1{
+                        font-weight: 700;
+                    }
+
+                    p{
+                        font-weight: 700;
+                        color: black;
+                    }
+                }
+            }
+
 
  
         }

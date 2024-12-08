@@ -11,6 +11,7 @@ import { addMessage } from '../store/logedUser/loged.user.actions'
 export function CreateMsgModal() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     const [result, setResult] = useState([])
+    const [sResult, setsResult] = useState('')
     const [selected, setSelected] = useState([])
     const navigate = useNavigate()
     useEffect(() => {
@@ -21,18 +22,18 @@ export function CreateMsgModal() {
 
     async function onCreateMsg() {
         if (!selected.length) return
-        // const msgId = await messegeService.save({correspandents: 
-        //     [...selected.map(user => user._id), logedUser._id]})
         const msgId = await addMessage({correspandents: 
             [...selected.map(user => user._id), logedUser._id]})
         navigate(`../chat/${msgId}`)
     }   
 
     function onSelectUser(user) { 
+        setsResult('')
         setSelected(prev => [...prev, user])
     }
 
     async function onSerach(search) {
+        setsResult(search)
         if (!search) return setResult([])
     //TODO DEBOUNCE
         const res = await userService.query({ username: search })
@@ -52,11 +53,11 @@ export function CreateMsgModal() {
                     {selected.map(user => (
                         <div className='selected-user' key={user._id}>
                             <h2>{user.username}</h2>
-                            <button onClick={() => setSelected(selected.filter(u => u._id !== user._id))}><BlueX/></button>
+                            <button onClick={() => setSelected(selected.filter(u => u._id !== user._id))}><BlackX/></button>
                         </div>
                     ))}
                 </div>
-                <SearchBar onSearch={onSerach} type = {"messenger"}/>
+                <SearchBar onSearch={onSerach} type = {"messenger"} value = {sResult}/>
             </div>
             <div className="search-results">
                 { result.length > 0 && <ul>

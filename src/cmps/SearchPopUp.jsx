@@ -7,6 +7,7 @@ export function SearchPopUp({ onClose }) {
     const [show, setShow] = useState("") // for slide effect
     const popupRef = useRef(null)
     const [result, setResult] = useState([])
+    const [sResult, setSResult] = useState('')
 
 
     useEffect(() => {
@@ -19,6 +20,7 @@ export function SearchPopUp({ onClose }) {
 
 
     async function onSerach(search) {
+        setSResult(search)
         if (!search) return setResult([])
         const res = await userService.query({ username: search })
         setResult(res)
@@ -35,7 +37,7 @@ export function SearchPopUp({ onClose }) {
     return (
         <div ref={popupRef} className={`search-pop-up ${show}`}>
             <h3>Search</h3>
-            <SearchBar onSearch={onSerach} />
+            <SearchBar onSearch={onSerach}  value={sResult}/>
            { result.length > 0 && <ul>
                 {result.map(user => (               
                     <li key={user.id}>
