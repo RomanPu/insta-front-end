@@ -6,8 +6,8 @@
     border-right: 1px solid rgb(219, 219, 219);
     border-left: 1px solid rgb(219, 219, 219);
     background-color: white;
-    z-index: 500;
-    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    transition: transform 0.1s ease-in-out;
     transform: translateX(-100%);
     overflow-y: auto;
 
@@ -38,6 +38,8 @@
 
     ul{
         list-style: none;
+        margin: 0;
+        padding: 0;
         // padding-inline: 24px;
     }
 }

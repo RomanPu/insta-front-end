@@ -11,6 +11,7 @@
     width: $nav-medium-width;
     margin: 0;
     font-weight: 400;
+    z-index: 1500;
 
     &.small{
         width: 100%;
@@ -34,7 +35,7 @@
     @include for-mobile-layout{
         flex-direction: row;
         top: calc(100% - 72px);
-        z-index: 500;
+      //  z-index: 500;
         background-color: white;
         width: 100%;
         justify-content: space-around;

@@ -20,13 +20,16 @@ export function NotificationPopUp({ onClose }) {
 
     function handleClickOutside(event) {
         if (popupRef.current && !popupRef.current.contains(event.target)) {
-            setShow("hide")
-            setTimeout(() => {
-                onClose(false)
-            }, 300)
+            handleClose()
 
             console.log('clicked outside')
         }
+    }
+    function handleClose() {
+        setShow("hide")
+        setTimeout(() => {
+            onClose(false)
+        }, 100)
     }
     return (
         <div ref={popupRef} className={`notification-pop-up ${show}`}>
@@ -40,6 +43,7 @@ export function NotificationPopUp({ onClose }) {
                         body={notification.body}
                         createdAt={+notification.createdAt}
                         post={notification.post}
+                        onClose={handleClose}
                     />
                 ))}
             </ul>
