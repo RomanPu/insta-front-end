@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     width: 220px;
+    height: 100%;
     top: 0;
     left: 0;
     width: $nav-medium-width;
@@ -12,7 +13,7 @@
     font-weight: 400;
 
     &.small{
-        width: auto;
+        width: 100%;
         justify-content: normal;
         .nav-bar-buttom-name{
             display: none;
@@ -48,6 +49,13 @@
         @include for-mobile-layout{
             flex-direction: row;
             justify-content: space-between;
+            ul{
+                padding: 0;
+            }
+
+            &.hide-nav-bar{
+                display: none;
+            }
         }
         .bold {
             font-weight: 600;
@@ -58,8 +66,8 @@
 
         li{     
             &:nth-child(8),
-            &:nth-child(6),
-            &:nth-child(7),
+            &:nth-child(5),
+            &:nth-child(9),
             &:nth-child(10) {
                 @include for-mobile-layout{
                     display: none;

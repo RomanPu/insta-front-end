@@ -7,10 +7,10 @@ import { useNavigate } from 'react-router';
 import { editMessage } from '../store/logedUser/loged.user.actions';
 
 
-export function MessengerSideBar() {
+export function MessengerSideBar({className}) {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     return (
-    <div className="messenger-side-bar">
+    <div className={`messenger-side-bar ${className}`}>
         <div className="profile">
             <div className="profile-header">
                 <h1>{logedUser.username}</h1>

@@ -224,7 +224,7 @@
                     font-size: 20px;
                     text-align: center;
                     line-height: 25px;
-                    margin-block-start: 16px;
+                    margin-block: 16px 0px;
                     height: 31px;
                     color: black;
                 }
@@ -232,9 +232,9 @@
                 button {
                     background-color: rgb(0 149 246);
                     border-radius: 8px;
-                    height: 30px;
+                    height: 32px;
                     font-size: 14px;
-                    padding: 4px;
+                    padding: 7px 16px;
                     margin: 24px 0px 0px 0px;
                 }
             }

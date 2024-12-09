@@ -2,6 +2,11 @@
     max-width: 400px;
     width: 100%;
     border-right: 1px solid rgb(230 230 230);
+    @include for-mobile-layout {
+        &.hide-sidebar {
+            display: none;
+        }
+    }
     .profile{
         width: 100%;
         .profile-header{

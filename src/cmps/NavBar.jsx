@@ -82,7 +82,7 @@ export function NavBar() {
 
     return (
         <div className={!activateNotificationPopUp && !activateSearchPopUp && corrPage !== 'messenger' ? "nav-bar-container" : "nav-bar-container small"}>
-            <ul className= {"nav-bar"}>
+            <ul className= {`nav-bar ${corrPage === 'messenger' ? 'hide-nav-bar' : ''}`}>
                 <div key={'ins-logo'} className="insta-logo">
                     <img src={poster} alt="Instagram Logo" />
                 </div>

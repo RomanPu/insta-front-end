@@ -24,6 +24,8 @@ export function NotificationPopUp({ onClose }) {
             setTimeout(() => {
                 onClose(false)
             }, 300)
+
+            console.log('clicked outside')
         }
     }
     return (
