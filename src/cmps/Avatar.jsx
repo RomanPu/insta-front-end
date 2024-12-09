@@ -11,14 +11,14 @@ export function Avatar({ picUrl = noUserImg }) {
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
 
-        canvas.width = 200
-        canvas.height = 200
+        canvas.width = 1000
+        canvas.height = 1000
 
         // Draw background circle
         // context.fillStyle = red[500];
         context.fillStyle = '#fff'
         context.beginPath()
-        context.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, 0, Math.PI * 2)
+        //context.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, 0, Math.PI * 2)
         context.closePath()
         context.fill()
 
