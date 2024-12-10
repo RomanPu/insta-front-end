@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import PostPreview from './PostPreview'
 import { useEffect } from 'react'
 import { LoadPosts } from '../store/posts/posts.actions'
+//import seenAllImg from '../assets/imgs/seen-all.png'
 // LoadPosts()
 
 export function PostsList({ _id }) {
@@ -11,8 +12,14 @@ export function PostsList({ _id }) {
     const allPosts = useSelector(storeState => storeState.postsModule.posts)
     var posts = allPosts.filter(post => user.following.map(follow => follow === post.userId).includes(true))
     posts = shuffleArray(posts)
-    // posts.sort((a, b) => b.createdAt - a.createdAt)
-    //if new user followed - update posts
+    console.log('posts:', posts)
+
+    var unfollowed = allPosts.filter(post => posts.some(followedPost => followedPost._id === post._id) === false)
+    var unfollowed = unfollowed.filter(post => post.userId !== _id)
+   // console.log('unfollowed:', unfollowed)
+    unfollowed = shuffleArray(unfollowed)
+    console.log('unfollowed:', unfollowed)
+
     useEffect(() => {
         LoadPosts()
     }, [user])
@@ -20,6 +27,16 @@ export function PostsList({ _id }) {
     return (
         <ul className="posts-list">
             {posts.map(post => (
+                <li key={post._id}>
+                    <PostPreview post={post} />
+                </li>
+            ))}
+            <div className="end-of-followed">
+                <img src={"/img/seen-all.png"} alt="profile" />
+                <h2>You're all caught up</h2>
+                <p>You've seen all new posts from the past 3 days.</p>
+            </div>
+            {unfollowed.map(post => (
                 <li key={post._id}>
                     <PostPreview post={post} />
                 </li>

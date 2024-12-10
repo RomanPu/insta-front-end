@@ -16,6 +16,8 @@ export default function PostPreview({ post, type = 'post-preview' }) {
     const user = useSelector(storeState => storeState.usersModule.users.find(user => user._id === post.userId))
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
 
+   // console.log('posttttttttttttttt:', post)
+
     const { author, createdAt, body, picUrl, likes, comments, isFollowed } = post
     const [isLiked, setIsLiked] = useState(likes.map(like => like === logedUser._id).includes(true))
     const [comment, setComment] = useState('')
