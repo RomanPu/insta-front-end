@@ -16,7 +16,7 @@ export function MinUserCard({ user, time = '', followButton = true, type = 'only
         loggedUser?.following.map(follow => follow === author._id).includes(true)
     )
 
-//
+    //
 
     useEffectUpdate(() => {
         if (isFollowed && !loggedUser.following.map(like => like === user._id).includes(true)) {

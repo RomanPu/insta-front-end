@@ -3,12 +3,10 @@ import { utilService } from './util.service.js'
 import Axios from 'axios'
 
 var axios = Axios.create({
-    withCredentials: true,
+    withCredentials: true
 })
 
-const BASE_URL = (process.env.NODE_ENV !== 'development') ?
-    '/api/post/' :
-    '//localhost:3030/api/post/'
+const BASE_URL = process.env.NODE_ENV !== 'development' ? '/api/post/' : '//localhost:3030/api/post/'
 
 export const postService = {
     query,

@@ -152,11 +152,13 @@ function PicSelect({ getImgUrl, setState }) {
         <div className="pic-select">
             <h1>Create new post</h1>
             <div className="pic-select-conteiner">
-                {loading ? <div className='loader'></div> :<MediaIcon />}
+                {loading ? <div className="loader"></div> : <MediaIcon />}
                 {!loading && <h2>Drag photos and videos here</h2>}
-                {!loading && <button onClick={onSelectImg} type="button">
-                    Select from computer
-                </button>}
+                {!loading && (
+                    <button onClick={onSelectImg} type="button">
+                        Select from computer
+                    </button>
+                )}
                 <input
                     type="file"
                     ref={fileInputRef}

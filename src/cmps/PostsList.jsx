@@ -16,7 +16,7 @@ export function PostsList({ _id }) {
 
     var unfollowed = allPosts.filter(post => posts.some(followedPost => followedPost._id === post._id) === false)
     var unfollowed = unfollowed.filter(post => post.userId !== _id)
-   // console.log('unfollowed:', unfollowed)
+    // console.log('unfollowed:', unfollowed)
     unfollowed = shuffleArray(unfollowed)
     console.log('unfollowed:', unfollowed)
 
@@ -32,7 +32,7 @@ export function PostsList({ _id }) {
                 </li>
             ))}
             <div className="end-of-followed">
-                <img src={"/img/seen-all.png"} alt="profile" />
+                <img src={'/img/seen-all.png'} alt="profile" />
                 <h2>You're all caught up</h2>
                 <p>You've seen all new posts from the past 3 days.</p>
             </div>
@@ -47,8 +47,8 @@ export function PostsList({ _id }) {
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[array[i], array[j]] = [array[j], array[i]]
     }
-    return array;
+    return array
 }

@@ -1,17 +1,16 @@
-import { Avatar } from '../cmps/Avatar';
-import { useSelector } from 'react-redux';
-import { useState, useRef, useEffect } from 'react';
+import { Avatar } from '../cmps/Avatar'
+import { useSelector } from 'react-redux'
+import { useState, useRef, useEffect } from 'react'
 import logo from '../assets/imgs/Sticker.png'
-import { editUser } from '../store/users/users.actions';
-import { useNavigate } from 'react-router-dom';
+import { editUser } from '../store/users/users.actions'
+import { useNavigate } from 'react-router-dom'
 import { uploadService } from '../services/img.upload.service'
-import { editLogedUser } from '../store/logedUser/loged.user.actions';
-
+import { editLogedUser } from '../store/logedUser/loged.user.actions'
 
 export function EditProfile() {
     const [count, setCount] = useState(0)
-    const {_id}= useSelector(storeState => storeState.logedUserModule.logedUser);
-    const loggedUser = useSelector(storeState => storeState.usersModule.users.find(user => user._id === _id));
+    const { _id } = useSelector(storeState => storeState.logedUserModule.logedUser)
+    const loggedUser = useSelector(storeState => storeState.usersModule.users.find(user => user._id === _id))
     const [gImgUrl, setGImgUrl] = useState(loggedUser.avatarPic)
     const [bio, setBio] = useState(loggedUser.body)
     const navigate = useNavigate()
@@ -43,8 +42,8 @@ export function EditProfile() {
 
     function onSubmit() {
         // console.log(bio)
-        editUser({...loggedUser , body: bio, avatarPic: gImgUrl})
-        editLogedUser({...loggedUser ,  avatarPic: gImgUrl})
+        editUser({ ...loggedUser, body: bio, avatarPic: gImgUrl })
+        editLogedUser({ ...loggedUser, avatarPic: gImgUrl })
         navigate(-1)
     }
 
@@ -56,8 +55,8 @@ export function EditProfile() {
         <div className="edit-profile-layout">
             <div className="edit-profile-conteiner">
                 <h1>Edit Profile</h1>
-                <div className = 'user-card-conteiner'>
-                    <div className="user-card" >
+                <div className="user-card-conteiner">
+                    <div className="user-card">
                         <Avatar picUrl={gImgUrl} />
                         <div className="user-info">
                             <h1>{loggedUser.username}</h1>
@@ -71,8 +70,8 @@ export function EditProfile() {
                             onChange={onFileChange}
                             accept="img/*"
                             id="imgUpload"
-                        />       
-                    </div> 
+                        />
+                    </div>
                     <h3>Bio</h3>
                     <div className="write-bio">
                         <textarea
@@ -86,15 +85,17 @@ export function EditProfile() {
                         <div className="emoji-and-count">
                             <span>{count}/150</span>
                         </div>
-                    </div> 
+                    </div>
                     <h3>Gender</h3>
                     <select name="gender-select">
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Other</option>
-                    </select> 
-                    <button className='submit' onClick={onSubmit}>Submit</button>
-                    <img className = {logo} src={logo} alt="Instagram Logo" />
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                    <button className="submit" onClick={onSubmit}>
+                        Submit
+                    </button>
+                    <img className={logo} src={logo} alt="Instagram Logo" />
                 </div>
             </div>
         </div>

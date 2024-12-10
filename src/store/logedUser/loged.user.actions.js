@@ -1,9 +1,18 @@
-import { SET_USER, EDIT_USER, LOGOUT, NOTIFICATIONS_READ,
-     ADD_NOTIFICATION, EDIT_MSG, ADD_MSG, LOAD_MSGS, SET_CURRENT_MSG  } from './logeduser.reducer'
+import {
+    SET_USER,
+    EDIT_USER,
+    LOGOUT,
+    NOTIFICATIONS_READ,
+    ADD_NOTIFICATION,
+    EDIT_MSG,
+    ADD_MSG,
+    LOAD_MSGS,
+    SET_CURRENT_MSG
+} from './logeduser.reducer'
 import { store } from '../store'
 import { utilService } from '../../services/util.service'
 import { notificationService } from '../../services/notification.service'
-import { socketService} from '../../services/socket.service'
+import { socketService } from '../../services/socket.service'
 import { userService } from '../../services/user.service'
 import { messegeService } from '../../services/messege.service'
 
@@ -12,23 +21,29 @@ export async function switchUser(user) {
     socketService.login(user._id)
     const notifications = await notificationService.query(user._id)
     const isNew = notifications.some(notification => notification.isRead === false)
-    const messages = await messegeService.query({byUser: user._id})
-    const unreadCnt = await messegeService.query({byUser: user._id, isRead: true})
-    store.dispatch({ type: SET_USER, logedUser: user, notifications: notifications,
-         isNew: isNew, messages: messages, unreadCnt: unreadCnt} )
+    const messages = await messegeService.query({ byUser: user._id })
+    const unreadCnt = await messegeService.query({ byUser: user._id, isRead: true })
+    store.dispatch({
+        type: SET_USER,
+        logedUser: user,
+        notifications: notifications,
+        isNew: isNew,
+        messages: messages,
+        unreadCnt: unreadCnt
+    })
 }
 
 export function loadLoggedUser() {
     const logedUser = utilService.loadFromStorage('loggeduser')
     if (logedUser._id) {
         switchUser(logedUser)
-        return logedUser;
+        return logedUser
     }
 }
 
 export async function logout() {
     await userService.logout()
-    store.dispatch({ type: LOGOUT})
+    store.dispatch({ type: LOGOUT })
     utilService.saveToStorage('loggeduser', {})
 }
 
@@ -59,9 +74,9 @@ export function editLogedUser(user) {
 export async function editMessage(chat, type = '') {
     const logedUser = store.getState().logedUserModule.logedUser
     chat.correspandents.push(logedUser)
-    chat.isRead = chat.isRead.map( (isRead) => {
+    chat.isRead = chat.isRead.map(isRead => {
         if (isRead.id === logedUser._id) isRead.isRead = true
-        else isRead.isRead = type === "read" ? isRead.isRead : false
+        else isRead.isRead = type === 'read' ? isRead.isRead : false
         // false for other users if added somthing new. if only read return same
         return isRead
     })
@@ -89,7 +104,7 @@ export async function addMsgLocal(msg) {
 
 export async function loadMsgs() {
     const logedUser = store.getState().logedUserModule.logedUser
-    const msgs = await messegeService.query({byUser: logedUser._id})
+    const msgs = await messegeService.query({ byUser: logedUser._id })
     store.dispatch({ type: LOAD_MSGS, msgs: msgs })
 }
 

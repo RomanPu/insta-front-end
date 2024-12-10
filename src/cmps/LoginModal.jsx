@@ -8,30 +8,29 @@ import { logout } from '../store/logedUser/loged.user.actions'
 
 import logo from '../assets/imgs/Sticker.png'
 
-export function LoginModal({layout = ""}) {
+export function LoginModal({ layout = '' }) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const { type} = useParams()
+    const { type } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
         if (type === 'pop-up') document.body.classList.add('no-scroll')
         return () => document.body.classList.remove('no-scroll')
-
     }, [])
 
     async function onLogin(ev) {
         ev.preventDefault()
 
         try {
-            const user = await userService.login({username, password})
+            const user = await userService.login({ username, password })
             // console.log('user:', user)
             await switchUser(user)
             navigate('/')
             // console.log('Logged in:', user)
         } catch (err) {
             showErrorMsg(`Cannot login`)
-        } 
+        }
     }
 
     function onUsernameChange(ev) {
@@ -49,20 +48,31 @@ export function LoginModal({layout = ""}) {
     }
 
     return (
-        <div className= {`login-modal ${type} ${layout}`}>
-            <div className='close' onClick={() => navigate(-1)}>{<BlackX />}</div>
-            <img className = {logo} src={logo} alt="Instagram Logo" />
-            <form onSubmit = {onLogin}>
-                <label className={!username && "no-txt"} htmlFor="username">
-                    <span className='username-p-holder'>Phone number, username, or email</span>
-                    <input className={username && "no-txt"} onChange = {onUsernameChange} type="text" placeholder="Phone number, username, or email" />
+        <div className={`login-modal ${type} ${layout}`}>
+            <div className="close" onClick={() => navigate(-1)}>
+                {<BlackX />}
+            </div>
+            <img className={logo} src={logo} alt="Instagram Logo" />
+            <form onSubmit={onLogin}>
+                <label className={!username && 'no-txt'} htmlFor="username">
+                    <span className="username-p-holder">Phone number, username, or email</span>
+                    <input
+                        className={username && 'no-txt'}
+                        onChange={onUsernameChange}
+                        type="text"
+                        placeholder="Phone number, username, or email"
+                    />
                 </label>
-                <label className={!password && "no-txt"} htmlFor="password">
-                    <span className='password-p-holder'>Password</span>
-                    <input onChange = {onPasswordChange}type="password" placeholder="Password" />
+                <label className={!password && 'no-txt'} htmlFor="password">
+                    <span className="password-p-holder">Password</span>
+                    <input onChange={onPasswordChange} type="password" placeholder="Password" />
                 </label>
                 <button>Log in</button>
-                {type === 'pop-up' && <button className='logout' onClick= {onLogOut}>Log out</button>}
+                {type === 'pop-up' && (
+                    <button className="logout" onClick={onLogOut}>
+                        Log out
+                    </button>
+                )}
             </form>
         </div>
     )

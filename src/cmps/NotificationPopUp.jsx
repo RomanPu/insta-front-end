@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux'
 import { readNotifications } from '../store/logedUser/loged.user.actions'
 
 export function NotificationPopUp({ onClose }) {
-    const [show, setShow] = useState("") // for slide effect
+    const [show, setShow] = useState('') // for slide effect
     const notifications = useSelector(storeState => storeState.logedUserModule.notifications)
     const popupRef = useRef(null)
 
     useEffect(() => {
-        setShow("show")
+        setShow('show')
         readNotifications()
         document.addEventListener('mousedown', handleClickOutside)
 
@@ -26,7 +26,7 @@ export function NotificationPopUp({ onClose }) {
         }
     }
     function handleClose() {
-        setShow("hide")
+        setShow('hide')
         setTimeout(() => {
             onClose(false)
         }, 100)

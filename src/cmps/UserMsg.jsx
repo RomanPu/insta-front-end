@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react"
-import { eventBusService } from "../services/event-bus.service.js"
-
+import { useEffect, useState } from 'react'
+import { eventBusService } from '../services/event-bus.service.js'
 
 export function UserMsg() {
-
     const [msg, setMsg] = useState(null)
 
     useEffect(() => {
@@ -17,7 +15,6 @@ export function UserMsg() {
         }
     }, [])
 
-
     function onCloseMsg() {
         setMsg(null)
     }
@@ -25,7 +22,7 @@ export function UserMsg() {
     if (!msg) return null
 
     return (
-        <section className={"user-msg " + msg.type}>
+        <section className={'user-msg ' + msg.type}>
             <p>{msg.txt}</p>
         </section>
     )

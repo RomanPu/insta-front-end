@@ -1,4 +1,4 @@
-.messenger-side-bar{
+.messenger-side-bar {
     max-width: 400px;
     width: 100%;
     border-right: 1px solid rgb(230 230 230);
@@ -7,30 +7,30 @@
             display: none;
         }
     }
-    .profile{
+    .profile {
         width: 100%;
-        .profile-header{
+        .profile-header {
             display: flex;
             height: 75px;
             width: 100%;
             padding: 36px 24px 12px;
             align-items: center;
 
-            h1{
+            h1 {
                 font-size: 20px;
                 font-weight: 700;
                 line-height: 25px;
                 margin: 0 8px 6px 0;
                 display: flex;
-                align-items: center; 
+                align-items: center;
             }
 
-            a{
-                 margin-left: auto;
+            a {
+                margin-left: auto;
             }
         }
 
-        .profile-pic{
+        .profile-pic {
             display: flex;
             width: 74px;
             height: 74px;
@@ -38,47 +38,47 @@
         }
     }
 
-    .active-message-header{
+    .active-message-header {
         height: 44px;
         padding: 14px 24px 10px;
 
-        h2{
+        h2 {
             font-size: 16px;
             font-weight: 700;
             color: black;
         }
     }
 
-    .active-messages-list{
+    .active-messages-list {
         list-style: none;
         padding: 0;
 
-        button{
+        button {
             display: inline;
             padding: 0;
             background: transparent;
             width: 100%;
-            li{
+            li {
                 padding: 8px 24px;
-                height:72px;
+                height: 72px;
                 background-color: transparent;
                 display: flex;
                 align-items: center;
-    
-                .min-user-card{
+
+                .min-user-card {
                     padding: 0;
-                    .avatar{
+                    .avatar {
                         width: 56px;
                         height: 56px;
                         margin-right: 12px;
                     }
-    
-                    h1{
+
+                    h1 {
                         font-weight: 400;
                     }
                 }
-    
-                &:hover{
+
+                &:hover {
                     background-color: rgb(245 245 245);
                     cursor: pointer;
                 }
@@ -88,20 +88,17 @@
                 background-color: rgb(200, 200, 200); // Change this to your desired selected color
             }
             &.not-read li {
-                .min-user-card{   
-                    h1{
+                .min-user-card {
+                    h1 {
                         font-weight: 700;
                     }
 
-                    p{
+                    p {
                         font-weight: 700;
                         color: black;
                     }
                 }
             }
-
-
- 
         }
     }
 }

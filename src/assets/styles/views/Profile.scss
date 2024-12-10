@@ -5,22 +5,21 @@
     height: 100vh;
     overflow: scroll;
 
-    @include for-wide-layout{
+    @include for-wide-layout {
         margin-inline-start: 72px;
     }
 
-    @include for-mobile-layout{
+    @include for-mobile-layout {
         margin-inline-start: 0px;
         padding: 0px;
     }
-    
 
-    .profile{
+    .profile {
         margin-left: auto;
         margin-right: auto;
         padding: 30px 20px 0px;
         max-width: 935px;
-        @include for-mobile-layout{
+        @include for-mobile-layout {
             width: 100%;
         }
 
@@ -40,7 +39,7 @@
                     height: 150px;
                 }
             }
-    
+
             h1 {
                 display: inline-flex;
                 align-items: center;
@@ -49,7 +48,7 @@
                 font-weight: 400;
                 margin-block-end: 20px;
             }
-    
+
             h2 {
                 font-size: 14px;
                 line-height: 18px;
@@ -57,7 +56,7 @@
                 color: black;
                 margin: 0px;
             }
-    
+
             h1,
             h2,
             .pro-pic {
@@ -65,14 +64,14 @@
                     cursor: pointer;
                 }
             }
-    
+
             .stats {
                 height: 38px;
                 display: flex;
                 p {
-                    display: flex;                   
+                    display: flex;
                     margin-inline-end: 40px;
-                    @include for-narrow-layout{
+                    @include for-narrow-layout {
                         flex-direction: column;
                         align-items: center;
                         margin-inline-end: 20px;
@@ -80,16 +79,16 @@
                         //justify-items: space-around;
                     }
 
-                    span{
-                        @include for-narrow-layout{
+                    span {
+                        @include for-narrow-layout {
                             line-height: 16px;
                         }
-                        &:nth-child(1){
+                        &:nth-child(1) {
                             font-weight: 700;
-                            margin-inline-end: 4px; 
+                            margin-inline-end: 4px;
                         }
                     }
-    
+
                     &:nth-child(2),
                     &:nth-child(3) {
                         &:hover {
@@ -98,7 +97,7 @@
                     }
                 }
             }
-    
+
             .user-info-profile {
                 width: calc(100% - 100% / 3);
                 .body {
@@ -106,7 +105,7 @@
                     font-size: 14px;
                 }
 
-                h1{
+                h1 {
                     margin-inline-end: 20px;
                 }
 
@@ -120,9 +119,8 @@
                     font-weight: 600;
                     border-radius: 8px;
                     background-color: rgb(239 239 239);
-                   
 
-                    &:hover{
+                    &:hover {
                         cursor: pointer;
                         background-color: rgb(219 219 219);
                     }
@@ -156,7 +154,4 @@
             padding-block-start: 0px;
         }
     }
-
-    }
-
-
+}

@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { addMessage } from '../store/logedUser/loged.user.actions'
 
-
 export function CreateMsgModal() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     const [result, setResult] = useState([])
@@ -17,17 +16,15 @@ export function CreateMsgModal() {
     useEffect(() => {
         document.body.classList.add('no-scroll')
         return () => document.body.classList.remove('no-scroll')
-
     }, [])
 
     async function onCreateMsg() {
         if (!selected.length) return
-        const msgId = await addMessage({correspandents: 
-            [...selected.map(user => user._id), logedUser._id]})
+        const msgId = await addMessage({ correspandents: [...selected.map(user => user._id), logedUser._id] })
         navigate(`../chat/${msgId}`)
-    }   
+    }
 
-    function onSelectUser(user) { 
+    function onSelectUser(user) {
         setsResult('')
         setSelected(prev => [...prev, user])
     }
@@ -35,42 +32,50 @@ export function CreateMsgModal() {
     async function onSerach(search) {
         setsResult(search)
         if (!search) return setResult([])
-    //TODO DEBOUNCE
+        //TODO DEBOUNCE
         const res = await userService.query({ username: search })
         setResult(res)
     }
 
     return (
-        <div className= {`create-msg-modal`}>
+        <div className={`create-msg-modal`}>
             <div className="create-msg-header">
-                <span className='place-holder'>r</span>
+                <span className="place-holder">r</span>
                 <h1>New message</h1>
-                <Link to={"../inbox"}><BlackX/></Link>
+                <Link to={'../inbox'}>
+                    <BlackX />
+                </Link>
             </div>
             <div className="search-bar-conteiner">
                 <span>To:</span>
                 <div className="selected-users">
                     {selected.map(user => (
-                        <div className='selected-user' key={user._id}>
+                        <div className="selected-user" key={user._id}>
                             <h2>{user.username}</h2>
-                            <button onClick={() => setSelected(selected.filter(u => u._id !== user._id))}><BlackX/></button>
+                            <button onClick={() => setSelected(selected.filter(u => u._id !== user._id))}>
+                                <BlackX />
+                            </button>
                         </div>
                     ))}
                 </div>
-                <SearchBar onSearch={onSerach} type = {"messenger"} value = {sResult}/>
+                <SearchBar onSearch={onSerach} type={'messenger'} value={sResult} />
             </div>
             <div className="search-results">
-                { result.length > 0 && <ul>
-                    {result.map(user => (               
-                        <li key={user._id}>
-                            <button onClick={(ev) => onSelectUser({_id: user._id, username: user.username})}>
-                                <MinUserCard user={user} type={'both'} followButton={false} />
-                            </button>
-                        </li>
-                    ))}
-                </ul>}
+                {result.length > 0 && (
+                    <ul>
+                        {result.map(user => (
+                            <li key={user._id}>
+                                <button onClick={ev => onSelectUser({ _id: user._id, username: user.username })}>
+                                    <MinUserCard user={user} type={'both'} followButton={false} />
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
-            <button onClick={onCreateMsg} className={`pre-user-selct-btn ${!selected.length ? "" : "user-selected"}`}>Chat</button>
+            <button onClick={onCreateMsg} className={`pre-user-selct-btn ${!selected.length ? '' : 'user-selected'}`}>
+                Chat
+            </button>
         </div>
     )
 }

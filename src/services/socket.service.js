@@ -4,8 +4,7 @@ import { utilService } from './util.service.js'
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
-
-const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
+const baseUrl = process.env.NODE_ENV === 'production' ? '' : '//localhost:3030'
 export const socketService = createSocketService()
 // export const socketService = createDummySocketService()
 
@@ -14,38 +13,36 @@ window.socketService = socketService
 
 socketService.setup()
 
-
 function createSocketService() {
-  var socket = null
-  const socketService = {
-    setup() {
-      const {_id} = utilService.loadFromStorage('loggeduser') || {}
-      socket = io(baseUrl)
-      if(_id) this.login(_id)
-    },
-    on(eventName, cb) {
-      socket.on(eventName, cb)
-    },
-    off(eventName, cb = null) {
-      if (!socket) return
-      if (!cb) socket.removeAllListeners(eventName)
-      else socket.off(eventName, cb)
-    },
-    emit(eventName, data) {
-      socket.emit(eventName, data)
-    },
-    login(userId) {
-      socket.emit(SOCKET_EMIT_LOGIN, userId)
-    },
-    logout() {
-      socket.emit(SOCKET_EMIT_LOGOUT)
-    },
-    terminate() {
-      socket = null
-    },
-
-  }
-  return socketService
+    var socket = null
+    const socketService = {
+        setup() {
+            const { _id } = utilService.loadFromStorage('loggeduser') || {}
+            socket = io(baseUrl)
+            if (_id) this.login(_id)
+        },
+        on(eventName, cb) {
+            socket.on(eventName, cb)
+        },
+        off(eventName, cb = null) {
+            if (!socket) return
+            if (!cb) socket.removeAllListeners(eventName)
+            else socket.off(eventName, cb)
+        },
+        emit(eventName, data) {
+            socket.emit(eventName, data)
+        },
+        login(userId) {
+            socket.emit(SOCKET_EMIT_LOGIN, userId)
+        },
+        logout() {
+            socket.emit(SOCKET_EMIT_LOGOUT)
+        },
+        terminate() {
+            socket = null
+        }
+    }
+    return socketService
 }
 
 // function createDummySocketService() {
@@ -95,7 +92,6 @@ function createSocketService() {
 //   window.listenersMap = listenersMap
 //   return socketService
 // }
-
 
 // Basic Tests
 // function cb(x) {console.log('Socket Test - Expected Puk, Actual:', x)}

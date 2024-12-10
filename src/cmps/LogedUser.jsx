@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { Avatar } from './Avatar'
 import { Link } from 'react-router-dom'
 
-
 export function LogedUser() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
 

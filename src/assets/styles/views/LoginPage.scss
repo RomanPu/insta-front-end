@@ -1,4 +1,4 @@
-.login-conteiner{
+.login-conteiner {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,11 +8,11 @@
     margin: 32px auto 0;
     padding-block-end: 32px;
 
-    .intro-img{
-        @include for-wide-layout{
+    .intro-img {
+        @include for-wide-layout {
             display: none;
         }
-    
+
         // @include for-mobile-layout{
         //     margin-inline-start: 0px;
         //     padding: 0px;
@@ -22,12 +22,12 @@
         margin: 0 32px 12px 0;
         height: 538px;
         background-size: 410px 634.15px;
-        background-image:url(https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones-2x.png?__makehaste_cache_breaker=73SVAexZgBW);
-        .img-conteiner{
-            margin:27px 0 0 112px;
+        background-image: url(https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones-2x.png?__makehaste_cache_breaker=73SVAexZgBW);
+        .img-conteiner {
+            margin: 27px 0 0 112px;
             display: flex;
             justify-content: center;
-            img{
+            img {
                 object-fit: cover;
                 width: 227px;
                 height: 500px;
@@ -36,9 +36,9 @@
         }
     }
 
-    .login-secetion{
+    .login-secetion {
         height: 536px;
-        .sign-up{
+        .sign-up {
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -51,11 +51,11 @@
             font-size: 14px;
             font-weight: 400;
             line-height: 18px;
-            @include for-mobile-layout{
+            @include for-mobile-layout {
                 border: none;
             }
-    
-            a{
+
+            a {
                 color: rgb(0, 149, 246);
                 font-weight: 600;
                 font-size: 14px;

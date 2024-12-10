@@ -7,6 +7,6 @@ export default defineConfig({
   build: {
     outDir: "../back-end/public",
     emptyOutDir: true,
-    target: 'esnext',
+    target: "esnext",
   },
 });

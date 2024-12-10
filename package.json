@@ -5,6 +5,7 @@
   "type": "module",
   "homepage": "https://RomanPu.github.io/instush/",
   "scripts": {
+    "format": "prettier --write .",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",

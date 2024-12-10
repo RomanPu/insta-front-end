@@ -17,7 +17,7 @@ import poster from '../assets/imgs/Sticker.png'
 import { useLocation } from 'react-router'
 import { NotificationPopUp } from './NotificationPopUp'
 import { SearchPopUp } from './SearchPopUp'
-import { socketService} from '../services/socket.service'
+import { socketService } from '../services/socket.service'
 import { addNotification } from '../store/logedUser/loged.user.actions'
 import { editPostLocal } from '../store/posts/posts.actions'
 import { editMsgLocal, addMsgLocal } from '../store/logedUser/loged.user.actions'
@@ -37,13 +37,13 @@ export function NavBar() {
     const pageNameArr = ['search', 'explore', 'reels', 'messenger', 'notifications', 'create', `profile`, 'more']
 
     useEffect(() => {
-        socketService.on('notification', (notificationId) => {
+        socketService.on('notification', notificationId => {
             addNotification(notificationId)
             editPostLocal(notificationId.post.postId)
         })
 
         // checkForNewMsg()
-        socketService.on('edit-message', async  (id) => { 
+        socketService.on('edit-message', async id => {
             const currentMsgId = utilService.loadFromStorage('currentMsg')
             console.log('currentMsgId:', currentMsgId)
             const msg = await messegeService.getById(id)
@@ -53,21 +53,21 @@ export function NavBar() {
                     console.log('isRead:', isRead)
                     if (isRead.id === logedUser._id) isRead.isRead = true
                     else isRead.isRead = isRead.isRead
-                });
+                })
             }
-                console.log('msg: socket', msg)
+            console.log('msg: socket', msg)
             editMsgLocal(msg)
         })
 
-        socketService.on('add-message', async  (id) => { 
+        socketService.on('add-message', async id => {
             const msg = await messegeService.getById(id)
             addMsgLocal(msg)
         })
-        
+
         return () => {
             socketService.logout()
         }
-    },[])
+    }, [])
 
     // async function checkForNewMsg() {
     //     const notRead = await messegeService.query({byUser: logedUser._id, isRead: true })
@@ -81,8 +81,14 @@ export function NavBar() {
     }, [location])
 
     return (
-        <div className={!activateNotificationPopUp && !activateSearchPopUp && corrPage !== 'messenger' ? "nav-bar-container" : "nav-bar-container small"}>
-            <ul className= {`nav-bar ${corrPage === 'messenger' ? 'hide-nav-bar' : ''}`}>
+        <div
+            className={
+                !activateNotificationPopUp && !activateSearchPopUp && corrPage !== 'messenger'
+                    ? 'nav-bar-container'
+                    : 'nav-bar-container small'
+            }
+        >
+            <ul className={`nav-bar ${corrPage === 'messenger' ? 'hide-nav-bar' : ''}`}>
                 <div key={'ins-logo'} className="insta-logo">
                     <img src={poster} alt="Instagram Logo" />
                 </div>
@@ -90,8 +96,7 @@ export function NavBar() {
                     <NavBarAction name={'Home'} link={'/'} icon={<HomeIcon />} />
                 </li>
                 <li className={corrPage === 'search' ? 'bold' : ''} key={'search'}>
-                    <NavBarAction name={'Search'} icon={<SearchIcon />}
-                    actionFunc = {setActivateSearchPopUp} />
+                    <NavBarAction name={'Search'} icon={<SearchIcon />} actionFunc={setActivateSearchPopUp} />
                 </li>
                 <li className={corrPage === 'explore' ? 'bold' : ''} key={'explore'}>
                     <NavBarAction name={'Explore'} icon={<ExploreIcon />} link={'/explore'} />
@@ -100,13 +105,20 @@ export function NavBar() {
                     <NavBarAction name={'Reels'} icon={<ReelsIcon />} />
                 </li>
                 <li className={corrPage === 'messenger' ? 'bold' : ''} key={'messenger'}>
-                   <NavBarAction name={'Messages'} icon={<MessengerIcon />}
-                  notificationsIconOn = {msgCnt !== 0} actionFunc = {()=> navigate('./messenger/inbox')}/>
+                    <NavBarAction
+                        name={'Messages'}
+                        icon={<MessengerIcon />}
+                        notificationsIconOn={msgCnt !== 0}
+                        actionFunc={() => navigate('./messenger/inbox')}
+                    />
                 </li>
                 <li className={corrPage === 'notifications' ? 'bold' : ''} key={'notifications'}>
-                    <NavBarAction name={'Notifications'} icon={<NotificationsIcon />}
-                     actionFunc = {setActivateNotificationPopUp} notificationsIconOn = 
-                     {newNotification}/>
+                    <NavBarAction
+                        name={'Notifications'}
+                        icon={<NotificationsIcon />}
+                        actionFunc={setActivateNotificationPopUp}
+                        notificationsIconOn={newNotification}
+                    />
                 </li>
                 <li className={corrPage === 'create' ? 'bold' : ''} key={'create'}>
                     <NavBarAction name={'Create'} icon={<NewPostIcon />} link={'/createpost'} />

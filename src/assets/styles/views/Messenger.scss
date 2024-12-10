@@ -1,8 +1,8 @@
-.messenger-conteiner{
+.messenger-conteiner {
     margin-inline-start: 72px;
     height: 100vh;
     display: flex;
-    @include for-mobile-layout{
-       margin: 0;
+    @include for-mobile-layout {
+        margin: 0;
     }
 }

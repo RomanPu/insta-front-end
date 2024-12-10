@@ -27,11 +27,18 @@ export async function setUsers(newUsers) {
 
 export async function editUser(user, type, forUser) {
     try {
-        if(type){
-            const about = "started following you"
-            const {_id} = utilService.loadFromStorage('loggeduser') 
-            notificationService.save({postId: "" , userId: _id, about:about,
-                 body: "", createdAt: "", byUser: _id, forUser: forUser})
+        if (type) {
+            const about = 'started following you'
+            const { _id } = utilService.loadFromStorage('loggeduser')
+            notificationService.save({
+                postId: '',
+                userId: _id,
+                about: about,
+                body: '',
+                createdAt: '',
+                byUser: _id,
+                forUser: forUser
+            })
         }
         const savedUser = await userService.save(user)
         store.dispatch({ type: EDIT_USER, user: { ...savedUser } })
