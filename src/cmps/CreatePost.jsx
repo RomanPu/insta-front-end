@@ -130,6 +130,7 @@ function WritePost({ setPost, post, logedUser }) {
 
 function PicSelect({ getImgUrl, setState }) {
     const fileInputRef = useRef(null)
+    const [loading, setLoading] = useState(false)
 
     function onSelectImg() {
         if (fileInputRef.current) {
@@ -140,21 +141,22 @@ function PicSelect({ getImgUrl, setState }) {
     async function onFileChange(event) {
         const file = event.target.files[0]
         if (file) {
+            setLoading(true)
             let imgUrl = await uploadService.uploadImg(file)
+            setLoading(false)
             getImgUrl(imgUrl)
             setState('pic-post')
         }
     }
-
     return (
         <div className="pic-select">
             <h1>Create new post</h1>
             <div className="pic-select-conteiner">
-                <MediaIcon />
-                <h2>Drag photos and videos here</h2>
-                <button onClick={onSelectImg} type="button">
+                {loading ? <div className='loader'></div> :<MediaIcon />}
+                {!loading && <h2>Drag photos and videos here</h2>}
+                {!loading && <button onClick={onSelectImg} type="button">
                     Select from computer
-                </button>
+                </button>}
                 <input
                     type="file"
                     ref={fileInputRef}
