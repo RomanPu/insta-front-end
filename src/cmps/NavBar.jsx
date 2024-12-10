@@ -101,7 +101,7 @@ export function NavBar() {
                 </li>
                 <li className={corrPage === 'messenger' ? 'bold' : ''} key={'messenger'}>
                    <NavBarAction name={'Messages'} icon={<MessengerIcon />}
-                  notificationsIconOn = {msgCnt} actionFunc = {()=> navigate('./messenger/inbox')}/>
+                  notificationsIconOn = {msgCnt !== 0} actionFunc = {()=> navigate('./messenger/inbox')}/>
                 </li>
                 <li className={corrPage === 'notifications' ? 'bold' : ''} key={'notifications'}>
                     <NavBarAction name={'Notifications'} icon={<NotificationsIcon />}
