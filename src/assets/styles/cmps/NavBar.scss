@@ -14,7 +14,6 @@
     z-index: 1500;
 
     &.small{
-        width: 100%;
         justify-content: normal;
         .nav-bar-buttom-name{
             display: none;
@@ -34,10 +33,11 @@
 
     @include for-mobile-layout{
         flex-direction: row;
-        top: calc(100% - 72px);
+        top: calc(100% - 52px);
       //  z-index: 500;
         background-color: white;
         width: 100%;
+        height: auto;
         justify-content: space-around;
         display: block;
     }
@@ -52,6 +52,7 @@
             justify-content: space-between;
             ul{
                 padding: 0;
+                margin: 0;
             }
 
             &.hide-nav-bar{
