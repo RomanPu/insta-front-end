@@ -11,14 +11,10 @@ export function PostsList({ _id }) {
     const user = useSelector(storeState => storeState.usersModule.users.find(user => user._id === _id))
     const allPosts = useSelector(storeState => storeState.postsModule.posts)
     var posts = allPosts.filter(post => user.following.map(follow => follow === post.userId).includes(true))
-    posts = shuffleArray(posts)
-    console.log('posts:', posts)
-
     var unfollowed = allPosts.filter(post => posts.some(followedPost => followedPost._id === post._id) === false)
     var unfollowed = unfollowed.filter(post => post.userId !== _id)
-    // console.log('unfollowed:', unfollowed)
-    unfollowed = shuffleArray(unfollowed)
-    console.log('unfollowed:', unfollowed)
+
+    
 
     useEffect(() => {
         LoadPosts()
