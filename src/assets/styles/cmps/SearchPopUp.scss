@@ -1,5 +1,6 @@
 .search-pop-up {
-    position: relative;
+    position: absolute;
+    left: 72px;
     width: 396px;
     height: 100vh;
     box-shadow: 8px 0 12px -6px rgba(0, 0, 0, 0.5);
@@ -9,7 +10,15 @@
     z-index: 500;
     transition: transform 0.3s ease-in-out;
     transform: translateX(-100%);
-    overflow-y: hidden;
+    overflow-y: scroll;
+
+    @include for-mobile-layout {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: calc(100vh - 52px);
+        width: 100%; // Adjust width as needed
+    }
 
     &.show {
         transform: translateX(0%);
@@ -32,7 +41,7 @@
         list-style: none;
         padding: 0;
         margin: 0;
-        border-bottom: 1px solid rgb(219, 219, 219);
+      //  border-bottom: 1px solid rgb(219, 219, 219);
         li {
             padding: 8px 24px;
             font-size: 16px;
