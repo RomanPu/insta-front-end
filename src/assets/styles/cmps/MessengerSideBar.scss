@@ -35,6 +35,9 @@
             width: 74px;
             height: 74px;
             margin: 50px 0 0 24px;
+            @include for-mobile-layout {
+            margin-block-start: 0;
+            }
         }
     }
 
