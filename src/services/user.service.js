@@ -98,5 +98,5 @@ async function signup(credentials) {
 
 async function logout() {
     await axios.post(BASE_AUTH_URL + 'logout')
-    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+    localStorage.removeItem('loggeduser')
 }

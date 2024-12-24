@@ -29,18 +29,22 @@ export function RootCmp() {
     console.log('start')
 
     useEffect(() => {
+        console.log('useEffect')
         async function loadDb() {
             const logeduser = utilService.loadFromStorage('loggeduser') || {}
+            console.log('logeduser', logeduser)
             if (Object.keys(logeduser).length !== 0) {
                 await switchUser(logeduser)
                 await LoadPosts()
                 await LoadUsers()
                 await loadMsgs()
                 setLoading(false)
+                setLogin(false)
             } else setLogin(true)
+            console.log(login)
         }
         loadDb()
-    }, [])
+    }, [location])
     if (login) return <LoginPage />
     if (loading) return <div>Loading...</div>
     const isNavOn = location.pathname === '/login' || location.pathname === '/signup'
