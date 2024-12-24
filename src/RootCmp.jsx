@@ -44,8 +44,7 @@ export function RootCmp() {
         }
         loadDb()
     }, [location])
-
-    if (login) return  location.pathname === '/login' ? <LoginPage /> : <SignUpPage />
+    if (login) return  location.pathname === '/signup' ? <SignUpPage /> : <LoginPage />
     if (loading) return <div>Loading...</div>
     const isNavOn = location.pathname === '/login' || location.pathname === '/signup'
     return (
