@@ -7,10 +7,10 @@
     border-right: 1px solid rgb(219, 219, 219);
     border-left: 1px solid rgb(219, 219, 219);
     background-color: white;
-    z-index: 500;
+    z-index: 1000;
     transition: transform 0.3s ease-in-out;
     transform: translateX(-100%);
-    overflow-y: scroll;
+    overflow-y: auto;
 
     @include for-mobile-layout {
         position: fixed;

@@ -2,12 +2,14 @@ import { useEffect, useState, useRef } from 'react'
 import { SearchBar } from './SearchBar'
 import { userService } from '../services/user.service'
 import { MinUserCard } from './MinUserCard'
+import { useNavigate } from 'react-router-dom'
 
 export function SearchPopUp({ onClose }) {
     const [show, setShow] = useState('') // for slide effect
     const popupRef = useRef(null)
     const [result, setResult] = useState([])
     const [sResult, setSResult] = useState('')
+    const navigate = useNavigate()
 
     useEffect(() => {
         setShow('show')
@@ -32,6 +34,12 @@ export function SearchPopUp({ onClose }) {
             }, 300)
         }
     }
+
+    const handleSelect = (user) => {
+        navigate(`../profile/${user._id}`)
+        onClose(false)
+    };
+    
     return (
         <div ref={popupRef} className={`search-pop-up ${show}`}>
             <h3>Search</h3>
@@ -39,7 +47,7 @@ export function SearchPopUp({ onClose }) {
             {result.length > 0 && (
                 <ul>
                     {result.map(user => (
-                        <li key={user.id}>
+                        <li key = {user._id} onClick={() => handleSelect(user)}>
                             <MinUserCard user={user} type={'both'} followButton={false} />
                         </li>
                     ))}
