@@ -29,7 +29,6 @@ export function RootCmp() {
     console.log('start')
 
     useEffect(() => {
-        console.log('useEffect')
         async function loadDb() {
             const logeduser = utilService.loadFromStorage('loggeduser') || {}
             console.log('logeduser', logeduser)
@@ -45,7 +44,8 @@ export function RootCmp() {
         }
         loadDb()
     }, [location])
-    if (login) return <LoginPage />
+
+    if (login) return  location.pathname === '/login' ? <LoginPage /> : <SignUpPage />
     if (loading) return <div>Loading...</div>
     const isNavOn = location.pathname === '/login' || location.pathname === '/signup'
     return (
