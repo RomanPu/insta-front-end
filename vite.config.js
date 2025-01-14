@@ -9,4 +9,7 @@ export default defineConfig({
     emptyOutDir: true,
     target: 'esnext',
   },
+  server: {
+    port: 4445
+  }
 });
