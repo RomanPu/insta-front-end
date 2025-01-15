@@ -3,12 +3,10 @@ import { utilService } from './util.service.js'
 import Axios from 'axios'
 
 var axios = Axios.create({
-    withCredentials: true,
+    withCredentials: true
 })
 
-const BASE_URL = (process.env.NODE_ENV !== 'development') ?
-    '/api/' :
-    '//localhost:3030/api/'
+const BASE_URL = process.env.NODE_ENV !== 'development' ? '/api/' : '//localhost:3030/api/'
 
 const BASE_USER_URL = BASE_URL + 'user/'
 const BASE_AUTH_URL = BASE_URL + 'auth/'
@@ -53,10 +51,9 @@ async function remove(id) {
 async function save(userToSave) {
     const method = userToSave._id ? 'put' : 'post'
     // userToSave._id = "test"
-    const { data: saveduser } = await axios[method](BASE_USER_URL , userToSave)
+    const { data: saveduser } = await axios[method](BASE_USER_URL, userToSave)
     return saveduser
 }
-
 
 function getDefaultFilter() {
     return {
@@ -75,7 +72,6 @@ function getFilterFromSearchParams(searchParams) {
 
     return filterBy
 }
-
 
 function createComment(author, body, authorId) {
     return {
@@ -96,13 +92,11 @@ async function login(credentials) {
 }
 
 async function signup(credentials) {
-
     const { data: user } = await axios.post(BASE_AUTH_URL + 'signup', credentials)
     return user
 }
 
 async function logout() {
     await axios.post(BASE_AUTH_URL + 'logout')
-    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+    localStorage.removeItem('loggeduser')
 }
-

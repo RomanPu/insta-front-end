@@ -1,6 +1,6 @@
-.search-bar{
+.search-bar {
     margin: 0 16px;
-    input{
+    input {
         margin: 0 0 24px;
         padding: 3px 16px;
         height: 40px;
@@ -10,6 +10,27 @@
         font-size: 16px;
         border: none;
         outline: none;
-        
+    }
+
+    &.messenger {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        input {
+            margin: 0;
+            padding: 4px 12px 4px 20px;
+            height: 100%;
+            width: 100%;
+            border-radius: none;
+            background-color: transparent;
+            font-size: 14px;
+            font-weight: 400;
+            border: none;
+            outline: none;
+
+            &::placeholder {
+                color: rgb(115 115 115);
+            }
+        }
     }
 }

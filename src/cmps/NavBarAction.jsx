@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
+import { sassFalse } from 'sass'
 
 export function NavBarAction({ icon = '', link = '/', name = '', actionFunc = null, notificationsIconOn = false }) {
-    //console.log('NavBarAction', name, actionFunc)
     return (
         <div>
             {actionFunc ? (
@@ -9,7 +9,7 @@ export function NavBarAction({ icon = '', link = '/', name = '', actionFunc = nu
                     <button onClick={actionFunc} className="nav-bar-buttom-link">
                         <div className="nav-bar-buttom-content">
                             <span className="nav-bar-icon">{icon}</span>
-                            {notificationsIconOn && <div className="new-notification-icon"></div>}
+                            {notificationsIconOn !== false && <div className="new-notification-icon"></div>}
                             <div className="nav-bar-buttom-name">{name}</div>
                         </div>
                     </button>

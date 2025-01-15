@@ -7,7 +7,10 @@ export default defineConfig({
   build: {
     outDir: "../back-end/public",
     emptyOutDir: true,
-    target: 'esnext',
+    target: "esnext",
+  },
+  server: {
+    port: 4445, // Change this to your desired port
   },
   server: {
     port: 4445

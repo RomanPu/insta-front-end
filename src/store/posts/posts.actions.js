@@ -7,7 +7,7 @@ import { notificationService } from '../../services/notification.service'
 export async function LoadPosts() {
     try {
         const newPosts = await postService.query()
-        store.dispatch({ type: SET_POSTS, posts: newPosts})
+        store.dispatch({ type: SET_POSTS, posts: newPosts })
     } catch (error) {
         throw error
     }
@@ -21,17 +21,23 @@ export async function setPosts(newPosts) {
     }
 }
 
-export async function editPost(post, type = '', comment = "") {
+export async function editPost(post, type = '', comment = '') {
     try {
-        if(type){
-            const about = type === 'comment' ? "commented:" : "liked your post"
-            const {_id} = utilService.loadFromStorage('loggeduser') 
-            notificationService.save({postId: post._id , userId: _id, about:about,
-                 body: comment, createdAt: "", byUser: _id, forUser: post.userId})
+        if (type) {
+            const about = type === 'comment' ? 'commented:' : 'liked your post'
+            const { _id } = utilService.loadFromStorage('loggeduser')
+            notificationService.save({
+                postId: post._id,
+                userId: _id,
+                about: about,
+                body: comment,
+                createdAt: '',
+                byUser: _id,
+                forUser: post.userId
+            })
         }
         const savedPost = await postService.save(post)
         store.dispatch({ type: EDIT_POST, post: { ...savedPost } })
-        console.log("before emit")
     } catch (error) {
         throw error
     }
@@ -66,11 +72,6 @@ export function getPostById(id) {
 }
 
 export async function editPostLocal(id) {
-
     const post = await postService.getById(id)
-    console.log('post: change', post)
-    return store.dispatch({ type: EDIT_POST, post: { ...post} })
+    return store.dispatch({ type: EDIT_POST, post: { ...post } })
 }
-
-
-

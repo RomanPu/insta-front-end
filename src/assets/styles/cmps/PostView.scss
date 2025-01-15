@@ -1,5 +1,5 @@
 .profile-conteiner .post-view {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
 }
@@ -15,7 +15,7 @@
             position: fixed;
             width: 100vw;
             height: 100vh;
-            z-index: 500;
+            z-index: 2500;
             justify-self: flex-end;
         }
 
@@ -59,9 +59,30 @@
                 grid-template-columns: 1fr 500px;
                 grid-template-rows: 69px 1fr 55px 22px 54px;
 
-                @include for-normal-layout{
+                @include for-normal-layout {
                     grid-template-columns: 1fr 405px;
                     width: 100%;
+                    max-height: none;
+                    max-width: none;
+                }
+
+                @include for-mobile-layout {
+                    grid-template-areas:
+                        'author'
+                        'pic'
+                        'comments'
+                        'add-comment';
+
+                    grid-template-rows: 40px auto 1fr 54px;
+                    grid-template-columns: auto;
+
+                    .actions {
+                        display: none;
+                    }
+
+                    .likes {
+                        display: none;
+                    }
                 }
                 .actions {
                     background-color: white;
@@ -104,14 +125,16 @@
                     background-color: white;
                     grid-area: comments;
                     overflow-y: auto;
-                    .body{
+                    .body {
                         display: flex;
                         padding: 4px 14px 16px 14px;
-                        span{
+                        span {
                             margin-inline-end: 4px;
                         }
 
                         .avatar {
+                            width: 42px;
+                            height: 42px;
                             margin-inline-end: 18px;
                         }
                     }
@@ -124,6 +147,8 @@
                             padding: 4px 14px 16px 14px;
 
                             .avatar {
+                                width: 42px;
+                                height: 42px;
                                 margin-inline-end: 18px;
                             }
                         }
@@ -142,7 +167,7 @@
                     height: 100%;
                     min-width: 500px;
                     grid-area: pic;
-                    @include for-normal-layout{
+                    @include for-normal-layout {
                         max-width: 337px;
                         min-width: 0px;
                     }
@@ -156,6 +181,13 @@
                     align-items: center;
                     .min-user-card {
                         padding: 4px 14px 16px 14px;
+                        @include for-mobile-layout {
+                            .avatar {
+                                width: 32px;
+                                height: 32px;
+                            }
+                            padding: 4px 0 4px 14px;
+                        }
                         h2 {
                             display: none;
                         }
@@ -268,4 +300,3 @@
         }
     }
 }
-

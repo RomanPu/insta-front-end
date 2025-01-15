@@ -83,7 +83,6 @@ function debounce(func, timeout = 300) {
     let timer
     return (...args) => {
         clearTimeout(timer)
-        console.log('debounce  called')
         timer = setTimeout(() => {
             func.apply(this, args)
         }, timeout)
@@ -96,7 +95,6 @@ function saveToStorage(key, value) {
 
 function loadFromStorage(key) {
     const data = localStorage.getItem(key)
-    console.log('data:', data)  
     return data ? JSON.parse(data) : undefined
 }
 

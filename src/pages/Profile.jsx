@@ -25,29 +25,35 @@ export function Profile() {
 
     return (
         <main className="profile-conteiner">
-            <dev className = "profile">
+            <dev className="profile">
                 <div className="profile-header">
                     <div className="pro-pic">
                         <Avatar picUrl={user.avatarPic} />
                     </div>
                     <div className="user-info-profile">
                         <h1>{user.username}</h1>
-                        <div className = {"edit-profile"}><Link to={`../edit-profile/${user._id}`}>Edit Profile</Link></div>
+                        <div className={'edit-profile'}>
+                            <Link to={`../edit-profile/${user._id}`}>Edit Profile</Link>
+                        </div>
                         <div className="stats">
                             <p>
-                                <span>{posts.length}</span> 
-                                <span>posts</span> 
+                                <span>{posts.length}</span>
+                                <span>posts</span>
                             </p>
                             <p onClick={() => setFollowersList(true)}>
                                 <span>{user.followers.length}</span>
-                                <span>followers</span> 
+                                <span>followers</span>
                             </p>
-                            {followersList && <ProfilesList user={user} type={'followers'} onClose={setFollowersList} />}
+                            {followersList && (
+                                <ProfilesList user={user} type={'followers'} onClose={setFollowersList} />
+                            )}
                             <p onClick={() => setFollowingList(true)}>
                                 <span>{user.following.length}</span>
                                 <span>following</span>
                             </p>
-                            {followingList && <ProfilesList user={user} type={'following'} onClose={setFollowingList} />}
+                            {followingList && (
+                                <ProfilesList user={user} type={'following'} onClose={setFollowingList} />
+                            )}
                         </div>
                         <h2>{user.username}</h2>
                         <div className={'body'}>

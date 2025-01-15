@@ -25,7 +25,7 @@ export function ProfilesList({ user, type = '', likedUsersList = '', onClose }) 
                 {!(fillteredUsers.length === 0) &&
                     fillteredUsers.map(user => (
                         <div className="profile-row" key={user._id}>
-                            <MinUserCard user={user}/>
+                            <MinUserCard user={user} />
                         </div>
                     ))}
             </ul>

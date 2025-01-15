@@ -15,7 +15,7 @@ export function Explore() {
     return (
         <div className="explore-page">
             <div className="explore-gallery">
-            <PostGallery posts={posts} />
+                <PostGallery posts={posts} />
             </div>
             <Outlet />
         </div>

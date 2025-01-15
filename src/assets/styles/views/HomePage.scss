@@ -1,18 +1,18 @@
 .home-page-conteiner {
     margin-inline-start: 244px;
 
-    @include for-wide-layout{
+    @include for-wide-layout {
         margin-inline-start: 72px;
     }
 
-    @include for-mobile-layout{
+    @include for-mobile-layout {
         margin-inline-start: 0px;
     }
     .home-page {
         display: flex;
         justify-content: center;
-        
-        @include for-mobile-layout{
+
+        @include for-mobile-layout {
             border-left: none;
         }
 
@@ -20,7 +20,7 @@
             width: 383px;
             padding-inline-start: 66px;
             margin-block-start: 36px;
-            @include for-wide-layout{
+            @include for-wide-layout {
                 display: none;
             }
         }

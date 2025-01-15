@@ -72,9 +72,9 @@ function _makeId(length = 5) {
 function _uploadData() {
     let users = utilService.loadFromStorage('users')
     if (!users || !users.length) {
-         localStorage.setItem('users', JSON.stringify(demoUsers))
+        localStorage.setItem('users', JSON.stringify(demoUsers))
     }
- 
+
     let posts = utilService.loadFromStorage('posts')
     if (!posts || !posts.length) {
         localStorage.setItem('posts', JSON.stringify(demoPosts))

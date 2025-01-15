@@ -1,41 +1,47 @@
 // @import 'mixins';
-.nav-bar-container{
+.nav-bar-container {
     border-right: 1px solid rgb(219, 219, 219);
     position: fixed;
     display: flex;
     justify-content: center;
     width: 220px;
+    height: 100%;
     top: 0;
     left: 0;
     width: $nav-medium-width;
     margin: 0;
     font-weight: 400;
+    z-index: 1500;
 
-    &.small{
-        width: auto;
+    &.small {
         justify-content: normal;
-        .nav-bar-buttom-name{
+        width: 72px;
+        .nav-bar-buttom-name {
             display: none;
         }
         .insta-logo {
             display: none;
         }
 
-        .nav-bar{
+        .nav-bar {
             padding-inline: 12px;
+        }
+        @include for-mobile-layout {
+            width: 100%;
         }
     }
 
-    @include for-wide-layout{
+    @include for-wide-layout {
         width: 72px;
     }
 
-    @include for-mobile-layout{
+    @include for-mobile-layout {
         flex-direction: row;
-        top: calc(100% - 72px);
-        z-index: 500;
+        top: calc(100% - 52px);
+        //  z-index: 500;
         background-color: white;
         width: 100%;
+        height: auto;
         justify-content: space-around;
         display: block;
     }
@@ -45,9 +51,18 @@
         padding-inline: 12px;
         list-style: none;
 
-        @include for-mobile-layout{
+        @include for-mobile-layout {
             flex-direction: row;
             justify-content: space-between;
+            margin: 0;
+            ul {
+                padding: 0;
+                margin: 0;
+            }
+
+            &.hide-nav-bar {
+                display: none;
+            }
         }
         .bold {
             font-weight: 600;
@@ -56,24 +71,24 @@
             }
         }
 
-        li{     
+        li {
             &:nth-child(8),
-            &:nth-child(6),
-            &:nth-child(7),
+            &:nth-child(5),
+            &:nth-child(9),
             &:nth-child(10) {
-                @include for-mobile-layout{
+                @include for-mobile-layout {
                     display: none;
                 }
             }
-        }      
-    
+        }
+
         .nav-bar-buttom-link {
             height: 52px;
             background-color: transparent;
             margin: 0;
             padding: 0;
         }
-    
+
         .nav-bar-buttom-content {
             position: relative;
             &:hover {
@@ -83,16 +98,16 @@
                     transform: scale(1.1);
                 }
             }
-    
+
             height: 48px;
             margin: 2px 0;
             padding: 12px;
-    
+
             display: flex;
             justify-content: flex-start;
             align-items: flex-end;
             width: 100%;
-    
+
             .nav-bar-buttom-name {
                 color: rgb(0, 0, 0);
                 color-scheme: light;
@@ -102,12 +117,12 @@
                 width: max-content;
                 text-align: left;
                 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    
-                @include for-wide-layout{
+
+                @include for-wide-layout {
                     display: none;
                 }
             }
-    
+
             .nav-bar-icon {
                 width: 24px;
                 height: 24px;
@@ -115,7 +130,7 @@
                 color: rgb(2 2 2);
             }
 
-            .new-notification-icon{
+            .new-notification-icon {
                 position: absolute;
                 top: 10px;
                 left: 27px;
@@ -126,22 +141,22 @@
                 border: 1px solid white;
             }
         }
-    
+
         .avatar {
             width: 24px;
             height: 24px;
         }
-    
+
         .insta-logo {
             // line-height: 37px;
             height: 73px;
             margin: 0px 0px 19px;
             padding: 30px 12px 16px;
-    
-            @include for-wide-layout{
+
+            @include for-wide-layout {
                 display: none;
             }
-    
+
             img {
                 height: 37px;
                 width: 103px;
@@ -150,5 +165,3 @@
         }
     }
 }
-
-

@@ -6,16 +6,12 @@ import { useEffectUpdate } from '../customHooks/useEffectUpdate'
 import { useSelector } from 'react-redux'
 import { editUser } from '../store/users/users.actions'
 
-
-
-export function Notification( {about,  body, createdAt, post, byUser} ) {
-    return (
-        Deteils({byUser,about,  body, createdAt, post})
-    )
+export function Notification({ about, body, createdAt, post, byUser, onClose }) {
+    return Deteils({ byUser, about, body, createdAt, post, onClose })
 }
 
-function Deteils({byUser,about,  body, createdAt, post}) {
-    const timeStr =utilService.createPostTimeFormat(createdAt)
+function Deteils({ byUser, about, body, createdAt, post, onClose }) {
+    const timeStr = utilService.createPostTimeFormat(createdAt)
     const { _id } = useSelector(storeState => storeState.logedUserModule.logedUser)
     const loggedUser = useSelector(storeState => storeState.usersModule.users.find(user => user._id === _id))
     const author = useSelector(storeState => storeState.usersModule.users.find(u => u._id === byUser._id))
@@ -40,39 +36,42 @@ function Deteils({byUser,about,  body, createdAt, post}) {
     }
 
     function onChangeFollow(ev) {
-        console.log('ev', ev)
         ev.stopPropagation()
         setIsFollowed(prev => !prev)
     }
-    
+
     return (
-        <li className = {"notification-entry"}key={byUser._id}>
+        <li className={'notification-entry'} key={byUser._id}>
             <div className="notification-deteils">
                 <div className="avatar">
                     <Avatar picUrl={byUser.avatarPic} />
                 </div>
                 <div className="content">
                     <p>
-                        <Link to={`../profile/${byUser._id}`}>{byUser.username} </Link>
+                        <Link to={`../profile/${byUser._id}`} onClick={onClose}>
+                            {byUser.username}{' '}
+                        </Link>
                         <span>{about}</span>
                         <span>{body}</span>
-                        <span className='createdAt'>{timeStr}</span>
+                        <span className="createdAt">{timeStr}</span>
                     </p>
                 </div>
             </div>
-            {Object.keys(post).length !== 0  && <Link to = {`../post/${post.postId}`}><img src = {post.picUrl} /></Link>}
+            {Object.keys(post).length !== 0 && (
+                <Link to={`../post/${post.postId}`} onClick={onClose}>
+                    <img src={post.picUrl} />
+                </Link>
+            )}
             {Object.keys(post).length === 0 && isFollowed && (
-                <button onClick={(ev) => onChangeFollow(ev)} className="followed">
+                <button onClick={ev => onChangeFollow(ev)} className="followed">
                     Followed
                 </button>
             )}
-            {Object.keys(post).length === 0 && !isFollowed &&  (
-                <button onClick={(ev) => onChangeFollow(ev)} className="follow">
+            {Object.keys(post).length === 0 && !isFollowed && (
+                <button onClick={ev => onChangeFollow(ev)} className="follow">
                     Follow
                 </button>
             )}
         </li>
     )
 }
-
-

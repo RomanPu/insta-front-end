@@ -17,29 +17,63 @@ import poster from '../assets/imgs/Sticker.png'
 import { useLocation } from 'react-router'
 import { NotificationPopUp } from './NotificationPopUp'
 import { SearchPopUp } from './SearchPopUp'
-import { socketService} from '../services/socket.service'
+import { socketService } from '../services/socket.service'
 import { addNotification } from '../store/logedUser/loged.user.actions'
 import { editPostLocal } from '../store/posts/posts.actions'
+import { editMsgLocal, addMsgLocal } from '../store/logedUser/loged.user.actions'
+import { useNavigate } from 'react-router'
+import { messegeService } from '../services/messege.service'
+import { utilService } from '../services/util.service'
 
 export function NavBar() {
+    const navigate = useNavigate()
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
     const location = useLocation()
     const [corrPage, setCorrPage] = useState('home')
     const newNotification = useSelector(storeState => storeState.logedUserModule.newNotification)
     const [activateNotificationPopUp, setActivateNotificationPopUp] = useState(false)
     const [activateSearchPopUp, setActivateSearchPopUp] = useState(false)
-    const pageNameArr = ['search', 'explore', 'reels', 'messeges', 'notifications', 'create', `profile`, 'more']
+    const msgCnt = useSelector(storeState => storeState.logedUserModule.unreadCnt)
+    const pageNameArr = ['search', 'explore', 'reels', 'messenger', 'notifications', 'create', `profile`, 'more']
 
     useEffect(() => {
-        socketService.on('notification', (notificationId) => {
-            console.log('notificationId:', notificationId)
+        socketService.on('notification', notificationId => {
             addNotification(notificationId)
             editPostLocal(notificationId.post.postId)
         })
+
+        // checkForNewMsg()
+        socketService.on('edit-message', async id => {
+            const currentMsgId = utilService.loadFromStorage('currentMsg')
+            console.log('currentMsgId:', currentMsgId)
+            const msg = await messegeService.getById(id)
+            if (msg._id === currentMsgId) {
+                console.log('socrt:')
+                msg.isRead.forEach(isRead => {
+                    console.log('isRead:', isRead)
+                    if (isRead.id === logedUser._id) isRead.isRead = true
+                    else isRead.isRead = isRead.isRead
+                })
+            }
+            console.log('msg: socket', msg)
+            editMsgLocal(msg)
+        })
+
+        socketService.on('add-message', async id => {
+            const msg = await messegeService.getById(id)
+            addMsgLocal(msg)
+        })
+
         return () => {
             socketService.logout()
         }
-    },[])
+    }, [])
+
+    // async function checkForNewMsg() {
+    //     const notRead = await messegeService.query({byUser: logedUser._id, isRead: true })
+    //     console.log('isRead:', notRead)
+    //     setNewMsgCount(notRead)
+    // }
 
     useEffect(() => {
         const page = pageNameArr.find(pageName => location.pathname.includes(pageName)) || 'home'
@@ -47,8 +81,14 @@ export function NavBar() {
     }, [location])
 
     return (
-        <div className={!activateNotificationPopUp && !activateSearchPopUp ? "nav-bar-container" : "nav-bar-container small"}>
-            <ul className= {"nav-bar"}>
+        <div
+            className={
+                !activateNotificationPopUp && !activateSearchPopUp && corrPage !== 'messenger'
+                    ? 'nav-bar-container'
+                    : 'nav-bar-container small'
+            }
+        >
+            <ul className={`nav-bar ${corrPage === 'messenger' ? 'hide-nav-bar' : ''}`}>
                 <div key={'ins-logo'} className="insta-logo">
                     <img src={poster} alt="Instagram Logo" />
                 </div>
@@ -56,8 +96,7 @@ export function NavBar() {
                     <NavBarAction name={'Home'} link={'/'} icon={<HomeIcon />} />
                 </li>
                 <li className={corrPage === 'search' ? 'bold' : ''} key={'search'}>
-                    <NavBarAction name={'Search'} icon={<SearchIcon />}
-                    actionFunc = {setActivateSearchPopUp} />
+                    <NavBarAction name={'Search'} icon={<SearchIcon />} actionFunc={setActivateSearchPopUp} />
                 </li>
                 <li className={corrPage === 'explore' ? 'bold' : ''} key={'explore'}>
                     <NavBarAction name={'Explore'} icon={<ExploreIcon />} link={'/explore'} />
@@ -65,13 +104,21 @@ export function NavBar() {
                 <li className={corrPage === 'reels' ? 'bold' : ''} key={'reels'}>
                     <NavBarAction name={'Reels'} icon={<ReelsIcon />} />
                 </li>
-                <li className={corrPage === 'messeges' ? 'bold' : ''} key={'messeges'}>
-                    <NavBarAction name={'Messeges'} icon={<MessengerIcon />} />
+                <li className={corrPage === 'messenger' ? 'bold' : ''} key={'messenger'}>
+                    <NavBarAction
+                        name={'Messages'}
+                        icon={<MessengerIcon />}
+                        notificationsIconOn={msgCnt !== 0}
+                        actionFunc={() => navigate('./messenger/inbox')}
+                    />
                 </li>
                 <li className={corrPage === 'notifications' ? 'bold' : ''} key={'notifications'}>
-                    <NavBarAction name={'Notifications'} icon={<NotificationsIcon />}
-                     actionFunc = {setActivateNotificationPopUp} notificationsIconOn = 
-                     {newNotification}/>
+                    <NavBarAction
+                        name={'Notifications'}
+                        icon={<NotificationsIcon />}
+                        actionFunc={setActivateNotificationPopUp}
+                        notificationsIconOn={newNotification}
+                    />
                 </li>
                 <li className={corrPage === 'create' ? 'bold' : ''} key={'create'}>
                     <NavBarAction name={'Create'} icon={<NewPostIcon />} link={'/createpost'} />

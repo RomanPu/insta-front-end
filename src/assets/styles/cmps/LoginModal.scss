@@ -1,4 +1,4 @@
-.login-modal{
+.login-modal {
     width: 350px;
     height: 425px;
     border: black 1px solid;
@@ -8,7 +8,6 @@
     flex-direction: column;
     border-radius: 10px;
 
-
     &.pop-up {
         box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
         position: fixed;
@@ -16,39 +15,39 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: white;
-        z-index: 500;
+        z-index: 2000;
         overflow: hidden;
     }
 
-    &.page-view{
+    &.page-view {
         height: 350px;
         border: 1px solid rgb(219 219 219);
-        @include for-mobile-layout{
+        @include for-mobile-layout {
             border: none;
         }
         justify-content: center;
-        .close{
+        .close {
             display: none;
         }
 
-        button{
+        button {
             top: 0;
         }
     }
 
-    img{
+    img {
         width: 175px;
         height: 51px;
         object-fit: cover;
         margin: 36px 0 12px;
     }
-    
-    .close{
+
+    .close {
         align-self: flex-end;
         // display: flex;
         // align-items: flex-end;
         // justify-content: flex-end;
-        svg{
+        svg {
             width: 34px;
             height: 34px;
             padding: 8px 8px;
@@ -56,19 +55,18 @@
         }
     }
 
-
-    form{
+    form {
         margin: 25px 0 0 0;
         // height: 100vh;
     }
 
-    button{
+    button {
         top: 50px;
         position: relative;
         width: 270px;
         height: 36px;
         font-weight: 600;
-        background-color:  rgb(0, 149, 246);
+        background-color: rgb(0, 149, 246);
         border: none;
         border-radius: 10px;
         font-size: 12px;
@@ -77,10 +75,7 @@
         cursor: pointer;
     }
 
-
-
-
-    .logout{
+    .logout {
         background-color: transparent;
         width: 270px;
         display: flex;
@@ -93,7 +88,7 @@
         color: rgb(0, 149, 246);
         margin: 0 0 12px;
     }
-    label{
+    label {
         display: flex;
         flex-direction: column;
         margin: 0 0 4px;
@@ -102,7 +97,7 @@
         padding: 0;
         position: relative;
 
-        input{
+        input {
             font-size: 12px;
             background-color: rgb(245 245 245);
             padding: 24px 0 2px 8px;
@@ -111,15 +106,15 @@
             border-radius: 2px;
             width: 100%;
             height: 40px;
-            
-            &::placeholder{
+
+            &::placeholder {
                 font-size: 12px;
                 font-weight: 600;
                 color: black;
             }
         }
 
-        span{
+        span {
             font-size: 12px;
             font-weight: lighter;
             position: absolute;
@@ -127,24 +122,18 @@
             color: $gray2;
         }
 
-        &.no-txt span{
+        &.no-txt span {
             display: none;
             color: transparent;
         }
-    
-        &.no-txt input{
 
+        &.no-txt input {
             padding: 0 0 0 8px;
-            &::placeholder{
+            &::placeholder {
                 font-size: 12px;
                 font-weight: 600;
                 color: black;
-                
             }
         }
     }
-
-
-
-
 }

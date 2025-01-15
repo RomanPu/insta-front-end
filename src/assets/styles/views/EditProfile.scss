@@ -1,29 +1,28 @@
-.edit-profile-layout{
+.edit-profile-layout {
     margin-inline-start: 244px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    @include for-wide-layout{
+    @include for-wide-layout {
         margin-inline-start: 72px;
     }
 
-    @include for-mobile-layout{
+    @include for-mobile-layout {
         margin-inline-start: 0px;
         padding: 0px;
     }
 
-    .edit-profile-conteiner{
+    .edit-profile-conteiner {
         max-width: 706px;
         width: 100%;
-        padding: 36px  46px;
-        @include for-mobile-layout{
+        padding: 36px 46px;
+        @include for-mobile-layout {
             padding: 0px;
         }
 
-
-
-        h1, h3{
+        h1,
+        h3 {
             display: inline-flex;
             align-items: center;
             height: 49px;
@@ -34,18 +33,18 @@
             // margin-bottom: 24px;
         }
 
-        h3{
+        h3 {
             font-size: 16px;
             color: black;
         }
 
-        .user-card-conteiner{
+        .user-card-conteiner {
             display: flex;
             align-items: flex-start;
             justify-content: center;
             flex-direction: column;
 
-            .user-card{
+            .user-card {
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
@@ -59,47 +58,47 @@
                 // flex-direction: column;
                 // margin-bottom: 24px;
 
-                .avatar{
+                .avatar {
                     width: 56px;
                     height: 56px;
                     // margin-bottom: 16px;
                 }
 
-                .user-info{
+                .user-info {
                     display: flex;
                     align-items: flex-start;
                     justify-content: center;
                     flex-direction: column;
                     margin-inline-start: 16px;
                     height: 36px;
-                    @include for-mobile-layout{
+                    @include for-mobile-layout {
                         align-self: flex-start;
                     }
 
-                    h1{
+                    h1 {
                         padding: 0px;
                         margin: 0px;
                         font-size: 16px;
                         font-weight: 700;
                     }
-    
-                    p{
+
+                    p {
                         padding: 0px;
                         margin: 0px;
                         font-size: 14px;
                         font-weight: 400;
                         color: rgb(115 115 115);
-                        @include for-mobile-layout{
-                           display: none;
+                        @include for-mobile-layout {
+                            display: none;
                         }
                     }
                 }
 
-                button{
+                button {
                     width: auto;
                     height: 32px;
                     font-weight: 600;
-                    background-color:  rgb(0, 149, 246);
+                    background-color: rgb(0, 149, 246);
                     border: none;
                     border-radius: 10px;
                     font-size: 12px;
@@ -107,7 +106,7 @@
                     //margin: 0 auto 12px 12px;
                     margin-inline: auto 12px;
                     cursor: pointer;
-                    @include for-mobile-layout{
+                    @include for-mobile-layout {
                         position: absolute;
                         left: 75px;
                         top: 30px;
@@ -117,13 +116,13 @@
                         white-space: nowrap; // Prevent text wrapping
                         overflow: hidden; // Hide overflow text
                         font-size: 14px;
-                        // text-overflow: ellipsis; 
-                     }
+                        // text-overflow: ellipsis;
+                    }
                 }
             }
         }
         .write-bio {
-           // margin-block-end: 16px;
+            // margin-block-end: 16px;
             .emoji-and-count {
                 display: flex;
                 justify-content: flex-end;
@@ -158,7 +157,7 @@
             }
         }
 
-        select{
+        select {
             margin-block-start: 8px;
             padding: 10px 80px 10px 16px;
             position: relative;
@@ -170,22 +169,21 @@
             line-height: 20px;
         }
 
-        img{
+        img {
             height: 250px;
             object-fit: cover;
             margin-block-start: 60px;
             object-fit: cover;
-
         }
 
-        .submit{
+        .submit {
             width: 253px;
             height: 44px;
             padding: 0 20px;
             margin-inline-start: auto;
             margin-block-start: 36px;
             font-weight: 600;
-            background-color:  rgb(0, 149, 246);
+            background-color: rgb(0, 149, 246);
             border: none;
             border-radius: 10px;
             font-size: 12px;
