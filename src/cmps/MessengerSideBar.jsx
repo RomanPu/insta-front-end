@@ -42,6 +42,7 @@ function ActiveMesagesList() {
                 msg.correspandents = msg.correspandents.filter(correspandent => correspandent._id !== logedUser?._id)
                 return msg
             })
+            .sort((a, b) => a.createdAt - b.createdAt)
         )
     }, [messages])
 
