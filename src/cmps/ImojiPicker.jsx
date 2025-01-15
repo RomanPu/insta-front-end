@@ -7,11 +7,13 @@ export function EmojiPicker({ onSelect, showEmojiPicker, setShowEmojiPicker }) {
     const [emojiPickerPosition, setEmojiPickerPosition] = useState('down')
 
     useEffect(() => {
+        console.log('showEmojiPicker', showEmojiPicker)
         if (showEmojiPicker && emojiPickerRef.current) {
             const emojiPickerRect = emojiPickerRef.current.getBoundingClientRect()
             const spaceAbove = emojiPickerRect.top
             const spaceBelow = window.innerHeight - emojiPickerRect.bottom
-
+console.log('spaceAbove', spaceAbove)
+console.log('spaceBelow', spaceBelow)
             if (spaceAbove > spaceBelow) {
                 setEmojiPickerPosition('up')
             } else {

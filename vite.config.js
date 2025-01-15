@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: "../back-end/public",
+    outDir: "../../back-end/insta-back-end/public",
     emptyOutDir: true,
     target: "esnext",
   },
