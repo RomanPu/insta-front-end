@@ -6,6 +6,7 @@ import { LoadUsers } from '../store/users/users.actions'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Loader } from '../cmps/Loader'
 
 export function HomePage() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
@@ -21,7 +22,7 @@ export function HomePage() {
         if (!isLoggedin) navigate('/login')
     }, [])
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <Loader isLoaderOn={loading} />
     return (
         <div className="home-page-conteiner">
             <section className="home-page">

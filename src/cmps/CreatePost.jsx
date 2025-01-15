@@ -4,6 +4,7 @@ import { useState, useRef } from 'react'
 import { uploadService } from '../services/img.upload.service'
 import { EmojiIcon, EmojiPicker } from './ImojiPicker'
 import { Link, useNavigate } from 'react-router-dom'
+import { Loader } from './Loader'
 
 export function CreatePost() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
@@ -152,7 +153,7 @@ function PicSelect({ getImgUrl, setState }) {
         <div className="pic-select">
             <h1>Create new post</h1>
             <div className="pic-select-conteiner">
-                {loading ? <div className="loader"></div> : <MediaIcon />}
+                {loading ? <Loader isLoading={true} /> : <MediaIcon />}
                 {!loading && <h2>Drag photos and videos here</h2>}
                 {!loading && (
                     <button onClick={onSelectImg} type="button">

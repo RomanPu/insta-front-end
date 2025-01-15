@@ -7,6 +7,7 @@ import { editMessage } from '../store/logedUser/loged.user.actions'
 import { useSelector } from 'react-redux'
 import { utilService } from '../services/util.service'
 import { Link } from 'react-router-dom'
+import { Loader } from './Loader'
 
 export function MessengerChat() {
     const chatId = useParams()._id
@@ -15,7 +16,7 @@ export function MessengerChat() {
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
 
     setAsRead()
-    
+
     async function setAsRead() {
         chat.correspandents = chat.correspandents.filter(correspandent => correspandent._id !== logedUser._id)
         if (!chat.isRead.some(isRead => isRead.id === logedUser._id)) {
@@ -31,7 +32,7 @@ export function MessengerChat() {
         setMsg('')
     }
 
-    if (!chat) return <div>Loading...</div>
+    if (!chat) return <Loader isLoaderOn={true} />
     console.log(chat)
     return (
         <div className="messenger-chat-conteiner">

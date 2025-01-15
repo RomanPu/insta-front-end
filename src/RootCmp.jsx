@@ -21,6 +21,7 @@ import { switchUser, loadMsgs } from './store/logedUser/loged.user.actions'
 import { LoadPosts } from './store/posts/posts.actions'
 import { LoadUsers } from './store/users/users.actions'
 import { utilService } from './services/util.service'
+import { Loader } from './cmps/Loader'
 
 export function RootCmp() {
     const [loading, setLoading] = useState(true)
@@ -45,7 +46,7 @@ export function RootCmp() {
         loadDb()
     }, [location])
     if (login) return  location.pathname === '/signup' ? <SignUpPage /> : <LoginPage />
-    if (loading) return <div>Loading...</div>
+    if (loading) return <Loader isLoaderOn={loading} />
     const isNavOn = location.pathname === '/login' || location.pathname === '/signup'
     return (
         <div className="main-layout">
