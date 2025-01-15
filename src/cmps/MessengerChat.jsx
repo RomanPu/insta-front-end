@@ -14,19 +14,15 @@ export function MessengerChat() {
     const chat = useSelector(storeState => storeState.logedUserModule.messages.filter(msg => msg._id === chatId)[0])
     const logedUser = useSelector(storeState => storeState.logedUserModule.logedUser)
 
-    useEffect(() => {
-        return () => {
-            utilService.saveToStorage('currentMsg', '')
-        }
-    }, [])
-
-    useEffect(() => {
+    setAsRead()
+    
+    async function setAsRead() {
         chat.correspandents = chat.correspandents.filter(correspandent => correspandent._id !== logedUser._id)
         if (!chat.isRead.some(isRead => isRead.id === logedUser._id)) {
-            editMessage(chat)
+            await editMessage(chat)
         }
         utilService.saveToStorage('currentMsg', chat._id)
-    }, [chat])
+    }
 
     async function onSendMsg() {
         if (!msg) return
@@ -36,6 +32,7 @@ export function MessengerChat() {
     }
 
     if (!chat) return <div>Loading...</div>
+    console.log(chat)
     return (
         <div className="messenger-chat-conteiner">
             <div className="messenger-chat-header">
